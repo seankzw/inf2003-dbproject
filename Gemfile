@@ -5,6 +5,7 @@ ruby "3.2.2"
 
 
 gem "bootsnap", require: false
+gem "dotenv-rails"
 gem "importmap-rails"
 gem "puma", "~> 5.0"
 gem "jbuilder"
