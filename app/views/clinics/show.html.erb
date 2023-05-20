@@ -1,10 +1,14 @@
+<div class="text-center">
+
 <p style="color: green"><%= notice %></p>
 
 <%= render @clinic %>
 
 <div>
-  <%= link_to "Edit this clinic", edit_clinic_path(@clinic) %> |
-  <%= link_to "Back to clinics", clinics_path %>
+  <%= link_to "Edit this clinic", edit_clinic_path(@clinic), class: "mt-2 rounded-lg py-3 px-5 bg-gray-100 inline-block font-medium"%>
+  <%= link_to "Back to clinics", clinics_path, class: "mt-2 rounded-lg py-3 px-5 bg-gray-100 inline-block font-medium" %>
 
-  <%= button_to "Destroy this clinic", @clinic, method: :delete %>
+  <%= button_to "Destroy this clinic", @clinic, method: :delete, class: "mt-2 rounded-lg py-3 px-5 bg-gray-100 inline-block font-medium" %>
+</div>
+
 </div>

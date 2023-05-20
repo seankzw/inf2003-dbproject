@@ -1,14 +1,22 @@
 <p style="color: green"><%= notice %></p>
 
-<h1>Clinics</h1>
-
-<div id="clinics">
-  <% @clinics.each do |clinic| %>
-    <%= render clinic %>
-    <p>
-      <%= link_to "Show this clinic", clinic %>
-    </p>
-  <% end %>
+<div class="text-center">
+<h1 class="text-3xl text-center font-bold m-6">Clinics</h1>
 </div>
 
-<%= link_to "New clinic", new_clinic_path %>
+<section class="w-78 h-80 bg-white rounded-xl drop-shadow-md m-6 relative p-6">
+  <div id="clinics">
+    <% @clinics.each do |clinic| %>
+      <%= render clinic %>
+      <p>
+        <%= link_to "Show this clinic", clinic, class: "mt-2 rounded-lg py-3 px-5 bg-gray-100 inline-block font-medium" %>
+      </p>
+    <% end %>
+  </div>
+</section>
+
+<br>
+
+<div class="text-center">
+  <%= link_to "New clinic", new_clinic_path, class: "mt-2 rounded-lg py-3 px-5 bg-gray-100 inline-block font-medium" %>
+</div>

@@ -1,14 +1,20 @@
 <p style="color: green"><%= notice %></p>
 
-<h1>Doctors</h1>
+<div class="text-center">
+<h1 class="text-3xl text-center font-bold m-6">Doctors</h1>
+</div>
 
+<section class="w-78 h-80 bg-white rounded-xl drop-shadow-md m-6 relative p-6">
 <div id="doctors">
   <% @doctors.each do |doctor| %>
     <%= render doctor %>
     <p>
-      <%= link_to "Show this doctor", doctor %>
+      <%= link_to "Show this doctor", doctor, class: "mt-2 rounded-lg py-3 px-5 bg-gray-100 inline-block font-medium" %>
     </p>
   <% end %>
 </div>
+</section>
 
-<%= link_to "New doctor", new_doctor_path %>
+<div class="text-center">
+<%= link_to "New doctor", new_doctor_path, class: "mt-2 rounded-lg py-3 px-5 bg-gray-100 inline-block font-medium" %>
+</div>
