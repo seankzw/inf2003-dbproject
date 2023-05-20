@@ -1,14 +1,17 @@
 <p style="color: green"><%= notice %></p>
 
-<h1>Hospitals</h1>
+<h1 class="text-3xl text-center font-bold m-6">Hospitals</h1>
 
-<div id="hospitals">
+
+<% if @hospitals %>
   <% @hospitals.each do |hospital| %>
-    <%= render hospital %>
-    <p>
-      <%= link_to "Show this hospital", hospital %>
-    </p>
+    <%= link_to hospital_path(hospital.hospital_id) do %>
+      <section class="w-78 h-20 bg-white rounded-xl drop-shadow-md m-6 relative p-6">
+        <span class="font-bold">Name:</span> <%= hospital.name %> <br>
+        <span class="font-bold">Location:</span> <%= hospital.location%>
+      </section>
+    <% end %>
   <% end %>
-</div>
-
-<%= link_to "New hospital", new_hospital_path %>
+<% else %>
+  <p> No hospital can be found </p>
+<% end %>
