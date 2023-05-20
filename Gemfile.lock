@@ -228,6 +228,7 @@ DEPENDENCIES
   dotenv-rails
   importmap-rails
   jbuilder
+  mongo
   mongoid
   pg
   puma (~> 5.0)

@@ -1,0 +1,21 @@
+# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  nric: MyString
+  fname: MyString
+  lname: MyString
+  phone: 1
+  dob: 2023-05-20
+  gender: MyString
+  vac_status: MyString
+  drug_allergy: MyString
+
+two:
+  nric: MyString
+  fname: MyString
+  lname: MyString
+  phone: 1
+  dob: 2023-05-20
+  gender: MyString
+  vac_status: MyString
+  drug_allergy: MyString

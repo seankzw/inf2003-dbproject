@@ -1,6 +1,7 @@
 <p style="color: green"><%= notice %></p>
-
 <h1>Medicines</h1>
+<% if @medicines.present? %>
+
 
 <div id="medicines">
   <% @medicines.each do |medicine| %>
@@ -11,4 +12,6 @@
   <% end %>
 </div>
 
-<%= link_to "New medicine", new_medicine_path %>
+<% else %>
+  <p>No items found.</p>
+<% end %>
