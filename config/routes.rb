@@ -1,9 +1,9 @@
 Rails.application.routes.draw do
+  resources :medicines
   get "errors/not_found"
   get "errors/internal_server_error"
 
   # mongodb
-  resources :medicines
   # postgres
   resources :hospitals
   resources :clinics
@@ -16,12 +16,12 @@ Rails.application.routes.draw do
   match "/500", to: "errors#internal_server_error", via: :all
 
   #Routes
-  get "/hospital", to:"hospitals#index"
-  get "/clinic", to:"clinics#index"
-  get "/patient", to:"patients#index"
-  get "/doctor", to:"doctors#index"
+  get "/hospitals", to:"hospitals#index"
+  get "/clinics", to:"clinics#index"
+  get "/patients", to:"patients#index"
+  get "/doctors", to:"doctors#index"
 
-  get "/meidicines", to:"meidicine#index"
+  get "/medicines", to:"medicines#index"
   root "home#index"
 
 end

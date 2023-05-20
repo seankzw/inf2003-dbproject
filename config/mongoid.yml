@@ -1,4 +1,6 @@
 development:
   clients:
     default:
-      uri: <%= ENV["MOGODB_URI"] %>
+      uri: <%= ENV["MONGODB_URI"] %>
+      options:
+        connect_timeout:20
