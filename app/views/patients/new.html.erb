@@ -1,9 +1,13 @@
-<h1>New patient</h1>
+<div class="text-center">
 
-<%= render "form", patient: @patient %>
+  <h1 class="text-3xl text-center font-bold m-6">New patient</h1>
 
-<br>
+  <%= render "form", patient: @patient %>
 
-<div>
-  <%= link_to "Back to patients", patients_path %>
+  <br>
+
+  <div>
+    <%= link_to "Back to patients", patients_path, class: "m-2 rounded-lg py-3 px-5 bg-gray-100 inline-block font-medium" %>
+  </div>
+
 </div>
