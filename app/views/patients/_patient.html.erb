@@ -1,4 +1,6 @@
 <div id="<%= dom_id patient %>">
+
+<% if false %>
   <p>
     <strong>Nric:</strong>
     <%= patient.nric %>
@@ -38,5 +40,50 @@
     <strong>Drug allergy:</strong>
     <%= patient.drug_allergy %>
   </p>
+<% end %>
+
+  <div>
+  <div class="px-4 sm:px-0">
+    <h3 class="text-base font-semibold leading-7 text-gray-900">Patient Information</h3>
+    <p class="mt-1 max-w-2xl text-sm leading-6 text-gray-500">Personal details.</p>
+  </div>
+  <div class="mt-6 border-t border-gray-100">
+    <dl class="divide-y divide-gray-100">
+      <div class="px-4 py-6 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-0">
+        <dt class="text-sm font-medium leading-6 text-gray-900">NRIC</dt>
+        <dd class="mt-1 text-sm leading-6 text-gray-700 sm:col-span-2 sm:mt-0"><%= patient.nric %></dd>
+      </div>
+      <div class="px-4 py-6 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-0">
+        <dt class="text-sm font-medium leading-6 text-gray-900">First Name</dt>
+        <dd class="mt-1 text-sm leading-6 text-gray-700 sm:col-span-2 sm:mt-0"><%= patient.fname %></dd>
+      </div>
+      <div class="px-4 py-6 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-0">
+        <dt class="text-sm font-medium leading-6 text-gray-900">Last Name</dt>
+        <dd class="mt-1 text-sm leading-6 text-gray-700 sm:col-span-2 sm:mt-0"><%= patient.lname %></dd>
+      </div>
+      <div class="px-4 py-6 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-0">
+        <dt class="text-sm font-medium leading-6 text-gray-900">Phone Number</dt>
+        <dd class="mt-1 text-sm leading-6 text-gray-700 sm:col-span-2 sm:mt-0"><%= patient.phone %></dd>
+      </div>
+      <div class="px-4 py-6 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-0">
+        <dt class="text-sm font-medium leading-6 text-gray-900">Date Of Birth</dt>
+        <dd class="mt-1 text-sm leading-6 text-gray-700 sm:col-span-2 sm:mt-0"><%= patient.dob %></dd>
+      </div>
+      <div class="px-4 py-6 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-0">
+        <dt class="text-sm font-medium leading-6 text-gray-900">Gender</dt>
+        <dd class="mt-1 text-sm leading-6 text-gray-700 sm:col-span-2 sm:mt-0"><%= patient.gender %></dd>
+      </div> 
+      <div class="px-4 py-6 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-0">
+        <dt class="text-sm font-medium leading-6 text-gray-900">Vaccination Status</dt>
+        <dd class="mt-1 text-sm leading-6 text-gray-700 sm:col-span-2 sm:mt-0"><%= patient.vac_status %></dd>
+      </div> 
+      <div class="px-4 py-6 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-0">
+        <dt class="text-sm font-medium leading-6 text-gray-900">Drug Allergy</dt>
+        <dd class="mt-1 text-sm leading-6 text-gray-700 sm:col-span-2 sm:mt-0"><%= patient.drug_allergy %></dd>
+      </div> 
+    </dl>
+  </div>
+</div>
+
 
 </div>
