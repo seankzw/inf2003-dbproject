@@ -4,9 +4,13 @@
 
 
 <% if @hospitals %>
-  <% @hospitals.each do |hospital| %>
+  <% @hospitals.each_with_index do |hospital,idx| %>
     <%= link_to hospital_path(hospital.hospital_id) do %>
-      <section class="w-78 h-20 bg-white rounded-xl drop-shadow-md m-6 relative p-6">
+    <% if (idx)%2 == 0 %>
+      <section class="w-78 h-22 bg-indigo-100 rounded-xl drop-shadow-md m-6 relative p-6">
+    <% else %>
+      <section class="w-78 h-22 bg-white rounded-xl drop-shadow-md m-6 relative p-6">
+    <% end%>
         <span class="font-bold">Name:</span> <%= hospital.name %> <br>
         <span class="font-bold">Location:</span> <%= hospital.location%>
       </section>
