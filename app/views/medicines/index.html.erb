@@ -3,12 +3,15 @@
     <p class="py-2 px-3 bg-green-50 mb-5 text-green-500 font-medium rounded-lg inline-block" id="notice"><%= notice %></p>
   <% end %>
 
-  <div class="flex justify-between items-center">
-    <h1 class="font-bold text-4xl">Medicines</h1>
-    <%= link_to 'New medicine', new_medicine_path, class: "rounded-lg py-3 px-5 bg-blue-600 text-white block font-medium" %>
+  <div class="text-center">
+  <h1 class="text-3xl text-center font-bold m-6">Medicines</h1>
   </div>
 
-  <div id="medicines" class="min-w-full">
+  <div id="medicines" class="w-78 h-50 bg-white rounded-xl drop-shadow-md m-6 relative p-6">
     <%= render @medicines %>
+  </div>
+
+  <div class="text-center">
+    <%= link_to 'New medicine', new_medicine_path, class: "mt-2 rounded-lg py-3 px-5 bg-gray-100 inline-block font-medium cursor-pointer hover:bg-sky-200"  %>
   </div>
 </div>
