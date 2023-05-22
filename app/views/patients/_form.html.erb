@@ -37,8 +37,18 @@
   </div>
 
   <div>
+    <%= form.label :age, style: "display: block" %>
+    <%= form.number_field :age %>
+  </div>
+
+  <div>
     <%= form.label :gender, style: "display: block" %>
     <%= form.text_field :gender %>
+  </div>
+
+  <div>
+    <%= form.label :race, style: "display: block" %>
+    <%= form.text_field :race %>
   </div>
 
   <div>
@@ -51,7 +61,7 @@
     <%= form.text_field :drug_allergy %>
   </div>
 
-  <div class="bg-sky-500 hover:bg-sky-700">
-    <%= form.submit class: "mt-2 rounded-lg py-3 px-5 bg-gray-100 inline-block font-medium" %>
+  <div>
+    <%= form.submit class: "mt-2 rounded-lg py-3 px-5 bg-gray-100 inline-block font-medium cursor-pointer" %>
   </div>
 <% end %>
