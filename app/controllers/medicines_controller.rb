@@ -4,6 +4,7 @@ class MedicinesController < ApplicationController
   # GET /medicines or /medicines.json
   def index
     @medicines = Medicine.all
+    p @medicines
   end
 
   # GET /medicines/1 or /medicines/1.json

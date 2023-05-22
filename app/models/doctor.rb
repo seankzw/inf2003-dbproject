@@ -6,4 +6,5 @@ class Doctor < ApplicationRecord
   #field :contact, type: Integer
   #field :email, type: String
   #field :role, type: String
+  belongs_to :clinic
 end
