@@ -3,6 +3,7 @@ class ClinicsController < ApplicationController
 
   # GET /clinics or /clinics.json
   def index
+    p "here"
     @clinics = Clinic.all
   end
 

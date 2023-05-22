@@ -1,4 +1,5 @@
 class Hospital < ApplicationRecord
+  has_many :clinics
   #include Mongoid::Document
   #include Mongoid::Timestamps
   #field :name, type: String
