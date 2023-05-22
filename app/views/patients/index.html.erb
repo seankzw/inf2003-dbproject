@@ -4,17 +4,17 @@
   <h1 class="text-3xl text-center font-bold m-6">Patients</h1>
 </div>
 
-  <section class="w-78 h-50 bg-white rounded-xl drop-shadow-md m-6 relative p-6">
 
   <div id="patients">
     <% @patients.each do |patient| %>
+      <section class="w-78 h-50 bg-white rounded-xl drop-shadow-md m-6 relative p-6">
       <%= render patient %>
       <p>
         <%= link_to "Show this patient", patient, class: "mt-2 rounded-lg py-3 px-5 bg-gray-100 inline-block font-medium cursor-pointer hover:bg-sky-200" %>
       </p>
+      </section>
     <% end %>
   </div>
-  </section>
 
   <div class="text-center">
   <%= link_to "New patient", new_patient_path, class: "mt-2 rounded-lg py-3 px-5 bg-gray-100 inline-block font-medium cursor-pointer hover:bg-sky-200"%>
