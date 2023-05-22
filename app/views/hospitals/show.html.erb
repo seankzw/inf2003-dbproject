@@ -8,10 +8,10 @@
 
       <%= render @hospital %>
 
-      <%= link_to 'Edit this hospital', edit_hospital_path(@hospital), class: "mt-2 rounded-lg py-3 px-5 bg-gray-100 inline-block font-medium" %>
+      <%= link_to 'Edit this hospital', edit_hospital_path(@hospital), class: "mt-2 rounded-lg py-3 px-5 bg-gray-100 inline-block font-medium cursor-pointer hover:bg-sky-200" %>
       <div class="inline-block ml-2">
-        <%= button_to 'Destroy this hospital', hospital_path(@hospital), method: :delete, class: "mt-2 rounded-lg py-3 px-5 bg-gray-100 font-medium" %>
+        <%= button_to 'Destroy this hospital', hospital_path(@hospital), method: :delete, class: "mt-2 rounded-lg py-3 px-5 bg-gray-100 font-medium cursor-pointer hover:bg-sky-200" %>
       </div>
-      <%= link_to 'Back to hospitals', hospitals_path, class: "ml-2 rounded-lg py-3 px-5 bg-gray-100 inline-block font-medium" %>
+      <%= link_to 'Back to hospitals', hospitals_path, class: "ml-2 rounded-lg py-3 px-5 bg-gray-100 inline-block font-medium cursor-pointer hover:bg-sky-200" %>
   </div>
 </div>
