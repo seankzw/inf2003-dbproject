@@ -4,7 +4,7 @@ class Medicine
   store_in collection: "medicines"
 
   field :name, type: String
-  field :quantity, type: Integer
   field :price, type: Float
-  field :category, type: String
+  field :dosage, type: String
+  field :instruction, type: String
 end

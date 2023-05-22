@@ -1,4 +1,4 @@
-<div class="w-full">
+<div class="w-full flex">
   <% if notice.present? %>
     <p class="py-2 px-3 bg-green-50 mb-5 text-green-500 font-medium rounded-lg inline-block" id="notice"><%= notice %></p>
   <% end %>
@@ -12,15 +12,17 @@
         </div>
           <section class="whitespace-normal py-5 mx-5">
             <p class="text-sm mt-2"><span class="font-bold">Name: </span><%= medicine.name%></p>
-            <p class="text-sm mt-2"><span class="font-bold">Quantity: </span><%= medicine.quantity%></p>
-            <p class="text-sm mt-2"><span class="font-bold">Price: </span>$<%= medicine.price%></p>
-            <p class="text-sm mt-2"><span class="font-bold">Category: </span><%= medicine.category%></p>
+            <p class="text-sm mt-2"><span class="font-bold">Price: </span><%= medicine.price%></p>
+            <p class="text-sm mt-2"><span class="font-bold">Dosage: </span>$<%= medicine.dosage%></p>
+            <p class="text-sm mt-2"><span class="font-bold">Instruction: </span><%= medicine.instruction%></p>
           </section>
         </section>
       <% end %>
     <% end %>
   <% end %>
+</div>
 
+<div>
   <div class="text-center">
     <%= link_to 'New medicine', new_medicine_path, class: "mt-2 rounded-lg py-3 px-5 bg-gray-100 inline-block font-medium cursor-pointer hover:bg-sky-200"  %>
   </div>
