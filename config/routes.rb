@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  devise_for :users
   resources :medicines
   get "errors/not_found"
   get "errors/internal_server_error"

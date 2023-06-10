@@ -5,6 +5,7 @@ ruby "3.2.2"
 
 
 gem "bootsnap", require: false
+gem "devise"
 gem "dotenv-rails"
 gem "importmap-rails"
 gem "puma", "~> 5.0"
