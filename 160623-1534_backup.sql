@@ -259,7 +259,8 @@ CREATE TABLE public.users (
     reset_password_sent_at timestamp(6) without time zone,
     remember_created_at timestamp(6) without time zone,
     created_at timestamp(6) without time zone NOT NULL,
-    updated_at timestamp(6) without time zone NOT NULL
+    updated_at timestamp(6) without time zone NOT NULL,
+    role character varying
 );
 
 
@@ -401,6 +402,7 @@ COPY public.patients (patient_id, nric, fname, lname, phone, dob, gender, race, 
 COPY public.schema_migrations (version) FROM stdin;
 20230610170829
 20230616054445
+20230616073608
 \.
 
 
@@ -408,9 +410,9 @@ COPY public.schema_migrations (version) FROM stdin;
 -- Data for Name: users; Type: TABLE DATA; Schema: public; Owner: sixguyshc
 --
 
-COPY public.users (id, email, encrypted_password, reset_password_token, reset_password_sent_at, remember_created_at, created_at, updated_at) FROM stdin;
-1	a@a.com	$2a$12$DuFFHYp/ch18/ltgkLypMeNso8bHdljuxpmDzEb338HwOGyJZxahW	\N	\N	\N	2023-06-10 17:14:25.005408	2023-06-10 17:14:25.005408
-6	b@b.com	$2a$12$DNQyJq/DLRJKFPPXRSh6ou3QbeUbxuPXfDjWsYbFKyf68xow0klCO	\N	\N	\N	2023-06-16 07:23:15.600939	2023-06-16 07:23:15.600939
+COPY public.users (id, email, encrypted_password, reset_password_token, reset_password_sent_at, remember_created_at, created_at, updated_at, role) FROM stdin;
+1	a@a.com	$2a$12$DuFFHYp/ch18/ltgkLypMeNso8bHdljuxpmDzEb338HwOGyJZxahW	\N	\N	\N	2023-06-10 17:14:25.005408	2023-06-10 17:14:25.005408	\N
+8	b@b.com	$2a$12$/7T5GBR60DVxgSh5v7xwxuXZQ86gIeSiz6CoF86u0eW4yxV.1/2jS	\N	\N	\N	2023-06-16 07:39:27.828349	2023-06-16 07:39:27.828349	\N
 \.
 
 
@@ -453,7 +455,7 @@ SELECT pg_catalog.setval('public.patient_patient_id_seq', 9, true);
 -- Name: users_id_seq; Type: SEQUENCE SET; Schema: public; Owner: sixguyshc
 --
 
-SELECT pg_catalog.setval('public.users_id_seq', 6, true);
+SELECT pg_catalog.setval('public.users_id_seq', 8, true);
 
 
 --
