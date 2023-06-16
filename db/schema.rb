@@ -10,9 +10,13 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2023_06_10_170829) do
+ActiveRecord::Schema[7.0].define(version: 2023_06_16_090210) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  # Custom types defined in this database.
+  # Note that some types may not work with other database engines. Be careful if changing database.
+  create_enum "user_role", ["superadmin", "hospitaladmin", "user"]
 
   create_table "appointments", primary_key: "appointment_id", id: :integer, default: -> { "nextval('appointment_appointment_id_seq'::regclass)" }, force: :cascade do |t|
     t.integer "patient_id", null: false
@@ -60,6 +64,7 @@ ActiveRecord::Schema[7.0].define(version: 2023_06_10_170829) do
     t.string "reset_password_token"
     t.datetime "reset_password_sent_at"
     t.datetime "remember_created_at"
+    t.integer "role", default: 0
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["email"], name: "index_users_on_email", unique: true

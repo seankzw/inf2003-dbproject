@@ -18,9 +18,9 @@
     </div>
   <% end %>
 
-  <%- flash.each do |name, msg| -%>
-    <%= content_tag :div, msg, :class => 'text-red-500', :id => "flash_#{name}" if msg.is_a?(String)  %>
-  <%- end -%>
+  <% flash.each do |name, msg| %>
+      <%= content_tag :div, msg, :class => 'text-red-500', :id => "flash_#{name}" if msg.is_a?(String)  %>
+    <% end %>
 
   <div class="actions">
     <%= f.submit "Log in" %>
