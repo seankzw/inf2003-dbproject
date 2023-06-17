@@ -1,4 +1,6 @@
-<h2>Sign up</h2>
+<div class="text-center">
+
+<h1 class="text-3xl text-center font-bold m-6">Sign up</h1>
 
 <%= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
   <%= render "devise/shared/error_messages", resource: resource %>
@@ -22,8 +24,10 @@
   </div>
 
   <div class="actions">
-    <%= f.submit "Sign up" %>
+    <%= f.submit "Sign up", class: "mt-2 rounded-lg py-3 px-5 bg-gray-100 inline-block font-medium cursor-pointer hover:bg-sky-200" %>
   </div>
 <% end %>
 
 <%= render "devise/shared/links" %>
+
+</div>
