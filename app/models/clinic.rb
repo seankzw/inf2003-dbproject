@@ -7,4 +7,5 @@ class Clinic < ApplicationRecord
   #field :location, type: String
   belongs_to :hospital
   has_many :doctors
+  has_many :appointments
 end

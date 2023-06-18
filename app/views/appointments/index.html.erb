@@ -9,6 +9,13 @@
   </div>
 
   <div id="appointments" class="min-w-full">
-    <%= render @appointments %>
+    <%= render @appointments%>
+    <% @appointments.each do |appointment| %>
+      <p><b>Appointment ID:</b> <%= appointment.id%></p>
+      <p><b>Doctor:</b> <%= appointment.doctor.name%></p>
+      <p><b>Clinic:</b> <%= appointment.clinic.name%></p>
+      <p><b>Description:</b> <%= appointment.description%></p>
+      <p><b>Date:</b> <%= appointment.date%></p>
+    <% end %>
   </div>
 </div>

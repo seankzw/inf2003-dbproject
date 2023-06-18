@@ -7,4 +7,5 @@ class Doctor < ApplicationRecord
   #field :email, type: String
   #field :role, type: String
   belongs_to :clinic
+  has_many :appointment
 end

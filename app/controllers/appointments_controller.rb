@@ -1,9 +1,11 @@
 class AppointmentsController < ApplicationController
   before_action :set_appointment, only: %i[ show edit update destroy ]
+  before_action :authenticate_user!
 
   # GET /appointments or /appointments.json
   def index
-    @appointments = Appointment.all
+    #@appointments = Appointment.all
+    @appointments = Appointment.includes(:doctor).includes(:clinic).all
   end
 
   # GET /appointments/1 or /appointments/1.json
@@ -14,10 +16,19 @@ class AppointmentsController < ApplicationController
 
   # GET /appointments/new
   def new
-    @appointment = Appointment.new
-    @hospitals = Hospital.all
-    @clinics = Clinic.all
-    @doctors = Doctor.all
+      if current_user.user?
+          if Patient.where(patient_id: current_user.id).empty?
+            p "User hasn't completed profile -- Redirecting to new_patient_path"
+            redirect_to new_patient_path
+            return
+          end
+      else
+        p "User completed profile -- Proceeding to appointment page"
+        @appointment = Appointment.new
+        @hospitals = Hospital.all
+        @clinics = Clinic.all
+        @doctors = Doctor.all
+      end
   end
 
   # GET /appointments/1/edit

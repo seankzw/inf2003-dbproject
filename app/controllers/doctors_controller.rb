@@ -1,5 +1,6 @@
 class DoctorsController < ApplicationController
   before_action :set_doctor, only: %i[ show edit update destroy ]
+  before_action :authenticate_user!
 
   # GET /doctors or /doctors.json
   def index
