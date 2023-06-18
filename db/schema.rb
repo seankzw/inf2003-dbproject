@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2023_06_16_090210) do
+ActiveRecord::Schema[7.0].define(version: 2023_06_16_142638) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -18,12 +18,14 @@ ActiveRecord::Schema[7.0].define(version: 2023_06_16_090210) do
   # Note that some types may not work with other database engines. Be careful if changing database.
   create_enum "user_role", ["superadmin", "hospitaladmin", "user"]
 
-  create_table "appointments", primary_key: "appointment_id", id: :integer, default: -> { "nextval('appointment_appointment_id_seq'::regclass)" }, force: :cascade do |t|
-    t.integer "patient_id", null: false
-    t.integer "doctor_id", null: false
-    t.integer "clinic_id", null: false
-    t.string "name", limit: 255, null: false
-    t.datetime "date", precision: nil, null: false
+  create_table "appointments", force: :cascade do |t|
+    t.integer "patient_id"
+    t.integer "doctor_id"
+    t.integer "clinic_id"
+    t.string "name"
+    t.datetime "date"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
   create_table "clinics", primary_key: "clinic_id", id: :integer, default: -> { "nextval('clinic_clinic_id_seq'::regclass)" }, force: :cascade do |t|
@@ -71,9 +73,6 @@ ActiveRecord::Schema[7.0].define(version: 2023_06_16_090210) do
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
 
-  add_foreign_key "appointments", "clinics", primary_key: "clinic_id", name: "clinic_id"
-  add_foreign_key "appointments", "doctors", primary_key: "doctor_id", name: "doctor_id"
-  add_foreign_key "appointments", "patients", primary_key: "patient_id", name: "patient_id"
   add_foreign_key "clinics", "hospitals", primary_key: "hospital_id", name: "hospital_id"
   add_foreign_key "doctors", "clinics", primary_key: "clinic_id", name: "clinic_id"
 end
