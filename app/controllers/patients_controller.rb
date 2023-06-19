@@ -1,7 +1,7 @@
 class PatientsController < ApplicationController
   before_action :set_patient, only: %i[ show edit update destroy ]
   before_action :authenticate_user!
-  before_action :check_permission, only: %i[edit update index]
+  before_action :check_permission, only: %i[update index]
 
   def check_permission
     if current_user.user?
@@ -26,6 +26,7 @@ class PatientsController < ApplicationController
 
   # GET /patients/1/edit
   def edit
+
   end
 
   # POST /patients or /patients.json

@@ -7,12 +7,15 @@
     <% end %>
 
       <%= render @patient %>
-      <div class="text-center">
-        <%= link_to "Edit this patient", edit_patient_path(@patient), class: "mt-2 rounded-lg py-3 px-5 bg-gray-100 inline-block font-medium" %>
-        <div class="inline-block ml-2">
-          <%= button_to "Destroy this patient", @patient, method: :delete, class: "mt-2 rounded-lg py-3 px-5 bg-gray-100 font-medium" %>
-        </div>
-        <%= link_to "Back to patients", patients_path, class: "ml-2 rounded-lg py-3 px-5 bg-gray-100 inline-block font-medium" %>
-      </div>
+
+      <%= link_to "Update details", edit_patient_path(@patient), class: "mt-2 rounded-lg py-3 px-5 bg-gray-100 inline-block font-medium" %>
+      <% if current_user %>
+        <% if current_user.superadmin? || current_user.hospitaladmin? %>
+          <div class="inline-block ml-2">
+            <%= button_to "Destroy this patient", @patient, method: :delete, class: "mt-2 rounded-lg py-3 px-5 bg-gray-100 font-medium" %>
+          </div>
+        <% end %>
+      <% end %>
+      <%= link_to "Back to patients", patients_path, class: "ml-2 rounded-lg py-3 px-5 bg-gray-100 inline-block font-medium" %>
   </div>
 </div>
