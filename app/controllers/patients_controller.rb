@@ -9,7 +9,6 @@ class PatientsController < ApplicationController
     end
   end
 
-
   # GET /patients or /patients.json
   def index
     @patients = Patient.all
