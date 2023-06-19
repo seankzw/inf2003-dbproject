@@ -1,10 +1,19 @@
-<h1>Hello world</h1>
+<div class="text-center font-bold text-center text-4xl mt-20">
+
+<br>
+
+<h1>Welcome</h1>
+
+<br>
 
 <% if current_user %>
     <p>You are a [<%= current_user.role %>]</p>
     <% if current_user.superadmin? %>
         You the best
     <% end %>
+    <br>
 <% else %>
     <p> Please sign in</p>
 <% end %>
+
+</div>
