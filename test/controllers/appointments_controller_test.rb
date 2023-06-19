@@ -34,7 +34,7 @@ class AppointmentsControllerTest < ActionDispatch::IntegrationTest
   end
 
   test "should update appointment" do
-    patch appointment_url(@appointment), params: { appointment: { clinic_id: @appointment.clinic_id, date: @appointment.date, doctor_id: @appointment.doctor_id, name: @appointment.name, patient_id: @appointment.patient_id } }
+    patch appointment_url(@appointment), params: { appointment: { clinic_id: @appointment.clinic_id, date: @appointment.date, doctor_id: @appointment.doctor_id, description: @appointment.name, patient_id: @appointment.patient_id } }
     assert_redirected_to appointment_url(@appointment)
   end
 

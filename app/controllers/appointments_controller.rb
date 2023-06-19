@@ -7,6 +7,7 @@ class AppointmentsController < ApplicationController
     #@appointments = Appointment.all
     if current_user.hospitaladmin? || current_user.superadmin?
       @appointments = Appointment.includes(:doctor).includes(:clinic).all
+      p @appointments
     else
       @appointments = Appointment.includes(:doctor).includes(:clinic).where(user_id: current_user.id)
     end
@@ -47,8 +48,11 @@ class AppointmentsController < ApplicationController
   # POST /appointments or /appointments.json
   def create
     @appointment = Appointment.new(appointment_params)
+    p @appointment
     @appointment.clinic_id = params[:clinic_id]
     @appointment.doctor_id = params[:doctor_id]
+    patient_record = Patient.where(user_id: current_user.id).first
+    @appointment.patient_id = patient_record.patient_id
 
     respond_to do |format|
       if @appointment.save
@@ -92,6 +96,6 @@ class AppointmentsController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def appointment_params
-      params.require(:appointment).permit(:patient_id, :doctor_id, :clinic_id, :name, :date)
+      params.require(:appointment).permit(:patient_id, :doctor_id, :clinic_id, :description, :date)
     end
 end
