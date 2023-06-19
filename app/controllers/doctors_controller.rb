@@ -1,6 +1,13 @@
 class DoctorsController < ApplicationController
   before_action :set_doctor, only: %i[ show edit update destroy ]
   before_action :authenticate_user!
+  before_action :check_permission
+
+  def check_permission
+    if current_user.user?
+      redirect_to "/"
+    end
+  end
 
   # GET /doctors or /doctors.json
   def index

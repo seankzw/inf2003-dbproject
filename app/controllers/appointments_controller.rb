@@ -25,9 +25,13 @@ class AppointmentsController < ApplicationController
             p "User hasn't completed profile -- Redirecting to new_patient_path"
             redirect_to new_patient_path
           end
+
+          user = Patient.where(user_id: current_user.id).first
+          @user_name = user.fname + " "+ user.lname
         end
         p "User completed profile -- Proceeding to appointment page"
         @appointment = Appointment.new
+        @user_name = current_user.id
         @hospitals = Hospital.all
         @clinics = Clinic.all
         @doctors = Doctor.all
