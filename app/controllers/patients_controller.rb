@@ -1,7 +1,7 @@
 class PatientsController < ApplicationController
   before_action :set_patient, only: %i[ show edit update destroy ]
   before_action :authenticate_user!
-  before_action :check_permission
+  before_action :check_permission, only: %i[edit update index]
 
   def check_permission
     if current_user.user?
@@ -17,6 +17,7 @@ class PatientsController < ApplicationController
 
   # GET /patients/1 or /patients/1.json
   def show
+    @patients = Patient.where(user_id: current_user.id)
   end
 
   # GET /patients/new
