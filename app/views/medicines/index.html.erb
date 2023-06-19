@@ -15,7 +15,7 @@
 
 <br>
 
-<div class="w-90 flex">
+<div class="w-90 flex items-center overflow-x-auto">
   <% if @medicines %>
     <% @medicines.each do |medicine| %>
       <%= link_to medicine_path(medicine.id) do %>
