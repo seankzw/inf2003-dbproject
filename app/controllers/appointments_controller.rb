@@ -9,7 +9,8 @@ class AppointmentsController < ApplicationController
       @appointments = Appointment.includes(:doctor).includes(:clinic).all
       p @appointments
     else
-      @appointments = Appointment.includes(:doctor).includes(:clinic).where(user_id: current_user.id)
+      patient_id = Patient.where(user_id: current_user.id).first
+      @appointments = Appointment.includes(:doctor).includes(:clinic).where(patient_id: patient_id.patient_id)
     end
   end
 

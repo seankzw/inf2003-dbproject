@@ -4,6 +4,7 @@ class HospitalsController < ApplicationController
   # GET /hospitals or /hospitals.json
   def index
     @hospitals = Hospital.all
+    @patient_name = session[:patient_name]
   end
 
   # GET /hospitals/1 or /hospitals/1.json
