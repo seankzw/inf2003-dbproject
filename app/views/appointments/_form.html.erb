@@ -19,7 +19,7 @@
 
   <div class="my-5">
     <%= form.label :doctor_id %>
-    <select name='doctor_id' class=':lock shadow rounded-md border border-gray-200 outline-none px-3 py-2 mt-2 w-full'>
+    <select name='doctor_id' class='block shadow rounded-md border border-gray-200 outline-none px-3 py-2 mt-2 w-full'>
       <% @doctors.each do |doctor| %>
         <option value="<%= doctor.doctor_id%>"><%= doctor.name %></option>
       <% end %>
@@ -28,7 +28,7 @@
 
   <div class="my-5">
     <%= form.label :clinic_id %>
-    <select name='clinic_id' class=':lock shadow rounded-md border border-gray-200 outline-none px-3 py-2 mt-2 w-full'>
+    <select name='clinic_id' class='block shadow rounded-md border border-gray-200 outline-none px-3 py-2 mt-2 w-full'>
     <% @clinics.each do |clinic| %>
       <option value="<%= clinic.clinic_id%>" ><%= clinic.name %></option>
     <% end %>

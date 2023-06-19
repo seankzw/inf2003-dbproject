@@ -5,7 +5,11 @@ class AppointmentsController < ApplicationController
   # GET /appointments or /appointments.json
   def index
     #@appointments = Appointment.all
-    @appointments = Appointment.includes(:doctor).includes(:clinic).all
+    if current_user.hospitaladmin? || current_user.superadmin?
+      @appointments = Appointment.includes(:doctor).includes(:clinic).all
+    else
+      @appointments = Appointment.includes(:doctor).includes(:clinic).where(user_id: current_user.id)
+    end
   end
 
   # GET /appointments/1 or /appointments/1.json
@@ -17,18 +21,16 @@ class AppointmentsController < ApplicationController
   # GET /appointments/new
   def new
       if current_user.user?
-          if Patient.where(patient_id: current_user.id).empty?
+          if Patient.where(user_id: current_user.id).empty?
             p "User hasn't completed profile -- Redirecting to new_patient_path"
             redirect_to new_patient_path
-            return
           end
-      else
+        end
         p "User completed profile -- Proceeding to appointment page"
         @appointment = Appointment.new
         @hospitals = Hospital.all
         @clinics = Clinic.all
         @doctors = Doctor.all
-      end
   end
 
   # GET /appointments/1/edit
