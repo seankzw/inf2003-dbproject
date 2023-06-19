@@ -4,12 +4,12 @@ one:
   patient_id: 1
   doctor_id: 1
   clinic_id: 1
-  name: MyString
+  description: MyString
   date: 2023-06-16 22:26:38
 
 two:
   patient_id: 1
   doctor_id: 1
   clinic_id: 1
-  name: MyString
+  description: MyString
   date: 2023-06-16 22:26:38
