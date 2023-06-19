@@ -1,0 +1,11 @@
+<div class="text-center">
+  <h1 class="text-3xl text-center font-bold m-6">New doctor</h1>
+
+  <%= render "form", doctor: @doctor %>
+
+  <br>
+
+  <div>
+    <%= link_to "Back to doctors", doctors_path, class: "m-2 rounded-lg py-3 px-5 bg-gray-100 inline-block font-medium cursor-pointer hover:bg-sky-200" %>
+  </div>
+</div>

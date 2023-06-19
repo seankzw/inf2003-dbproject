@@ -1,0 +1,16 @@
+<div class="text-center">
+
+  <h2 class="text-3xl text-center font-bold m-6">Edit Hospital</h2>
+
+  <%= render "form", hospital: @hospital %>
+
+  <br>
+
+  <div>
+    <%= link_to "Show this hospital", @hospital, class: "mt-2 rounded-lg py-3 px-5 bg-gray-100 inline-block font-medium cursor-pointer hover:bg-sky-200" %> 
+    <div class="inline-block ml-2">
+    <%= link_to "Back to hospitals", hospitals_path, class: "mt-2 rounded-lg py-3 px-5 bg-gray-100 inline-block font-medium cursor-pointer hover:bg-sky-200" %>
+    </div>
+  </div>
+
+</div>

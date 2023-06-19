@@ -1,0 +1,30 @@
+<p style="color: green"><%= notice %></p>
+
+<div class="my-24 mx-auto md:w-2/3 w-full flex">
+  <div class="mx-auto">
+    <% if notice.present? %>
+      <p class="py-2 px-3 bg-green-50 mb-5 text-green-500 font-medium rounded-lg inline-block" id="notice"><%= notice %></p>
+    <% end %>
+
+      <%= render @hospital %>
+
+      <%
+        @name = @hospital.name
+        @name = @name.gsub(" ", "%20")
+      %>
+
+      <iframe src="https://www.google.com/maps?q=<%= @name %>,%20Singapore&output=embed" width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy"></iframe>
+
+      <% if current_user %>
+          <% if current_user.superadmin? || current_user.hospitaladmin? %>
+              <%= link_to 'Edit this hospital', edit_hospital_path(@hospital), class: "mt-2 rounded-lg py-3 px-5 bg-gray-100 inline-block font-medium cursor-pointer hover:bg-sky-200" %>
+              <% if current_user.superadmin? %>
+                <div class="inline-block ml-2">
+                    <%= button_to 'Destroy this hospital', hospital_path(@hospital), method: :delete, class: "mt-2 rounded-lg py-3 px-5 bg-gray-100 font-medium cursor-pointer hover:bg-sky-200" %>
+                </div>
+                <% end %>
+          <% end %>
+      <% end %>
+      <%= link_to 'Back to hospitals', hospitals_path, class: "mt-2 rounded-lg py-3 px-5 bg-gray-100 inline-block font-medium cursor-pointer hover:bg-sky-200" %>
+  </div>
+</div>

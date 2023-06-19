@@ -4,12 +4,18 @@ require "rails/all"
 
 # Require the gems listed in Gemfile, including any gems
 # you've limited to :test, :development, or :production.
-Bundler.require(*Rails.groups)
+
+Bundler.require(*Rails.groups) #default
+
 
 module HealthCompanion
   class Application < Rails::Application
     # Initialize configuration defaults for originally generated Rails version.
     config.load_defaults 7.0
+
+    config.generators do |g|
+      g.orm :active_record
+    end
 
     # Configuration for the application, engines, and railties goes here.
     #
