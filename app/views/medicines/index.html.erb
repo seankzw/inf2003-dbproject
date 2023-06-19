@@ -1,8 +1,21 @@
-<div class="w-full flex">
+
   <% if notice.present? %>
     <p class="py-2 px-3 bg-green-50 mb-5 text-green-500 font-medium rounded-lg inline-block" id="notice"><%= notice %></p>
   <% end %>
 
+<div class="text-center">
+  <h1 class="text-3xl text-center font-bold m-6">Medicine</h1>
+</div>
+
+<div>
+  <div class="text-center">
+    <%= link_to 'New medicine', new_medicine_path, class: "mt-2 rounded-lg py-3 px-5 bg-gray-100 inline-block font-medium cursor-pointer hover:bg-sky-200"  %>
+  </div>
+</div>
+
+<br>
+
+<div class="w-90 flex">
   <% if @medicines %>
     <% @medicines.each do |medicine| %>
       <%= link_to medicine_path(medicine.id) do %>
@@ -20,10 +33,4 @@
       <% end %>
     <% end %>
   <% end %>
-</div>
-
-<div>
-  <div class="text-center">
-    <%= link_to 'New medicine', new_medicine_path, class: "mt-2 rounded-lg py-3 px-5 bg-gray-100 inline-block font-medium cursor-pointer hover:bg-sky-200"  %>
-  </div>
 </div>

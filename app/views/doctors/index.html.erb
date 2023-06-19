@@ -1,7 +1,11 @@
 <p style="color: green"><%= notice %></p>
 
 <div class="text-center">
-<h1 class="text-3xl text-center font-bold m-6">Doctors</h1>
+  <h1 class="text-3xl text-center font-bold m-6">Doctors</h1>
+</div>
+
+<div class="text-center">
+  <%= link_to "New doctor", new_doctor_path, class: "mt-2 rounded-lg py-3 px-5 bg-gray-100 inline-block font-medium cursor-pointer hover:bg-sky-200" %>
 </div>
 
 <div id="doctors">
@@ -15,6 +19,3 @@
   <% end %>
 </div>
 
-<div class="text-center">
-<%= link_to "New doctor", new_doctor_path, class: "mt-2 rounded-lg py-3 px-5 bg-gray-100 inline-block font-medium cursor-pointer hover:bg-sky-200" %>
-</div>

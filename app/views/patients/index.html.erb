@@ -1,5 +1,6 @@
 <% if current_user %>
     <% if current_user.user? %>
+    <br>
         <h1 class="font-bold text-center text-4xl mt-20">Sorry you do not have access to this page.</h1>
     <% else %>
         <p style="color: green"><%= notice %></p>
