@@ -23,6 +23,10 @@ class PatientsController < ApplicationController
   # POST /patients or /patients.json
   def create
     @patient = Patient.new(patient_params)
+    @patient.user_id = current_user.id
+    current_year = Time.new.year
+    dob_year = @patient.dob.year
+    @patient.age = current_year - dob_year
 
     respond_to do |format|
       if @patient.save

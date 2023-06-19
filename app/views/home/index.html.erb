@@ -8,6 +8,7 @@
 
 <% if current_user %>
     <p>You are a [<%= current_user.role %>]</p>
+    <p>Your id is <%= current_user.id %></p>
     <% if current_user.superadmin? %>
         You the best
     <% end %>
