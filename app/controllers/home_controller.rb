@@ -1,4 +1,5 @@
 class HomeController < ApplicationController
+  # GET /appointments or /appointments.json
   def index
     if current_user
       if current_user.user?
@@ -12,6 +13,10 @@ class HomeController < ApplicationController
         end
       elsif current_user.hospitaladmin?
         session[:logon_name] = "hospitaladmin"
+        @clinics = Clinic.joins(:hospital)
+        @doctors = Doctor.joins(:clinic)
+        @appointments = Appointment.includes(:doctor).includes(:clinic).all
+        @patients = Patient.all
       else
         session[:logon_name] = "superadmin"
       end
