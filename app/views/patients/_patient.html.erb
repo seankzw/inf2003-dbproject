@@ -42,48 +42,68 @@
   </p>
 <% end %>
 
-  <div>
-  <div class="px-4 sm:px-0">
-    <h3 class="text-base font-semibold leading-7 text-gray-900">Patient Information</h3>
-    <p class="mt-1 max-w-2xl text-sm leading-6 text-gray-500">Personal details.</p>
-  </div>
-  <div class="mt-6 border-t border-gray-100">
-    <dl class="divide-y divide-gray-100">
-      <div class="px-4 py-6 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-0">
-        <dt class="text-sm font-medium leading-6 text-gray-900">NRIC</dt>
-        <dd class="mt-1 text-sm leading-6 text-gray-700 sm:col-span-2 sm:mt-0"><%= patient.nric %></dd>
-      </div>
-      <div class="px-4 py-6 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-0">
-        <dt class="text-sm font-medium leading-6 text-gray-900">First Name</dt>
-        <dd class="mt-1 text-sm leading-6 text-gray-700 sm:col-span-2 sm:mt-0"><%= patient.fname %></dd>
-      </div>
-      <div class="px-4 py-6 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-0">
-        <dt class="text-sm font-medium leading-6 text-gray-900">Last Name</dt>
-        <dd class="mt-1 text-sm leading-6 text-gray-700 sm:col-span-2 sm:mt-0"><%= patient.lname %></dd>
-      </div>
-      <div class="px-4 py-6 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-0">
-        <dt class="text-sm font-medium leading-6 text-gray-900">Phone Number</dt>
-        <dd class="mt-1 text-sm leading-6 text-gray-700 sm:col-span-2 sm:mt-0"><%= patient.phone %></dd>
-      </div>
-      <div class="px-4 py-6 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-0">
-        <dt class="text-sm font-medium leading-6 text-gray-900">Date Of Birth</dt>
-        <dd class="mt-1 text-sm leading-6 text-gray-700 sm:col-span-2 sm:mt-0"><%= patient.dob %></dd>
-      </div>
-      <div class="px-4 py-6 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-0">
-        <dt class="text-sm font-medium leading-6 text-gray-900">Gender</dt>
-        <dd class="mt-1 text-sm leading-6 text-gray-700 sm:col-span-2 sm:mt-0"><%= patient.gender %></dd>
-      </div> 
-      <div class="px-4 py-6 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-0">
-        <dt class="text-sm font-medium leading-6 text-gray-900">Vaccination Status</dt>
-        <dd class="mt-1 text-sm leading-6 text-gray-700 sm:col-span-2 sm:mt-0"><%= patient.vac_status %></dd>
-      </div> 
-      <div class="px-4 py-6 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-0">
-        <dt class="text-sm font-medium leading-6 text-gray-900">Drug Allergy</dt>
-        <dd class="mt-1 text-sm leading-6 text-gray-700 sm:col-span-2 sm:mt-0"><%= patient.drug_allergy %></dd>
-      </div> 
-    </dl>
-  </div>
-</div>
 
+<h3 class="text-base font-semibold leading-7 text-gray-900">Patient Information</h3>
+<div class="bg-white shadow-md rounded px-8 pt-6 pb-8 mb-4 flex flex-col my-2">
+    <div class="-mx-3 md:flex mb-6">
+        <p class="mt-1 max-w-2xl text-sm leading-6 text-gray-500">Personal details</p>
+    </div>
+    <div class="-mx-3 md:flex mb-6">
+        <div class="md:w-full px-3 md:mb-0">
+            <label class="block uppercase tracking-wide text-grey-darker text-xs font-bold mb-2" for="grid-nric">
+                NRIC
+            </label>
+            <input value=<%= patient.nric %> class="appearance-none block w-full bg-grey-lighter text-grey-darker border border-grey-lighter rounded py-3 px-4 mb-3" id="grid-nric" type="text" disabled>
+        </div>
+    </div>
+    <div class="-mx-3 md:flex mb-6">
+        <div class="md:w-1/2 px-3 mb-6 md:mb-0">
+            <label class="block uppercase tracking-wide text-grey-darker text-xs font-bold mb-2" for="grid-first-name">
+                First Name
+            </label>
+            <input value=<%= patient.fname %> class="appearance-none block w-full bg-grey-lighter text-grey-darker border border-grey-lighter rounded py-3 px-4 mb-3" id="grid-first-name" type="text" disabled>
+        </div>
+        <div class="md:W-1/2 px-3 mb-6 md:mb-0">
+            <label class="block uppercase tracking-wide text-grey-darker text-xs font-bold mb-2" for="grid-last-name">
+                Last Name
+            </label>
+            <input value=<%= patient.lname %> class="appearance-none block w-full bg-grey-lighter text-grey-darker border border-grey-lighter rounded py-3 px-4 mb-3" id="grid-last-name" type="text" disabled>
+        </div>
+    </div>
+    <div class="-mx-3 md:flex mb-6">
+        <div class="md:w-1/3 px-3 mb-4 md:mb-0">
+            <label class="block uppercase tracking-wide text-grey-darker text-xs font-bold mb-2" for="grid-phone">
+                Phone Number
+            </label>
+            <input value=<%= patient.phone %> class="appearance-none block w-full bg-grey-lighter text-grey-darker border border-grey-lighter rounded py-3 px-4" id="grid-phone" type="text" disabled>
+        </div>
+        <div class="md:w-1/3 px-3 mb-4 md:mb-0">
+            <label class="block uppercase tracking-wide text-grey-darker text-xs font-bold mb-2" for="grid-dob">
+                Date of Birth
+            </label>
+            <input value=<%= patient.dob %> class="appearance-none block w-full bg-grey-lighter text-grey-darker border border-grey-lighter rounded py-3 px-4" id="grid-dob" type="text" disabled>
+        </div>
+        <div class="md:w-1/3 px-3 mb-4 md:mb-0">
+            <label class="block uppercase tracking-wide text-grey-darker text-xs font-bold mb-2" for="grid-gender">
+                Gender
+            </label>
+            <input value=<%= patient.gender %> class="appearance-none block w-full bg-grey-lighter text-grey-darker border border-grey-lighter rounded py-3 px-4" id="grid-gender" type="text" disabled>
+        </div>
+    </div>
+    <div class="-mx-3 md:flex mb-6">
+        <div class="md:w-1/2 px-3 mb-6 md:mb-0">
+            <label class="block uppercase tracking-wide text-grey-darker text-xs font-bold mb-2" for="grid-vac">
+                Vaccination Status
+            </label>
+            <input value=<%= patient.vac_status %> class="appearance-none block w-full bg-grey-lighter text-grey-darker border border-red rounded py-3 px-4 mb-3" id="grid-vac" type="text" disabled>
+        </div>
+        <div class="md:w-1/2 px-3 mb-6 md:mb-0">
+            <label class="block uppercase tracking-wide text-grey-darker text-xs font-bold mb-2" for="grid-drugallergy">
+                Drug Allergy
+            </label>
+            <input value=<%= patient.drug_allergy %> class="appearance-none block w-full bg-grey-lighter text-grey-darker border border-red rounded py-3 px-4 mb-3" id="grid-drugallergy" type="text" disabled>
+        </div>
+    </div>
+</div>
 
 </div>

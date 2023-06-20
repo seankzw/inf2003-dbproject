@@ -7,8 +7,10 @@ class AppointmentsController < ApplicationController
     #@appointments = Appointment.all
     if current_user.hospitaladmin? || current_user.superadmin?
       @appointments = Appointment.includes(:doctor).includes(:clinic).all
+      p @appointments
     else
-      @appointments = Appointment.includes(:doctor).includes(:clinic).where(user_id: current_user.id)
+      patient_id = Patient.where(user_id: current_user.id).first
+      @appointments = Appointment.includes(:doctor).includes(:clinic).where(patient_id: patient_id.patient_id)
     end
   end
 
@@ -25,9 +27,13 @@ class AppointmentsController < ApplicationController
             p "User hasn't completed profile -- Redirecting to new_patient_path"
             redirect_to new_patient_path
           end
+
+          user = Patient.where(user_id: current_user.id).first
+          @user_name = user.fname + " "+ user.lname
         end
         p "User completed profile -- Proceeding to appointment page"
         @appointment = Appointment.new
+        @user_name = current_user.id
         @hospitals = Hospital.all
         @clinics = Clinic.all
         @doctors = Doctor.all
@@ -43,8 +49,11 @@ class AppointmentsController < ApplicationController
   # POST /appointments or /appointments.json
   def create
     @appointment = Appointment.new(appointment_params)
+    p @appointment
     @appointment.clinic_id = params[:clinic_id]
     @appointment.doctor_id = params[:doctor_id]
+    patient_record = Patient.where(user_id: current_user.id).first
+    @appointment.patient_id = patient_record.patient_id
 
     respond_to do |format|
       if @appointment.save
@@ -88,6 +97,6 @@ class AppointmentsController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def appointment_params
-      params.require(:appointment).permit(:patient_id, :doctor_id, :clinic_id, :name, :date)
+      params.require(:appointment).permit(:patient_id, :doctor_id, :clinic_id, :description, :date)
     end
 end

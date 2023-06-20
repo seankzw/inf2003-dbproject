@@ -8,7 +8,7 @@
     <%= link_to 'New appointment', new_appointment_path, class: "rounded-lg py-3 px-5 bg-blue-600 text-white block font-medium" %>
   </div>
 
-  <% if @appoinments %>
+  <% if @appointments %>
     <div id="appointments" class="min-w-full rounded overflow-hidden shadow-lg p-6">
       <% @appointments.each do |appointment| %>
         <p><b>Appointment ID:</b> <%= appointment.id%></p>
