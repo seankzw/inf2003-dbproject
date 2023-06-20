@@ -1,16 +1,17 @@
-<div class="bg-black"">This is a test</div>
 <% if current_user %>
     <% if current_user.user? %>
     <br>
         <h1 class="font-bold text-center text-4xl mt-20">Sorry you do not have access to this page.</h1>
     <% else %>
-        <p style="color: green"><%= notice %></p>
+        
+        <% if notice.present? %>
+            <p class="py-2 px-3 bg-green-50 mb-5 text-green-500 font-medium rounded-lg inline-block" id="notice"><%= notice %></p>
+        <% end %>
+
 
         <div class="text-center">
         <h1 class="text-3xl text-center font-bold m-6">Patients</h1>
         </div>
-
-
         <div id="patients">
         <section class="w-78 h-50 bg-white rounded-xl drop-shadow-md m-6 relative p-6">
 
