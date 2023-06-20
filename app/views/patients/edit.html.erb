@@ -1,12 +1,13 @@
-<div class="mx-auto md:w-2/3 w-full">
-  <h1 class="font-bold text-4xl">Edit patient</h1>
+<div class="my-24 mx-auto md:w-2/3 w-full flex">
+  <div class="mx-auto">
+    <h3 class="text-base font-semibold leading-7 text-gray-900">Edit Information</h3>
 
-  <%= render "form", patient: @patient %>
+    <%= render "form", patient: @patient %>
 
-  <div>
-    <%= link_to "Show this patient", @patient, class: "mt-2 rounded-lg py-3 px-5 bg-gray-100 inline-block font-medium" %>
-    <div class="inline-block ml-2">
-    <%= link_to "Back to patients", patients_path, class: "ml-2 rounded-lg py-3 px-3 bg-gray-100 inline-block font-medium" %>
+    <div>
+      <%= link_to "Show this patient", @patient, class: "mt-2 rounded-lg py-3 px-5 bg-gray-100 inline-block font-medium" %>
+      <div class="inline-block ml-2">
+      <%= link_to "Back to patients", patients_path, class: "ml-2 rounded-lg py-3 px-3 bg-gray-100 inline-block font-medium" %>
+    </div>
   </div>
-
 </div>
