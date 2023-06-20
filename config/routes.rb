@@ -26,6 +26,6 @@ Rails.application.routes.draw do
   get "/adminstrators", to:"administrators#index"
 
   get "/medicines", to:"medicines#index"
-  root "home#index"
+  root "hospitals#index"
 
 end
