@@ -21,7 +21,7 @@ class AdministratorsController < ApplicationController
   # GET /administrators/new
   def new
     @administrator = Administrator.new
-    @users = User.all
+    @users = User.where(role: 0).all
     @hospitals = Hospital.all
   end
 
@@ -34,6 +34,11 @@ class AdministratorsController < ApplicationController
   # POST /administrators or /administrators.json
   def create
     @administrator = Administrator.new(administrator_params)
+
+    user = User.where(id: @administrator.user_id).first
+    user.role = 1
+    user.save
+
 
     respond_to do |format|
       if @administrator.save
