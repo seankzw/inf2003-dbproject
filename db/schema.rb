@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2023_06_16_142638) do
+ActiveRecord::Schema[7.0].define(version: 2023_06_20_114051) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -18,11 +18,18 @@ ActiveRecord::Schema[7.0].define(version: 2023_06_16_142638) do
   # Note that some types may not work with other database engines. Be careful if changing database.
   create_enum "user_role", ["superadmin", "hospitaladmin", "user"]
 
-  create_table "appointments", force: :cascade do |t|
+  create_table "administrators", force: :cascade do |t|
+    t.integer "user_id"
+    t.integer "hospital_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "appointments", primary_key: "appointment_id", id: :bigint, default: -> { "nextval('appointments_id_seq'::regclass)" }, force: :cascade do |t|
     t.integer "patient_id"
     t.integer "doctor_id"
     t.integer "clinic_id"
-    t.string "name"
+    t.string "description"
     t.datetime "date"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
@@ -47,17 +54,19 @@ ActiveRecord::Schema[7.0].define(version: 2023_06_16_142638) do
     t.string "location", limit: 255, null: false
   end
 
-  create_table "patients", primary_key: "patient_id", id: :integer, default: -> { "nextval('patient_patient_id_seq'::regclass)" }, force: :cascade do |t|
+  create_table "patients", primary_key: "patient_id", id: :serial, force: :cascade do |t|
     t.string "nric", limit: 256, null: false
     t.string "fname", limit: 256, null: false
     t.string "lname", limit: 256, null: false
     t.integer "phone", null: false
     t.date "dob", null: false
+    t.string "age", limit: 256, null: false
     t.string "gender", limit: 256, null: false
     t.string "race", limit: 256, null: false
     t.string "vac_status", limit: 256, null: false
     t.string "drug_allergy", limit: 256, null: false
-    t.index ["nric"], name: "patient_nric_key", unique: true
+    t.integer "user_id", null: false
+    t.index ["nric"], name: "patients_nric_key", unique: true
   end
 
   create_table "users", force: :cascade do |t|
@@ -75,4 +84,5 @@ ActiveRecord::Schema[7.0].define(version: 2023_06_16_142638) do
 
   add_foreign_key "clinics", "hospitals", primary_key: "hospital_id", name: "hospital_id"
   add_foreign_key "doctors", "clinics", primary_key: "clinic_id", name: "clinic_id"
+  add_foreign_key "patients", "users", name: "user_id"
 end

@@ -3,14 +3,19 @@
     <p class="py-2 px-3 bg-green-50 mb-5 text-green-500 font-medium rounded-lg inline-block" id="notice"><%= notice %></p>
   <% end %>
 
-  <div class="flex justify-between items-center">
+  <div class="flex justify-between items-center p-6">
     <h1 class="font-bold text-4xl">Appointments</h1>
     <%= link_to 'New appointment', new_appointment_path, class: "rounded-lg py-3 px-5 bg-blue-600 text-white block font-medium" %>
   </div>
 
   <% if @appointments %>
     <div id="appointments" class="min-w-full rounded overflow-hidden shadow-lg p-6">
-      <% @appointments.each do |appointment| %>
+      <% @appointments.each_with_index do |appointment,idx| %>
+      <% if (idx)%2 == 0 %>
+        <section class="w-78 h-22 bg-indigo-100 rounded-xl drop-shadow-md m-6 relative p-6">
+      <% else %>
+        <section class="w-78 h-22 bg-white rounded-xl drop-shadow-md m-6 relative p-6">
+      <% end %>
         <p><b>Appointment ID:</b> <%= appointment.id%></p>
         <p><b>Doctor:</b> <%= appointment.doctor.name%></p>
         <p><b>Clinic:</b> <%= appointment.clinic.name%></p>
@@ -18,6 +23,7 @@
         <p><b>Date:</b> <%= appointment.date%></p>
         <a href="/appointments/<%=appointment.id %>" class="rounded-lg py-3 px-5 bg-gray-100 inline-block font-medium">Show this appoinment</a>
         <a href="/appointments/<%=appointment.id %>/edit" class="rounded-lg py-3 px-5 bg-gray-100 inline-block font-medium">Edit this appoinment</a>
+        </section>
       <% end %>
     </div>
   <% else %>

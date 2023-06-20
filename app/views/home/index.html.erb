@@ -1,8 +1,4 @@
 <% if current_user %>
-   <% if current_user.superadmin? %>
-      You the best
-   <% end %>
-   <br>
    <div class="flex justify-between items-center">
       <h1 class="font-bold text-4xl">Welcome <%= current_user.email %> to Your Hospital Appointment Tracker</h1>
       <%= link_to 'New appointment', new_appointment_path, class: "rounded-lg py-3 px-5 bg-blue-600 text-white block font-medium" %>
@@ -10,6 +6,7 @@
 
 <div class="grid grid-cols-2 gap-4">
    <%# Left Side %>
+   <% if @appointments %>
    <div class="w-auto bg-white rounded-xl drop-shadow-md m-6">
       <div class="mb-4 flex items-center justify-between m-3">
          <div>
@@ -65,7 +62,9 @@
          </div>
       </div>
    </div>
+   <% end %>
    <%# Right Side %>
+   <% if @patients %>
    <div class="w-auto bg-white rounded-xl drop-shadow-md m-6">
       <div class="mb-4 flex items-center justify-between m-3">
          <div>
@@ -121,6 +120,7 @@
          </div>
       </div>
    </div>
+   <% end %>
 </div>
 
 

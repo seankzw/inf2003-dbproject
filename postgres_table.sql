@@ -50,6 +50,15 @@ CREATE TABLE patients (
         REFERENCES user (user_id)
 );
 
+CREATE TABLE administration (
+  administration_id SERIAL,
+  user_id INT NOT NULL,
+  hospital_id INT NOT NULL,
+  PRIMARY KEY(administration_id),
+  CONSTRAINT user_id FOREIGN KEY (user_id) REFERENCES user(id),
+  CONSTRAINT hospital_id FOREIGN KEY (hospital_id) REFERENCES hospital(hospital_id),
+);
+
 CREATE TABLE appointment (
    appointment_id SERIAL,
    patient_id INT NOT NULL,

@@ -49,7 +49,6 @@ class AppointmentsController < ApplicationController
   # POST /appointments or /appointments.json
   def create
     @appointment = Appointment.new(appointment_params)
-    p @appointment
     @appointment.clinic_id = params[:clinic_id]
     @appointment.doctor_id = params[:doctor_id]
     patient_record = Patient.where(user_id: current_user.id).first

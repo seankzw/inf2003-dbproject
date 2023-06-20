@@ -1,5 +1,5 @@
 Rails.application.routes.draw do
-  resources :appointments
+  resources :administrators
   devise_for :users
   resources :medicines
   get "errors/not_found"
@@ -11,6 +11,7 @@ Rails.application.routes.draw do
   resources :clinics
   resources :patients
   resources :doctors
+  resources :appointments
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
 
   # Defines the root path route ("/")
@@ -22,6 +23,7 @@ Rails.application.routes.draw do
   get "/clinics", to:"clinics#index"
   get "/patients", to:"patients#index"
   get "/doctors", to:"doctors#index"
+  get "/adminstrators", to:"administrators#index"
 
   get "/medicines", to:"medicines#index"
   root "home#index"
