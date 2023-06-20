@@ -11,56 +11,6 @@
     </div>
   <% end %>
 
-  <div class="my-5">
-    <%= form.label :nric %>
-    <%= form.text_field :nric, class: "block shadow rounded-md border border-gray-200 outline-none px-3 py-2 mt-2 w-full" %>
-  </div>
-
-  <div>
-    <%= form.label :fname %>
-    <%= form.text_field :fname, class: "block shadow rounded-md border border-gray-200 outline-none px-3 py-2 mt-2 w-full" %>
-  </div>
-
-  <div>
-    <%= form.label :lname %>
-    <%= form.text_field :lname, class: "block shadow rounded-md border border-gray-200 outline-none px-3 py-2 mt-2 w-full" %>
-  </div>
-
-  <div>
-    <%= form.label :phone %>
-    <%= form.number_field :phone, class: "block shadow rounded-md border border-gray-200 outline-none px-3 py-2 mt-2 w-full" %>
-  </div>
-
-  <div>
-    <%= form.label :dob %>
-    <%= form.date_field :dob, class: "block shadow rounded-md border border-gray-200 outline-none px-3 py-2 mt-2 w-full" %>
-  </div>
-
-  <br>
-  <div>
-    <%= form.label :gender %>
-    <%= form.select :gender, ['Male', 'Female'], {}, class: "block shadow rounded-md border border-gray-200 outline-none appearance-none px-3 py-2 mt-2 w-full" %>
-  </div>
-  <br>
-
-  <div>
-    <%= form.label :race %>
-    <%= form.select :race, ['Chinese', 'Indian', 'Malay'], {}, class: "block shadow rounded-md border border-gray-200 outline-none px-3 py-2 mt-2 w-full" %>
-  </div>
-
-  <div>
-    <%= form.label :vac_status %>
-    <%= form.select :vac_status, ['Vaccinated', 'Not Vaccinated'], {}, class: "block shadow rounded-md border border-gray-200 outline-none px-3 py-2 mt-2 w-full" %>
-  </div>
-
-  <div>
-    <%= form.label :drug_allergy %>
-    <%= form.text_field :drug_allergy, class: "block shadow rounded-md border border-gray-200 outline-none px-3 py-2 mt-2 w-full" %>
-  </div>
-
-  <div>
-    <%= form.submit class: "mt-2 rounded-lg py-3 px-5 bg-gray-100 inline-block font-medium cursor-pointer cursor-pointer hover:bg-sky-200" %>
-  </div>
 	<div class="bg-white shadow-md rounded px-8 pt-6 pb-8 mb-4 flex flex-col my-2">
 		<div class="-mx-3 md:flex mb-6">
 			<div class="md:w-full px-3 md:mb-0">
@@ -89,15 +39,19 @@
 			</div>
 			<div class="md:w-1/3 px-3 mb-4 md:mb-0">
 				<%= form.label :gender, class:"block uppercase tracking-wide text-grey-darker text-xs font-bold mb-2", for:"grid-gender" %>
-    			<%= form.text_field :gender, class: "appearance-none block w-full bg-grey-lighter text-grey-darker border border-grey-lighter rounded py-3 px-4" %>
+    			<%= form.select :gender, ['','Male', 'Female'], {}, class: "appearance-none block w-full bg-grey-lighter text-grey-darker border border-grey-lighter rounded py-3 px-4" %>
 			</div>
     	</div>
 		<div class="-mx-3 md:flex mb-6">
-			<div class="md:w-1/2 px-3 mb-6 md:mb-0">
-				<%= form.label :vac_status, class:"block uppercase tracking-wide text-grey-darker text-xs font-bold mb-2", for:"grid-vac" %>
-    			<%= form.text_field :vac_status, class: "appearance-none block w-full bg-grey-lighter text-grey-darker border border-red rounded py-3 px-4 mb-3" %>
+      <div class="md:w-1/3 px-3 mb-4 md:mb-0">
+				<%= form.label :race, class:"block uppercase tracking-wide text-grey-darker text-xs font-bold mb-2", for:"grid-race" %>
+    			<%= form.select :race, ['','Chinese', 'Indian', 'Malay'], {}, class: "appearance-none block w-full bg-grey-lighter text-grey-darker border border-red rounded py-3 px-4 mb-3" %>
 			</div>
-			<div class="md:w-1/2 px-3 mb-6 md:mb-0">
+			<div class="md:w-1/3 px-3 mb-4 md:mb-0">
+				<%= form.label :vac_status, class:"block uppercase tracking-wide text-grey-darker text-xs font-bold mb-2", for:"grid-vac" %>
+    			<%= form.select :vac_status, ['','Vaccinated', 'Not Vaccinated'], {}, class: "appearance-none block w-full bg-grey-lighter text-grey-darker border border-red rounded py-3 px-4 mb-3" %>
+			</div>
+			<div class="md:w-1/3 px-3 mb-4 md:mb-0">
 				<%= form.label :drug_allergy, class:"block uppercase tracking-wide text-grey-darker text-xs font-bold mb-2", for:"grid-drugallergy" %>
     			<%= form.text_field :drug_allergy, class: "appearance-none block w-full bg-grey-lighter text-grey-darker border border-red rounded py-3 px-4 mb-3" %>
 			</div>
