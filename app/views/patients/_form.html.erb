@@ -36,19 +36,21 @@
     <%= form.date_field :dob, class: "block shadow rounded-md border border-gray-200 outline-none px-3 py-2 mt-2 w-full" %>
   </div>
 
+  <br>
   <div>
     <%= form.label :gender %>
-    <%= form.text_field :gender, class: "block shadow rounded-md border border-gray-200 outline-none px-3 py-2 mt-2 w-full" %>
+    <%= form.select :gender, ['Male', 'Female'], {}, class: "block shadow rounded-md border border-gray-200 outline-none appearance-none px-3 py-2 mt-2 w-full" %>
   </div>
+  <br>
 
   <div>
     <%= form.label :race %>
-    <%= form.text_field :race, class: "block shadow rounded-md border border-gray-200 outline-none px-3 py-2 mt-2 w-full" %>
+    <%= form.select :race, ['Chinese', 'Indian', 'Malay'], {}, class: "block shadow rounded-md border border-gray-200 outline-none px-3 py-2 mt-2 w-full" %>
   </div>
 
   <div>
     <%= form.label :vac_status %>
-    <%= form.text_field :vac_status, class: "block shadow rounded-md border border-gray-200 outline-none px-3 py-2 mt-2 w-full" %>
+    <%= form.select :vac_status, ['Vaccinated', 'Not Vaccinated'], {}, class: "block shadow rounded-md border border-gray-200 outline-none px-3 py-2 mt-2 w-full" %>
   </div>
 
   <div>
