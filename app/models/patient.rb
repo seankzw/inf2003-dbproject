@@ -7,6 +7,7 @@ class Patient < ApplicationRecord
   #field :phone, type: Integer
   #field :dob, type: Date
   #field :gender, type: String
+  #field :race, type: String
   #field :vac_status, type: String
   #field :drug_allergy, type: String
 end
