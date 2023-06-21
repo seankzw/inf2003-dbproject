@@ -35,17 +35,21 @@
           	<div class="flex space-x-4">
 				<!-- Current: "bg-gray-900 text-white", Default: "text-gray-300 hover:bg-gray-700 hover:text-white" -->
 				<a href="/hospitals" class="text-white hover:bg-gray-700 hover:text-white rounded-md px-3 py-2 text-sm font-medium" aria-current="page">Hospital</a>
-            	<% if user_signed_in? %>
-					<% if current_user.superadmin? or current_user.hospitaladmin? %>
-						<a href="/patients" class="text-white hover:bg-gray-700 hover:text-white rounded-md px-3 py-2 text-sm font-medium">Patient</a>
-					<% end %>
-					<a href="/clinics" class="text-white hover:bg-gray-700 hover:text-white rounded-md px-3 py-2 text-sm font-medium">Clinic</a>
-					<% if current_user.superadmin? or current_user.hospitaladmin? %>
-						<a href="/doctors" class="text-white hover:bg-gray-700 hover:text-white rounded-md px-3 py-2 text-sm font-medium">Doctor</a>
-						<a href="/medicines" class="text-white hover:bg-gray-700 hover:text-white rounded-md px-3 py-2 text-sm font-medium">Medicines</a>
-					<% end %>
-					<a href="/appointments" class="text-white hover:bg-gray-700 hover:text-white rounded-md px-3 py-2 text-sm font-medium">Appointment</a>
-              	<% end %>
+          <% if user_signed_in? %>
+            <% if current_user.superadmin? or current_user.hospitaladmin? %>
+              <a href="/patients" class="text-white hover:bg-gray-700 hover:text-white rounded-md px-3 py-2 text-sm font-medium">Patient</a>
+              <a href="/doctors" class="text-white hover:bg-gray-700 hover:text-white rounded-md px-3 py-2 text-sm font-medium">Doctor</a>
+              <a href="/medicines" class="text-white hover:bg-gray-700 hover:text-white rounded-md px-3 py-2 text-sm font-medium">Medicines</a>
+            <% end %>
+
+            <a href="/clinics" class="text-white hover:bg-gray-700 hover:text-white rounded-md px-3 py-2 text-sm font-medium">Clinic</a>
+            <a href="/appointments" class="text-white hover:bg-gray-700 hover:text-white rounded-md px-3 py-2 text-sm font-medium">Appointment</a>
+
+            <% if current_user.superadmin? %>
+                <a href="/administrators" class="text-white hover:bg-gray-700 hover:text-white rounded-md px-3 py-2 text-sm font-medium">Administrators</a>
+            <% end %>
+
+          <% end %>
           	</div>
         </div>
       </div>
