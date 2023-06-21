@@ -1,17 +1,18 @@
 Rails.application.routes.draw do
-  resources :administrators
   devise_for :users
-  resources :medicines
   get "errors/not_found"
   get "errors/internal_server_error"
 
   # mongodb
+  resources :medicines
+
   # postgres
   resources :hospitals
   resources :clinics
   resources :patients
   resources :doctors
   resources :appointments
+  resources :administrators
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
 
   # Defines the root path route ("/")

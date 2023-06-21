@@ -5,6 +5,8 @@ class HospitalsController < ApplicationController
   def index
     @hospitals = Hospital.all
     @patient_name = session[:patient_name]
+    @notice = Hash['msg' => 'Welcome back!', 'type' => 'success']
+
   end
 
   # GET /hospitals/1 or /hospitals/1.json

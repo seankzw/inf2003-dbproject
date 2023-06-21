@@ -1,0 +1,12 @@
+<div class="animate-toast absolute w-1/3 right-2 top-20 opacity-0 p-4 mb-4 text-sm text-blue-800 rounded-lg bg-blue-50 dark:bg-gray-800 dark:text-blue-400" role="alert">
+  <% if @notice['type'] == 'success' %>
+    <i class="text-success fa-solid fa-circle-check fa-spin"></i>
+    <span class="text-success font-medium ml-2 "><%= @notice["msg"] %></span>
+  <% elsif @notice['type'] == 'warning' %>
+    <i class="text-warning fa-solid fa-triangle-exclamation fa-bounce"></i>
+    <span class="text-warning font-medium ml-2 "><%= @notice["msg"] %></span>
+  <% else %>
+    <i class="text-danger fa-solid fa-circle-xmark fa-beat"></i>
+    <span class="text-danger font-medium ml-2 "><%= @notice["msg"] %></span>
+  <% end %>
+</div>

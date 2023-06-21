@@ -1,5 +1,6 @@
-<p style="color: green"><%= notice %></p>
-
+<% if @notice %>
+<%= render :partial => "shared/notifications", message: @notice %>
+<% end %>
 <h1 class="text-3xl text-center font-bold m-6">Hospitals</h1>
 
 
