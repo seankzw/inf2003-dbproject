@@ -12,6 +12,11 @@ class AdministratorsController < ApplicationController
   # GET /administrators or /administrators.json
   def index
     @administrators = Administrator.includes(:hospital).includes(:user).all
+    notice = Hash['msg' => 'User has been promoted!', 'type' => 'success']
+    flash[:notice] = notice
+
+    @msg = notice['msg']
+    @type = notice['type']
   end
 
   # GET /administrators/1 or /administrators/1.json
@@ -42,9 +47,13 @@ class AdministratorsController < ApplicationController
 
     respond_to do |format|
       if @administrator.save
-        format.html { redirect_to administrator_url(@administrator), notice: "Administrator was successfully created." }
+        notice = Hash['msg' => 'User has been promoted!', 'type' => 'success']
+        flash[:notice] = notice
+        format.html { redirect_to administrator_url(@administrator)}
         format.json { render :show, status: :created, location: @administrator }
       else
+        notice = Hash['msg' => 'Unable to promote user failed!', 'type' => 'danger']
+        flash[:notice] = notice
         format.html { render :new, status: :unprocessable_entity }
         format.json { render json: @administrator.errors, status: :unprocessable_entity }
       end
@@ -56,9 +65,13 @@ class AdministratorsController < ApplicationController
   def update
     respond_to do |format|
       if @administrator.update(administrator_params)
-        format.html { redirect_to administrator_url(@administrator), notice: "Administrator was successfully updated." }
+        notice = Hash['msg' => 'Administrator updated!', 'type' => 'success']
+        flash[:notice] = notice
+        format.html { redirect_to administrator_url(@administrator)}
         format.json { render :show, status: :ok, location: @administrator }
       else
+        notice = Hash['msg' => 'Fail to update administrator!', 'type' => 'danger']
+        flash[:notice] = notice
         format.html { render :edit, status: :unprocessable_entity }
         format.json { render json: @administrator.errors, status: :unprocessable_entity }
       end
@@ -67,10 +80,17 @@ class AdministratorsController < ApplicationController
 
   # DELETE /administrators/1 or /administrators/1.json
   def destroy
+    user = User.where(id: @administrator.user_id).first
+    user.role = 0
+    user.save
+
     @administrator.destroy
 
+    notice = Hash['msg' => 'Administrator has been revoked!', 'type' => 'warning']
+    flash[:notice] = notice
+
     respond_to do |format|
-      format.html { redirect_to administrators_url, notice: "Administrator was successfully destroyed." }
+      format.html { redirect_to administrators_url }
       format.json { head :no_content }
     end
   end
