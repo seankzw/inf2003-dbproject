@@ -19,6 +19,7 @@ class ClinicsController < ApplicationController
 
   # GET /clinics/1/edit
   def edit
+    @hospitals = Hospital.all
   end
 
   # POST /clinics or /clinics.json

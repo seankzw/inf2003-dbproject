@@ -16,7 +16,7 @@
     <br>
     <select name='clinic[hospital_id]'>
       <% @hospitals.each do |hospital| %>
-        <option value=<%= hospital.id %>><%= hospital.name%></option>
+        <option value=<%= hospital.id %> <%= 'selected' if hospital.id == @clinic.hospital_id %>><%= hospital.name %></option>
       <% end %>
     </select>
   </div>
