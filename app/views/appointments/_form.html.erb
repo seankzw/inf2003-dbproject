@@ -30,7 +30,7 @@
     <%= form.label :clinic_id %>
     <select name='clinic_id' class='block shadow rounded-md border border-gray-200 outline-none px-3 py-2 mt-2 w-full'>
     <% @clinics.each do |clinic| %>
-      <option value="<%= clinic.clinic_id%>" ><%= clinic.name %></option>
+      <option value="<%= clinic.clinic_id%>" ><%= clinic.hospital.name %> : <%= clinic.name %></option>
     <% end %>
     </select>
   </div>
