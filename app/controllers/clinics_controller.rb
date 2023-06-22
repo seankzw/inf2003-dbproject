@@ -4,7 +4,17 @@ class ClinicsController < ApplicationController
 
   # GET /clinics or /clinics.json
   def index
-    @clinics = Clinic.joins(:hospital)
+    @clinics = Clinic.joins(:hospital) #default
+    @clinic_hospital = Hash[]
+
+    for eachClinic in @clinics do
+      if @clinic_hospital.key?(eachClinic.hospital.name)
+        @clinic_hospital[eachClinic.hospital.name].append(eachClinic)
+      else
+        @clinic_hospital[eachClinic.hospital.name] = []
+        @clinic_hospital[eachClinic.hospital.name].append(eachClinic)
+      end
+    end
   end
 
   # GET /clinics/1 or /clinics/1.json
@@ -13,6 +23,7 @@ class ClinicsController < ApplicationController
 
   # GET /clinics/new
   def new
+    @hospitals = Hospital.all
     @clinic = Clinic.new
     @hospitals = Hospital.all
   end
@@ -42,7 +53,7 @@ class ClinicsController < ApplicationController
   # PATCH/PUT /clinics/1 or /clinics/1.json
   def update
     notice = Hash['msg' => 'Clinic updated !', 'type' => 'success']
-    
+
     respond_to do |format|
       if @clinic.update(clinic_params)
         flash[:notice] = notice
