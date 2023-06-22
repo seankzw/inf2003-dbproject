@@ -39,9 +39,13 @@ class PatientsController < ApplicationController
 
     respond_to do |format|
       if @patient.save
+        notice = Hash['msg' => 'Patient added !', 'type' => 'success']
+        flash[:notice] = notice
         format.html { redirect_to patient_url(@patient), notice: "Patient was successfully created." }
         format.json { render :show, status: :created, location: @patient }
       else
+        notice = Hash['msg' => 'Patient adding failed!', 'type' => 'danger']
+        flash[:notice] = notice
         format.html { render :new, status: :unprocessable_entity }
         format.json { render json: @patient.errors, status: :unprocessable_entity }
       end
@@ -50,11 +54,16 @@ class PatientsController < ApplicationController
 
   # PATCH/PUT /patients/1 or /patients/1.json
   def update
+    notice = Hash['msg' => 'Patient updated !', 'type' => 'success']
+    flash[:notice] = notice
+
     respond_to do |format|
       if @patient.update(patient_params)
         format.html { redirect_to patient_url(@patient), notice: "Patient was successfully updated." }
         format.json { render :show, status: :ok, location: @patient }
       else
+        notice = Hash['msg' => 'Patient update failed!', 'type' => 'danger']
+        flash[:notice] = notice
         format.html { render :edit, status: :unprocessable_entity }
         format.json { render json: @patient.errors, status: :unprocessable_entity }
       end
@@ -64,6 +73,8 @@ class PatientsController < ApplicationController
   # DELETE /patients/1 or /patients/1.json
   def destroy
     @patient.destroy
+    notice = Hash['msg' => 'Patient deleted !', 'type' => 'success']
+    flash[:notice] = notice
 
     respond_to do |format|
       format.html { redirect_to patients_url, notice: "Patient was successfully destroyed." }

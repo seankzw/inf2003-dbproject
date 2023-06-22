@@ -2,10 +2,14 @@
   <%= render partial: "shared/notifications", locals: { message: flash[:notice]['msg'], type: flash[:notice]['type'] } %>
 <% end %>
 
-<div class="flex 6">
-  <h1 class="text-3xl text-center font-bold m-6">Hospitals</h1>
-  <%= link_to "New hospital", new_hospital_path, class: "mt-2 rounded-lg py-3 p-5 bg-gray-100 inline-block font-medium cursor-pointer hover:bg-sky-200"%>
-</div>
+
+  <div class="text-center">
+    <h1 class="text-3xl text-center font-bold m-6">Hospitals</h1>
+  </div>
+
+  <div class="text-center">
+    <%= link_to "New hospital", new_hospital_path, class: "mt-2 rounded-lg py-3 px-5 bg-gray-100 inline-block font-medium cursor-pointer hover:bg-sky-200" %>
+  </div>
 
 
 <% if @hospitals %>

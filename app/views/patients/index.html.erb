@@ -4,14 +4,18 @@
         <h1 class="font-bold text-center text-4xl mt-20">Sorry you do not have access to this page.</h1>
     <% else %>
 
-        <% if notice.present? %>
-            <p class="py-2 px-3 bg-green-50 mb-5 text-green-500 font-medium rounded-lg inline-block" id="notice"><%= notice %></p>
-        <% end %>
-
+    <% if flash[:notice].present? %>
+        <%= render partial: "shared/notifications", locals: { message: flash[:notice]['msg'], type: flash[:notice]['type'] } %>
+    <% end %>
 
         <div class="text-center">
         <h1 class="text-3xl text-center font-bold m-6">Patients</h1>
         </div>
+
+        <div class="text-center">
+        <%= link_to "New patient", new_patient_path, class: "mt-2 rounded-lg py-3 px-5 bg-gray-100 inline-block font-medium cursor-pointer hover:bg-sky-200"%>
+        </div>
+
         <div id="patients">
         <section class="w-78 h-50 bg-white rounded-xl drop-shadow-md m-6 relative p-6">
 
@@ -36,8 +40,5 @@
             </section>
         </div>
 
-        <div class="text-center">
-        <%= link_to "New patient", new_patient_path, class: "mt-2 rounded-lg py-3 px-5 bg-gray-100 inline-block font-medium cursor-pointer hover:bg-sky-200"%>
-        </div>
     <% end %>
 <% end %>
