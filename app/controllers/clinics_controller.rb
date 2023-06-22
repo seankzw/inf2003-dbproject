@@ -14,6 +14,7 @@ class ClinicsController < ApplicationController
   # GET /clinics/new
   def new
     @clinic = Clinic.new
+    @hospitals = Hospital.all
   end
 
   # GET /clinics/1/edit

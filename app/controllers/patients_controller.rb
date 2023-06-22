@@ -41,7 +41,7 @@ class PatientsController < ApplicationController
       if @patient.save
         notice = Hash['msg' => 'Patient added !', 'type' => 'success']
         flash[:notice] = notice
-        format.html { redirect_to patient_url(@patient) }
+        format.html { redirect_to patient_url(@patient)}
         format.json { render :show, status: :created, location: @patient }
       else
         notice = Hash['msg' => 'Patient adding failed!', 'type' => 'danger']
