@@ -1,6 +1,8 @@
-<div class="text-center">
+<% if flash[:notice].present? %>
+  <%= render partial: "shared/notifications", locals: { message: flash[:notice]['msg'], type: flash[:notice]['type'] } %>
+<% end %>
 
-<p style="color: green"><%= notice %></p>
+<div class="text-center">
 
 <section class="w-78 h-30 bg-white rounded-xl drop-shadow-md m-6 relative p-6">
   <%= render @clinic %>
