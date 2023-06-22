@@ -97,7 +97,7 @@
               <!-- Active: "bg-gray-100", Not Active: "" -->
               <% if current_user %>
                 <% if current_user.user? %>
-                  <a href="/patients/<%= @patient_id %>" class="block px-4 py-2 text-sm text-gray-700" role="menuitem" tabindex="-1" id="user-menu-item-0">Your Profile</a>
+                  <a href="/patients/<%= session[:patient_id] %>" class="block px-4 py-2 text-sm text-gray-700" role="menuitem" tabindex="-1" id="user-menu-item-0">Your Profile</a>
                 <% end %>
               <% end %>
               <%#<a href="#" class="block px-4 py-2 text-sm text-gray-700" role="menuitem" tabindex="-1" id="user-menu-item-1">Settings</a>%>
