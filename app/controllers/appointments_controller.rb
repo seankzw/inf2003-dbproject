@@ -18,6 +18,12 @@ class AppointmentsController < ApplicationController
   def show
     @clinics = Clinic.all
     @doctors = Doctor.all
+    @patients = Patient.all
+
+    @clinic = Clinic.where(clinic_id: @appointment.clinic_id).first
+    @doctor = Doctor.where(doctor_id: @appointment.doctor_id).first
+    @patient = Patient.where(patient_id: @appointment.patient_id).first
+
   end
 
   # GET /appointments/new
