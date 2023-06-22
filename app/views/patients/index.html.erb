@@ -4,43 +4,36 @@
         <h1 class="font-bold text-center text-4xl mt-20">Sorry you do not have access to this page.</h1>
     <% else %>
 
-        <div class="text-center">
-        <h1 class="text-3xl text-center font-bold m-6">Patients</h1>
-        </div>
+        <div class="w-full">
+        <br>
+            <div class="flex justify-between items-center">
+                <h1 style= "margin-left: 1.9%" class="font-bold text-4xl">Patients</h1>
+                <%= link_to 'New patient', new_patient_path, class: "rounded-lg py-3 px-5 bg-blue-600 text-white block font-medium mr-6" %>
+            </div>
 
-        <div class="text-center">
-        <%= link_to "New patient", new_patient_path, class: "mt-2 rounded-lg py-3 px-5 bg-gray-100 inline-block font-medium cursor-pointer hover:bg-sky-200"%>
-        </div>
+            <div id="patients">
+            <section class="w-78 h-50 bg-white rounded-xl drop-shadow-md m-6 relative p-6">
 
-        <div id="patients">
-        <section class="w-78 h-50 bg-white rounded-xl drop-shadow-md m-6 relative p-6">
-
-        <ul role="list" class="divide-y divide-gray-100">
-        <% @patients.each do |patient| %>
-            <li class="flex justify-between gap-x-6 py-5">
-            <div class="flex gap-x-4">
-                <% randNum = rand(80) %>
-                <!--img class="h-12 w-12 flex-none rounded-full bg-gray-50" src="https://images.unsplash.com/photo-1494790108377-be9c29b29330?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80" alt=""-->
-                <% if (randNum)%2 == 0 %>
-                    <img class="h-12 w-12 flex-none rounded-full bg-gray-50" src="https://randomuser.me/api/portraits/men/<%= randNum %>.jpg" alt="">
-                <% else %>
-                    <img class="h-12 w-12 flex-none rounded-full bg-gray-50" src="https://randomuser.me/api/portraits/women/<%= randNum %>.jpg" alt="">
-                <% end %>
-                <div class="min-w-0 flex-auto">
-                <p class="text-sm font-semibold leading-6 text-gray-900"><%= patient.fname %></p>
-                <p class="mt-1 truncate text-xs leading-5 text-gray-500"><%= patient.nric %></p>
+            <ul role="list" class="divide-y divide-gray-100">
+            <% @patients.each do |patient| %>
+                <li class="flex justify-between gap-x-6 py-5">
+                <div class="flex gap-x-4">
+                    <img class="h-12 w-12 flex-none rounded-full bg-gray-50" src="https://images.unsplash.com/photo-1494790108377-be9c29b29330?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80" alt="">
+                    <div class="min-w-0 flex-auto">
+                    <p class="text-sm font-semibold leading-6 text-gray-900"><%= patient.fname %></p>
+                    <p class="mt-1 truncate text-xs leading-5 text-gray-500"><%= patient.nric %></p>
+                    </div>
                 </div>
+                <div class="hidden sm:flex sm:flex-col sm:items-end">
+                    <p>
+                    <%= link_to "Show this patient", patient, class: "mt-2 rounded-lg py-3 px-5 bg-gray-100 inline-block font-medium cursor-pointer hover:bg-sky-200" %>
+                </p>
+                </div>
+                </li>
+                <% end %>
+                </ul>
+                </section>
             </div>
-            <div class="hidden sm:flex sm:flex-col sm:items-end">
-                <p>
-                <%= link_to "Show this patient", patient, class: "mt-2 rounded-lg py-3 px-5 bg-gray-100 inline-block font-medium cursor-pointer hover:bg-sky-200" %>
-            </p>
-            </div>
-            </li>
-            <% end %>
-            </ul>
-            </section>
         </div>
-
     <% end %>
 <% end %>
