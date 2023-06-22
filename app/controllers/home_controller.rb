@@ -1,6 +1,7 @@
 class HomeController < ApplicationController
   # GET /appointments or /appointments.json
   def index
+<<<<<<< Updated upstream
     if current_user
       if current_user.user?
         # if user is sign in but not yet completed profile
@@ -30,5 +31,11 @@ class HomeController < ApplicationController
         @clinics = Clinic.joins(:hospital)
         @doctors = Doctor.joins(:clinic)
     end
+=======
+    #@appointments = Appointment.all
+    @appointments = Appointment.includes(:doctor).includes(:clinic).all
+    @clinics = Clinic.joins(:hospital)
+    @doctors = Doctor.joins(:clinic)
+>>>>>>> Stashed changes
   end
 end
