@@ -41,7 +41,7 @@ class PatientsController < ApplicationController
       if @patient.save
         notice = Hash['msg' => 'Patient added !', 'type' => 'success']
         flash[:notice] = notice
-        format.html { redirect_to patient_url(@patient), notice: "Patient was successfully created." }
+        format.html { redirect_to patient_url(@patient)}
         format.json { render :show, status: :created, location: @patient }
       else
         notice = Hash['msg' => 'Patient adding failed!', 'type' => 'danger']
@@ -55,11 +55,11 @@ class PatientsController < ApplicationController
   # PATCH/PUT /patients/1 or /patients/1.json
   def update
     notice = Hash['msg' => 'Patient updated !', 'type' => 'success']
-    flash[:notice] = notice
 
     respond_to do |format|
       if @patient.update(patient_params)
-        format.html { redirect_to patient_url(@patient), notice: "Patient was successfully updated." }
+        flash[:notice] = notice
+        format.html { redirect_to patient_url(@patient)}
         format.json { render :show, status: :ok, location: @patient }
       else
         notice = Hash['msg' => 'Patient update failed!', 'type' => 'danger']
@@ -74,10 +74,10 @@ class PatientsController < ApplicationController
   def destroy
     @patient.destroy
     notice = Hash['msg' => 'Patient deleted !', 'type' => 'success']
-    flash[:notice] = notice
 
     respond_to do |format|
-      format.html { redirect_to patients_url, notice: "Patient was successfully destroyed." }
+      flash[:notice] = notice
+      format.html { redirect_to patients_url }
       format.json { head :no_content }
     end
   end
