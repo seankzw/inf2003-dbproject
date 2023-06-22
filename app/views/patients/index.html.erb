@@ -4,10 +4,6 @@
         <h1 class="font-bold text-center text-4xl mt-20">Sorry you do not have access to this page.</h1>
     <% else %>
 
-    <% if flash[:notice].present? %>
-        <%= render partial: "shared/notifications", locals: { message: flash[:notice]['msg'], type: flash[:notice]['type'] } %>
-    <% end %>
-
         <div class="text-center">
         <h1 class="text-3xl text-center font-bold m-6">Patients</h1>
         </div>
