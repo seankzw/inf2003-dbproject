@@ -1,12 +1,14 @@
-<div class="text-center">
-<h1 class="text-3xl text-center font-bold m-6">Clinics</h1>
-</div>
+
 
 <% if current_user %>
   <% if !current_user.user? %>
-    <div class="text-center">
-      <%= link_to "New clinic", new_clinic_path, class: "mt-2 rounded-lg py-3 px-5 bg-gray-100 inline-block font-medium cursor-pointer hover:bg-sky-200" %>
-    </div>
+<div class="w-full">
+<br>
+  <div class="flex justify-between items-center">
+    <h1 style= "margin-left: 1.9%" class="font-bold text-4xl">Clinics</h1>
+    <%= link_to 'New clinic', new_clinic_path, class: "mt-2 rounded-lg py-3 px-5 bg-blue-600 text-white block font-medium cursor-pointer hover:bg-sky-200 mr-6" %>
+  </div>
+
   <% end %>
   <div class='flex flex-wrap place-content-evenly' id="clinics">
     <% @clinic_hospital.each do |key,value| %>
@@ -53,3 +55,4 @@
     <% end %>
   </div>
 <% end %>
+</div>
