@@ -31,7 +31,7 @@ class HospitalsController < ApplicationController
         format.html { redirect_to hospital_url(@hospital)}
         format.json { render :show, status: :created, location: @hospital }
       else
-        notice = Hash['msg' => 'Hospital adding failed!', 'type' => 'danger']
+        notice = Hash['msg' => 'Hospital add failed!', 'type' => 'danger']
         flash[:notice] = notice
         format.html { render :new, status: :unprocessable_entity }
         format.json { render json: @hospital.errors, status: :unprocessable_entity }
