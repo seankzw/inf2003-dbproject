@@ -22,11 +22,13 @@ class ClinicsController < ApplicationController
 
   # POST /clinics or /clinics.json
   def create
+    notice = Hash['msg' => 'Clinic created !', 'type' => 'success']
     @clinic = Clinic.new(clinic_params)
 
     respond_to do |format|
       if @clinic.save
-        format.html { redirect_to clinic_url(@clinic), notice: "Clinic was successfully created." }
+      flash[:notice] = notice
+        format.html { redirect_to clinic_url(@clinic)}
         format.json { render :show, status: :created, location: @clinic }
       else
         format.html { render :new, status: :unprocessable_entity }
@@ -37,9 +39,12 @@ class ClinicsController < ApplicationController
 
   # PATCH/PUT /clinics/1 or /clinics/1.json
   def update
+    notice = Hash['msg' => 'Clinic updated !', 'type' => 'success']
+    
     respond_to do |format|
       if @clinic.update(clinic_params)
-        format.html { redirect_to clinic_url(@clinic), notice: "Clinic was successfully updated." }
+        flash[:notice] = notice
+        format.html { redirect_to clinic_url(@clinic)}
         format.json { render :show, status: :ok, location: @clinic }
       else
         format.html { render :edit, status: :unprocessable_entity }
@@ -50,10 +55,11 @@ class ClinicsController < ApplicationController
 
   # DELETE /clinics/1 or /clinics/1.json
   def destroy
+    notice = Hash['msg' => 'Clinic deleted !', 'type' => 'success']
     @clinic.destroy
-
     respond_to do |format|
-      format.html { redirect_to clinics_url, notice: "Clinic was successfully destroyed." }
+      flash[:notice] = notice
+      format.html { redirect_to clinics_url}
       format.json { head :no_content }
     end
   end
