@@ -62,9 +62,13 @@ class AppointmentsController < ApplicationController
 
     respond_to do |format|
       if @appointment.save
-        format.html { redirect_to appointment_url(@appointment), notice: "Appointment was successfully created." }
+        notice = Hash['msg' => 'Appointment added !', 'type' => 'success']
+        flash[:notice] = notice
+        format.html { redirect_to appointment_url(@appointment)}
         format.json { render :show, status: :created, location: @appointment }
       else
+        notice = Hash['msg' => 'Appointment adding failed!', 'type' => 'danger']
+        flash[:notice] = notice
         format.html { render :new, status: :unprocessable_entity }
         format.json { render json: @appointment.errors, status: :unprocessable_entity }
       end
@@ -75,9 +79,13 @@ class AppointmentsController < ApplicationController
   def update
     respond_to do |format|
       if @appointment.update(appointment_params)
-        format.html { redirect_to appointment_url(@appointment), notice: "Appointment was successfully updated." }
+        notice = Hash['msg' => 'Appointment updated !', 'type' => 'success']
+        flash[:notice] = notice
+        format.html { redirect_to appointment_url(@appointment)}
         format.json { render :show, status: :ok, location: @appointment }
       else
+        notice = Hash['msg' => 'Patient update failed!', 'type' => 'danger']
+        flash[:notice] = notice
         format.html { render :edit, status: :unprocessable_entity }
         format.json { render json: @appointment.errors, status: :unprocessable_entity }
       end
@@ -89,7 +97,9 @@ class AppointmentsController < ApplicationController
     @appointment.destroy
 
     respond_to do |format|
-      format.html { redirect_to appointments_url, notice: "Appointment was successfully destroyed." }
+      notice = Hash['msg' => 'Appointment deleted !', 'type' => 'success']
+      flash[:notice] = notice
+      format.html { redirect_to appointments_url}
       format.json { head :no_content }
     end
   end
