@@ -1,19 +1,19 @@
-
+<div class="flex-auto">
 
 <% if current_user %>
   <% if !current_user.user? %>
 <div class="w-full">
 <br>
-  <div class="flex justify-between items-center">
-    <h1 style= "margin-left: 1.9%" class="font-bold text-4xl">Clinics</h1>
+  <div style= "margin-left: 2%" class="flex justify-between items-center">
+    <h1 class="font-bold text-4xl">Clinics</h1>
     <%= link_to 'New clinic', new_clinic_path, class: "mt-2 rounded-lg py-3 px-5 bg-blue-600 text-white block font-medium cursor-pointer hover:bg-sky-200 mr-6" %>
   </div>
 
   <% end %>
-  <div class='flex flex-wrap place-content-evenly' id="clinics">
+  <div class='flex flex-wrap justify-around place-content-evenly' id="clinics">
     <% @clinic_hospital.each do |key,value| %>
-        <div class="w-full max-w-md p-4 mt-6 bg-slate-100 border border-gray-200 rounded-lg shadow sm:p-8">
-            <div class="flex items-center justify-between mb-4">
+        <div class="w-full max-w-sm mt-6 bg-slate-100 border border-gray-200 rounded-lg shadow sm:p-8">
+            <div class="flex items-center justify-between mb-2">
                 <h5 class="text-xl font-bold leading-none text-gray-900 ">
                   <%= key %>
                 </h5>
@@ -55,4 +55,5 @@
     <% end %>
   </div>
 <% end %>
+</div>
 </div>
