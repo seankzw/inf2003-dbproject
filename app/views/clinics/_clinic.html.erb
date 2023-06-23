@@ -1,17 +1,46 @@
 <div id="<%= dom_id clinic %>">
-  <p>
-    <strong>Hospital:</strong>
-    <%= clinic.hospital.name %>
-  </p>
+  <% if false %>
+    <p>
+      <strong>Hospital:</strong>
+      <%= clinic.hospital.name %>
+    </p>
 
-  <p>
-    <strong>Name:</strong>
-    <%= clinic.name %>
-  </p>
+    <p>
+      <strong>Name:</strong>
+      <%= clinic.name %>
+    </p>
 
-  <p>
-    <strong>Location:</strong>
-    <%= clinic.location %>
-  </p>
+    <p>
+      <strong>Location:</strong>
+      <%= clinic.location %>
+    </p>
+  <% end %>
 
+  <h3 class="text-base font-semibold leading-7 text-gray-900">Clinic Information</h3>
+  <div class="bg-white shadow-md rounded px-8 pt-6 pb-8 mb-4 flex flex-col my-2">
+    <div class="-mx-3 md:flex mb-6">
+        <div class="md:w-full px-3 md:mb-0">
+            <label class="block uppercase tracking-wide text-grey-darker text-xs font-bold mb-2">
+                Hospital
+            </label>
+            <input value="<%= clinic.hospital.name %>" class="block shadow rounded-md border border-gray-300 outline-none px-3 py-2 mt-2 w-full mb-3" type="text" disabled>
+        </div>
+    </div>
+    <div class="-mx-3 md:flex mb-6">
+        <div class="md:w-full px-3 md:mb-0">
+            <label class="block uppercase tracking-wide text-grey-darker text-xs font-bold mb-2">
+                Name
+            </label>
+            <input value="<%= clinic.name %>" class="block shadow rounded-md border border-gray-300 outline-none px-3 py-2 mt-2 w-full mb-3" type="text" disabled>
+        </div>
+    </div>
+    <div class="-mx-3 md:flex mb-6">
+        <div class="md:w-full px-3 md:mb-0">
+            <label class="block uppercase tracking-wide text-grey-darker text-xs font-bold mb-2">
+                Location
+            </label>
+            <input value="<%= clinic.location %>" class="block shadow rounded-md border border-gray-300 outline-none px-3 py-2 mt-2 w-full mb-3" type="text" disabled>
+        </div>
+    </div>
+  </div>
 </div>

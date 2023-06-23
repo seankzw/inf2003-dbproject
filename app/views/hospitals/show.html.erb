@@ -9,6 +9,9 @@
         @name = @name.gsub(" ", "%20")
       %>
 
+      <label class="block uppercase tracking-wide text-grey-darker text-xs font-bold mb-2" for="grid-hospmap">
+        Map
+      </label>
       <iframe src="https://www.google.com/maps?q=<%= @name %>,%20Singapore&output=embed" width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy"></iframe>
 
       <% if current_user %>

@@ -1,12 +1,23 @@
 <div id="<%= dom_id hospital %>">
-  <p>
-    <strong>Name:</strong>
-    <%= hospital.name %>
-  </p>
+  <% if false %>
+    <p>
+      <strong>Name:</strong>
+      <%= hospital.name %>
+    </p>
 
-  <p>
-    <strong>Location:</strong>
-    <%= hospital.location %>
-  </p>
+    <p>
+      <strong>Location:</strong>
+      <%= hospital.location %>
+    </p>
+  <% end %>
+  
+  <label class="block uppercase tracking-wide text-grey-darker text-xs font-bold mb-2" for="grid-hospname">
+    Name
+  </label>
+  <input value="<%= hospital.name %>" class="block shadow rounded-md border border-gray-300 outline-none px-3 py-2 mt-2 w-full mb-3" id="grid-hospname" type="text" disabled>
+  <label class="block uppercase tracking-wide text-grey-darker text-xs font-bold mb-2" for="grid-hosplocation">
+    Location
+  </label>
+  <input value="<%= hospital.location %>" class="block shadow rounded-md border border-gray-300 outline-none px-3 py-2 mt-2 w-full mb-3" id="grid-hosplocation" type="text" disabled>
 
 </div>

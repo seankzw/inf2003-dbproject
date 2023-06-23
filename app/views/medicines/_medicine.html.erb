@@ -1,23 +1,61 @@
-<div id="<%= dom_id medicine %>">
-  <p class="my-5">
-    <strong class="block font-medium mb-1">Name:</strong>
-    <%= medicine.name %>
-  </p>
+<div id="<%= dom_id medicine %>"> 
+  <% if false %>
+    <p class="my-5">
+      <strong class="block font-medium mb-1">Name:</strong>
+      <%= medicine.name %>
+    </p>
 
-  <p class="my-5">
-    <strong class="block font-medium mb-1">Price:</strong>
-    <%= medicine.price%>
-  </p>
+    <p class="my-5">
+      <strong class="block font-medium mb-1">Price:</strong>
+      <%= medicine.price%>
+    </p>
 
-  <p class="my-5">
-    <strong class="block font-medium mb-1">Dosage:</strong>
-    <%= medicine.dosage%>
-  </p>
+    <p class="my-5">
+      <strong class="block font-medium mb-1">Dosage:</strong>
+      <%= medicine.dosage%>
+    </p>
 
-  <p class="my-5">
-    <strong class="block font-medium mb-1">Instruction:</strong>
-    <%= medicine.instruction%>
-  </p>
+    <p class="my-5">
+      <strong class="block font-medium mb-1">Instruction:</strong>
+      <%= medicine.instruction%>
+    </p>
+  <% end %>
+
+  <h3 class="text-base font-semibold leading-7 text-gray-900">Medicine Information</h3>
+  <div class="bg-white shadow-md rounded px-8 pt-6 pb-8 mb-4 flex flex-col my-2">
+    <div class="-mx-3 md:flex mb-6">
+        <div class="md:w-full px-3 md:mb-0">
+            <label class="block uppercase tracking-wide text-grey-darker text-xs font-bold mb-2" for="grid-medname">
+                Name
+            </label>
+            <input value="<%= medicine.name %>" class="block shadow rounded-md border border-gray-300 outline-none px-3 py-2 mt-2 w-full mb-3" id="grid-medname" type="text" disabled>
+        </div>
+    </div>
+    <div class="-mx-3 md:flex mb-6">
+        <div class="md:w-full px-3 md:mb-0">
+            <label class="block uppercase tracking-wide text-grey-darker text-xs font-bold mb-2" for="grid-medprice">
+                Price
+            </label>
+            <input value="<%= medicine.price %>" class="block shadow rounded-md border border-gray-300 outline-none px-3 py-2 mt-2 w-full mb-3" id="grid-meddosage" type="text" disabled>
+        </div>
+    </div>
+    <div class="-mx-3 md:flex mb-6">
+        <div class="md:w-full px-3 md:mb-0">
+            <label class="block uppercase tracking-wide text-grey-darker text-xs font-bold mb-2" for="grid-medprice">
+                Dosage
+            </label>
+            <input value="<%= medicine.dosage %>" class="block shadow rounded-md border border-gray-300 outline-none px-3 py-2 mt-2 w-full mb-3" id="grid-meddosage" type="text" disabled>
+        </div>
+    </div>
+    <div class="-mx-3 md:flex mb-6">
+        <div class="md:w-full px-3 md:mb-0">
+            <label class="block uppercase tracking-wide text-grey-darker text-xs font-bold mb-2" for="grid-medinstruction">
+                Instruction
+            </label>
+            <input value="<%= medicine.instruction %>" class="block shadow rounded-md border border-gray-300 outline-none px-3 py-2 mt-2 w-full mb-3" id="grid-medinstruction" type="text" disabled>
+        </div>
+    </div>
+  </div>
 
   <% if action_name != "show" %>
     <%= link_to "Show this medicine", medicine, class: "rounded-lg py-3 px-5 bg-gray-100 inline-block font-medium cursor-pointer hover:bg-sky-200" %>

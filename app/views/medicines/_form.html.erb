@@ -11,27 +11,35 @@
     </div>
   <% end %>
 
-  <div class="my-5">
-    <%= form.label :name %>
-    <%= form.text_field :name, class: "block shadow rounded-md border border-gray-200 outline-none px-3 py-2 mt-2 w-full" %>
-  </div>
-
-  <div class="my-5">
-    <%= form.label :price %>
-    <%= form.number_field :price, class: "block shadow rounded-md border border-gray-200 outline-none px-3 py-2 mt-2 w-full" %>
-  </div>
-
-  <div class="my-5">
-    <%= form.label :dosage %>
-    <%= form.text_field :dosage, class: "block shadow rounded-md border border-gray-200 outline-none px-3 py-2 mt-2 w-full" %>
-  </div>
-
-  <div class="my-5">
-    <%= form.label :instruction %>
-    <%= form.text_field :instruction, class: "block shadow rounded-md border border-gray-200 outline-none px-3 py-2 mt-2 w-full" %>
-  </div>
-
-  <div class="inline">
-    <%= form.submit class: "rounded-lg py-3 px-5 bg-blue-600 text-white inline-block font-medium cursor-pointer hover:bg-sky-200" %>
+  <div class="bg-white shadow-md rounded px-8 pt-6 pb-8 mb-4 flex flex-col my-2">
+    <div class="-mx-3 md:flex mb-6">
+        <div class="md:w-full px-3 md:mb-0">
+            <%= form.label :name, class:"block uppercase tracking-wide text-grey-darker text-xs font-bold mb-2", for:"grid-medicinename" %>
+            <%= form.text_field :name, class: "block shadow rounded-md border border-gray-300 outline-none px-3 py-2 mt-2 w-full mb-3" %>
+        </div>
+    </div>
+    <div class="-mx-3 md:flex mb-6">
+        <div class="md:w-full px-3 md:mb-0">
+            <%= form.label :price, class:"block uppercase tracking-wide text-grey-darker text-xs font-bold mb-2", for:"grid-medicineprice" %>
+            <%= form.number_field :price, class: "block shadow rounded-md border border-gray-300 outline-none px-3 py-2 mt-2 w-full mb-3" %>
+        </div>
+    </div>
+    <div class="-mx-3 md:flex mb-6">
+        <div class="md:w-full px-3 md:mb-0">
+            <%= form.label :dosage, class:"block uppercase tracking-wide text-grey-darker text-xs font-bold mb-2", for:"grid-medicinedosage" %>
+            <%= form.text_field :dosage, class: "block shadow rounded-md border border-gray-300 outline-none px-3 py-2 mt-2 w-full mb-3" %>
+        </div>
+    </div>
+    <div class="-mx-3 md:flex mb-6">
+        <div class="md:w-full px-3 md:mb-0">
+            <%= form.label :instruction, class:"block uppercase tracking-wide text-grey-darker text-xs font-bold mb-2", for:"grid-medicineinstruction" %>
+            <%= form.text_field :instruction, class: "block shadow rounded-md border border-gray-300 outline-none px-3 py-2 mt-2 w-full mb-3" %>
+        </div>
+    </div>
+    <div class="-mx-3 md:flex mb-6">
+        <div class="md:w-1/2 px-3 mb-6 md:mb-00">
+            <%= form.submit class: "mt-2 rounded-lg py-3 px-5 bg-gray-100 inline-block font-medium cursor-pointer cursor-pointer hover:bg-sky-200" %>
+        </div>
+    </div>
   </div>
 <% end %>

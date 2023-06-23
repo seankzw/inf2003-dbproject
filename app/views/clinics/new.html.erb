@@ -1,8 +1,13 @@
-<div class="text-center">
-  <br>
-    <h1 class="text-3xl text-center font-bold">New clinic</h1>
+<div class="my-24 mx-auto md:w-2/3 w-full flex">
+  <div class="mx-auto">
+    <h3 class="text-base font-semibold leading-7 text-gray-900">New Clinic</h3>
+
     <%= render "form", clinic: @clinic %>
-  <div>
-    <%= link_to "Back to clinics", clinics_path, class: "m-2 rounded-lg py-3 px-5 bg-gray-100 inline-block font-medium cursor-pointer hover:bg-sky-200" %>
+
+    <br>
+
+    <div>
+      <%= link_to "Back to clinics", clinics_path, class: "ml-1 rounded-lg py-3 px-5 bg-gray-100 inline-block font-medium cursor-pointer hover:bg-sky-200" %>
+    </div>
   </div>
 </div>

@@ -10,29 +10,34 @@
       </ul>
     </div>
   <% end %>
-  
-  <div>
-    <%= form.label :hospital_id %>
-    <br>
-    <select name='clinic[hospital_id]'>
-      <% @hospitals.each do |hospital| %>
-        <option value=<%= hospital.id %> <%= 'selected' if hospital.id == @clinic.hospital_id %>><%= hospital.name %></option>
-      <% end %>
-    </select>
-  </div>
 
-
-  <div>
-    <%= form.label :name, style: "display: block" %>
-    <%= form.text_field :name %>
-  </div>
-
-  <div>
-    <%= form.label :location, style: "display: block" %>
-    <%= form.text_field :location %>
-  </div>
-
-  <div>
-    <%= form.submit class: "mt-2 rounded-lg py-3 px-5 bg-gray-100 inline-block font-medium cursor-pointer hover:bg-sky-200" %>
+  <div class="bg-white shadow-md rounded px-8 pt-6 pb-8 mb-4 flex flex-col my-2">
+    <div class="-mx-3 md:flex mb-6">
+        <div class="md:w-full px-3 md:mb-0">
+            <%= form.label :hospital_id, class:"block uppercase tracking-wide text-grey-darker text-xs font-bold mb-2", for:"grid-hospitalid" %>
+            <select name='clinic[hospital_id]', class='block shadow rounded-md border border-gray-300 outline-none px-3 py-2 mt-2 w-full mb-3'>
+              <% @hospitals.each do |hospital| %>
+                <option value=<%= hospital.id %> <%= 'selected' if hospital.id == @clinic.hospital_id %>><%= hospital.name %></option>
+              <% end %>
+            </select>
+        </div>
+    </div>
+    <div class="-mx-3 md:flex mb-6">
+        <div class="md:w-full px-3 md:mb-0">
+            <%= form.label :name, class:"block uppercase tracking-wide text-grey-darker text-xs font-bold mb-2", for:"grid-name" %>
+            <%= form.text_field :name, class:"block shadow rounded-md border border-gray-300 outline-none px-3 py-2 mt-2 w-full mb-3" %>
+        </div>
+    </div>
+    <div class="-mx-3 md:flex mb-6">
+        <div class="md:w-full px-3 md:mb-0">
+            <%= form.label :location, class:"block uppercase tracking-wide text-grey-darker text-xs font-bold mb-2", for:"grid-location" %>
+            <%= form.text_field :location, class:"block shadow rounded-md border border-gray-300 outline-none px-3 py-2 mt-2 w-full mb-3" %>
+        </div>
+    </div>
+    <div class="-mx-3 md:flex mb-6">
+			  <div class="md:w-1/2 px-3 mb-6 md:mb-0">
+				    <%= form.submit class: "mt-2 rounded-lg py-3 px-5 bg-gray-100 inline-block font-medium cursor-pointer cursor-pointer hover:bg-sky-200" %>
+			  </div>
+		</div>
   </div>
 <% end %>

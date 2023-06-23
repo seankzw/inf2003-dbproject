@@ -1,15 +1,13 @@
-<div class="text-center">
+<div class="my-24 mx-auto md:w-2/3 w-full flex">
+  <div class="mx-auto">
+    <h3 class="text-base font-semibold leading-7 text-gray-900">Edit Doctor</h3>
 
-  <h2 class="text-3xl text-center font-bold m-6">Edit doctor</h1>
+    <%= render "form", doctor: @doctor %>
 
-  <%= render "form", doctor: @doctor %>
-
-  <br>
-
-  <div>
-    <%= link_to "Show this doctor", @doctor, class: "mt-2 rounded-lg py-3 px-5 bg-gray-100 inline-block font-medium cursor-pointer hover:bg-sky-200" %>
-    <div class="inline-block ml-2">
-      <%= link_to "Back to doctors", doctors_path, class: "mt-2 rounded-lg py-3 px-5 bg-gray-100 inline-block font-medium cursor-pointer hover:bg-sky-200" %>
+    <div>
+        <%= link_to "Show this doctor", @doctor, class: "mt-2 rounded-lg py-3 px-5 bg-gray-100 inline-block font-medium cursor-pointer hover:bg-sky-200" %>
+        <div class="inline-block ml-2">
+        <%= link_to "Back to doctors", doctors_path, class: "mt-2 rounded-lg py-3 px-5 bg-gray-100 inline-block font-medium cursor-pointer hover:bg-sky-200" %>
     </div>
   </div>
 </div>

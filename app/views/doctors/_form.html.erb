@@ -11,32 +11,37 @@
     </div>
   <% end %>
 
-  <div>
-    <%= form.label :clinic_id, style: "display: block" %>
-    <%= form.number_field :clinic_id %>
-  </div>
-
-  <div>
-    <%= form.label :name, style: "display: block" %>
-    <%= form.text_field :name %>
-  </div>
-
-  <div>
-    <%= form.label :contact, style: "display: block" %>
-    <%= form.number_field :contact %>
-  </div>
-
-  <div>
-    <%= form.label :email, style: "display: block" %>
-    <%= form.text_field :email %>
-  </div>
-
-  <div>
-    <%= form.label :role, style: "display: block" %>
-    <%= form.text_field :role %>
-  </div>
-
-  <div>
-    <%= form.submit class: "mt-2 rounded-lg py-3 px-5 bg-gray-100 inline-block font-medium cursor-pointer cursor-pointer hover:bg-sky-200" %>
+  <div class="bg-white shadow-md rounded px-8 pt-6 pb-8 mb-4 flex flex-col my-2">
+    <div class="-mx-3 md:flex mb-6">
+        <div class="md:w-full px-3 md:mb-0">
+            <%= form.label :clinic_id, class:"block uppercase tracking-wide text-grey-darker text-xs font-bold mb-2", for:"grid-clinic" %>
+            <%= form.number_field :clinic_id, class:"block shadow rounded-md border border-gray-300 outline-none px-3 py-2 mt-2 w-full mb-3" %>
+        </div>
+    </div>
+    <div class="-mx-3 md:flex mb-6">
+        <div class="md:w-full px-3 md:mb-0">
+            <%= form.label :name, class:"block uppercase tracking-wide text-grey-darker text-xs font-bold mb-2", for:"grid-name" %>
+            <%= form.text_field :name, class:"block shadow rounded-md border border-gray-300 outline-none px-3 py-2 mt-2 w-full mb-3" %>
+        </div>
+    </div>
+    <div class="-mx-3 md:flex mb-6">
+        <div class="md:w-1/3 px-3 mb-4 md:mb-0">
+            <%= form.label :contact, class:"block uppercase tracking-wide text-grey-darker text-xs font-bold mb-2", for:"grid-contact" %>
+            <%= form.number_field :contact, class:"block shadow rounded-md border border-gray-300 outline-none px-3 py-2 mt-2 w-full" %>
+        </div>
+        <div class="md:w-1/3 px-3 mb-4 md:mb-0">
+            <%= form.label :email, class:"block uppercase tracking-wide text-grey-darker text-xs font-bold mb-2", for:"grid-email" %>
+            <%= form.text_field :email, class:"block shadow rounded-md border border-gray-300 outline-none px-3 py-2 mt-2 w-full" %>
+        </div>
+        <div class="md:w-1/3 px-3 mb-4 md:mb-0">
+            <%= form.label :role, class:"block uppercase tracking-wide text-grey-darker text-xs font-bold mb-2", for:"grid-role" %>
+            <%= form.text_field :role, class:"block shadow rounded-md border border-gray-300 outline-none px-3 py-2 mt-2 w-full" %>
+        </div>
+    </div>
+    <div class="-mx-3 md:flex mb-6">
+			  <div class="md:w-1/2 px-3 mb-6 md:mb-0">
+				    <%= form.submit class: "mt-2 rounded-lg py-3 px-5 bg-gray-100 inline-block font-medium cursor-pointer cursor-pointer hover:bg-sky-200" %>
+			  </div>
+		</div>
   </div>
 <% end %>
