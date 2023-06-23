@@ -1,8 +1,9 @@
+<br>
 <div class="text-center">
 
-<section class="w-78 h-30 bg-white rounded-xl drop-shadow-md m-6 relative p-6">
-  <%= render @clinic %>
+<%= render @clinic %>
 
+<section class="w-78 h-30 bg-white rounded-xl drop-shadow-md m-6 relative p-6">
   <div>
     <% if current_user %>
       <% if !current_user.user? %>
