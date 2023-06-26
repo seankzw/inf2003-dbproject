@@ -1,15 +1,9 @@
-
-  <% if notice.present? %>
-    <p class="py-2 px-3 bg-green-50 mb-5 text-green-500 font-medium rounded-lg inline-block" id="notice"><%= notice %></p>
-  <% end %>
-
 <div class="w-full">
   <br>
   <div class="flex justify-between items-center">
     <h1 style= "margin-left: 1.9%" class="font-bold text-4xl">Medicines</h1>
     <%= link_to 'New medicine', new_medicine_path, class: "rounded-lg py-3 px-5 bg-blue-600 text-white block font-medium hover:bg-sky-200 mr-6" %>
-  </div>
-  <br>
+  </div>  
     <div class="w-90 flex items-center overflow-x-auto">
       <% if @medicines %>
         <% @medicines.each do |medicine| %>

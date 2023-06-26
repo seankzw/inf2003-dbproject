@@ -27,7 +27,7 @@ class HospitalsController < ApplicationController
       if @hospital.save
         notice = Hash['msg' => 'Hospital added !', 'type' => 'success']
         flash[:notice] = notice
-        #format.html { redirect_to hospital_url(@hospital), notice: "Hospital was successfully created." }
+        # format.html { redirect_to hospital_url(@hospital), notice: "Hospital was successfully created." }
         format.html { redirect_to hospital_url(@hospital)}
         format.json { render :show, status: :created, location: @hospital }
       else
@@ -64,7 +64,7 @@ class HospitalsController < ApplicationController
     flash[:notice] = notice
 
     respond_to do |format|
-      format.html { redirect_to hospitals_url}
+      format.html { redirect_to hospitals_url }
       format.json { head :no_content }
     end
   end
