@@ -12,6 +12,16 @@ class DoctorsController < ApplicationController
   # GET /doctors or /doctors.json
   def index
     @doctors = Doctor.joins(:clinic)
+    @doctor_clinic = Hash[]
+
+    for eachDoctor in @doctors do
+      if @doctor_clinic.key?(eachDoctor.clinic.name)
+        @doctor_clinic[eachDoctor.clinic.name].append(eachDoctor)
+      else
+        @doctor_clinic[eachDoctor.clinic.name] = []
+        @doctor_clinic[eachDoctor.clinic.name].append(eachDoctor)
+      end
+    end
   end
 
   # GET /doctors/1 or /doctors/1.json
@@ -20,11 +30,13 @@ class DoctorsController < ApplicationController
 
   # GET /doctors/new
   def new
-    @doctor = Doctor.new
+    @clinics = Clinic.all 
+    @doctor = Doctor.new 
   end
 
   # GET /doctors/1/edit
   def edit
+    @clinics = Clinic.all
   end
 
   # POST /doctors or /doctors.json
