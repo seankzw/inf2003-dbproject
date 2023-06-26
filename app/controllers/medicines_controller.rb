@@ -10,7 +10,7 @@ class MedicinesController < ApplicationController
   end
 
   def check_permission
-    unless current_user.superadmin?
+    unless current_user.superadmin? || current_user.hospitaladmin?
       redirect_to "/"
     end
   end
