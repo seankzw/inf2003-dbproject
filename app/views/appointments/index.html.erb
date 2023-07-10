@@ -5,7 +5,7 @@
     <%= link_to 'New appointment', new_appointment_path, class: "rounded-lg py-3 px-5 bg-blue-600 text-white block font-medium mr-6" %>
   </div>
 
-  <% if @appointments %>
+  <% if @appointments.present? %>
     <div id="appointments" class="">
       <% @appointments.each_with_index do |appointment,idx| %>
       <% if (idx)%2 == 0 %>
@@ -25,6 +25,8 @@
       <% end %>
     </div>
   <% else %>
-    <p>You currently do not have any appointment</p>
+    <div class="justify-center flex" style="margin-top: 10%">
+      <p class="font-bold text-2xl">You currently do not have any appointment</p>
+    </div>
   <% end%>
 </div>

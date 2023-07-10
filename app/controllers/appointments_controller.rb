@@ -9,8 +9,10 @@ class AppointmentsController < ApplicationController
       @appointments = Appointment.includes(:doctor).includes(:clinic).all
       p @appointments
     else
-      patient_id = Patient.where(user_id: current_user.id).first
-      @appointments = Appointment.includes(:doctor).includes(:clinic).where(patient_id: patient_id.patient_id)
+      if !Patient.where(user_id: current_user.id).empty?
+        patient_id = Patient.where(user_id: current_user.id).first
+        @appointments = Appointment.includes(:doctor).includes(:clinic).where(patient_id: patient_id.patient_id)
+      end
     end
   end
 
@@ -30,12 +32,14 @@ class AppointmentsController < ApplicationController
   def new
       if current_user.user?
           if Patient.where(user_id: current_user.id).empty?
-            p "User hasn't completed profile -- Redirecting to new_patient_path"
+            notice = Hash['msg' => 'Please complete your user profile !', 'type' => 'danger']
+            flash[:notice] = notice
+            puts "User hasn't completed profile -- Redirecting to new_patient_path"
             redirect_to new_patient_path
           end
 
-          user = Patient.where(user_id: current_user.id).first
-          @user_name = user.fname + " "+ user.lname
+          #user = Patient.where(user_id: current_user.id).first
+          #@user_name = user.fname + " "+ user.lname
         end
         p "User completed profile -- Proceeding to appointment page"
         @appointment = Appointment.new

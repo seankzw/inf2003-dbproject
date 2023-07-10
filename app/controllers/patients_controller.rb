@@ -4,7 +4,7 @@ class PatientsController < ApplicationController
   before_action :check_permission, only: %i[update index]
 
   def check_permission
-    if current_user.user?
+    if current_user.user? && !session.has_key?("patient_id") 
       redirect_to "/"
     end
   end
@@ -41,6 +41,9 @@ class PatientsController < ApplicationController
       if @patient.save
         notice = Hash['msg' => 'Patient added !', 'type' => 'success']
         flash[:notice] = notice
+        if current_user.user?
+          session[:patient_id] = @patient.patient_id
+        end
         format.html { redirect_to patient_url(@patient)}
         format.json { render :show, status: :created, location: @patient }
       else
