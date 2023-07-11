@@ -12,7 +12,11 @@ class HospitalsController < ApplicationController
 
   # GET /hospitals/new
   def new
-    @hospital = Hospital.new
+    if current_user.superadmin?
+      @hospital = Hospital.new
+    else
+      redirect_to "/"
+    end
   end
 
   # GET /hospitals/1/edit
