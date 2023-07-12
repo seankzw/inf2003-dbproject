@@ -138,7 +138,11 @@
       </div>
     </div>
   </nav>
-  <% if flash[:notice].present? %>
+<% if flash[:just_signed_up].present? %>
+      <%= render partial: "shared/notifications", locals: { message: session[:msg], type: session[:type] } %>
+<% end %>
+
+  <% if flash[:notice].present? && !flash[:just_signed_up].present? %>
       <%= render partial: "shared/notifications", locals: { message: flash[:notice]['msg'], type: flash[:notice]['type'] } %>
 <% end %>
 <script>

@@ -13,6 +13,12 @@ class Users::RegistrationsController < Devise::RegistrationsController
   def create
     super do |resource|
         resource.role = 'user'
+        session[:logon_name] = "User"
+        msg = "Welcome, " + resource.email + " !"
+        notice = Hash['msg' => msg , 'type' => 'session']
+        session[:msg] = msg
+        session[:type] = 'session'
+        flash[:just_signed_up] = notice
         p resource
         resource.save
     end

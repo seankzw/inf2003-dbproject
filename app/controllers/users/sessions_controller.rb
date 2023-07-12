@@ -9,10 +9,10 @@ class Users::SessionsController < Devise::SessionsController
   # end
 
   # POST /resource/sign_in
-   def create
-     super do |resource|
-        if current_user
-          if current_user.user?
+  def create
+    super do |resource|
+      if current_user
+        if current_user.user?
             # if user is sign in but not yet completed profile
             if Patient.where(user_id: current_user.id).empty?
               session[:logon_name] = "User"
@@ -28,27 +28,28 @@ class Users::SessionsController < Devise::SessionsController
             notice = Hash['msg' => msg , 'type' => 'session']
             session[:patient_id] = patient_record.patient_id
             end
-          elsif current_user.hospitaladmin?
+        elsif current_user.hospitaladmin?
             # logon user is hospital admin
             session[:logon_name] = "hospitaladmin"
             msg = "Welcome back, hospitaladmin !"
             notice = Hash['msg' => msg , 'type' => 'session']
-          else
+        else
             # logon user is admin
             session[:logon_name] = "superadmin"
             msg = "Welcome back, superadmin !"
             notice = Hash['msg' => msg , 'type' => 'session']
-          end
         end
-        flash[:notice] = notice
       end
-   end
+      flash[:notice] = notice
+    end
+  end
 
   # DELETE /resource/sign_out
    def destroy
      super do |resource|
       notice = Hash['msg' => 'See you again', 'type' => 'session']
       flash[:notice] = notice
+      reset_session
      end
    end
 

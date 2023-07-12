@@ -2,7 +2,7 @@
 <br>
   <div class="flex justify-between items-center">
     <h1 style= "margin-left: 1.9%" class="font-bold text-4xl">Appointments</h1>
-    <%= link_to 'New appointment', new_appointment_path, class: "rounded-lg py-3 px-5 bg-blue-600 text-white block font-medium mr-6" %>
+    <%= link_to 'New appointment', new_appointment_path, class: "rounded-lg py-3 px-5 bg-blue-600 text-white block font-medium cursor-pointer hover:bg-sky-200 mr-6" %>
   </div>
 
   <% if @appointments.present? %>
@@ -19,8 +19,8 @@
         <p><b>Clinic:</b> <%= appointment.clinic.name%></p>
         <p><b>Description:</b> <%= appointment.description%></p>
         <p><b>Date:</b> <%= appointment.date%></p>
-        <a href="/appointments/<%=appointment.id %>" class="rounded-lg py-3 px-5 bg-gray-100 inline-block font-medium">Show this appointment</a>
-        <a href="/appointments/<%=appointment.id %>/edit" class="rounded-lg py-3 px-5 bg-gray-100 inline-block font-medium">Edit this appointment</a>
+        <a href="/appointments/<%=appointment.id %>" class="rounded-lg py-3 px-5 bg-gray-100 inline-block font-medium cursor-pointer hover:bg-sky-200">Show this appointment</a>
+        <a href="/appointments/<%=appointment.id %>/edit" class="rounded-lg py-3 px-5 bg-gray-100 inline-block font-medium cursor-pointer hover:bg-sky-200">Edit this appointment</a>
         </section>
       <% end %>
     </div>
