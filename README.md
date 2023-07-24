@@ -1,24 +1,24 @@
-# README
+## Getting Started
+Project is running in the following versions:
+- Ruby: 3.2.2
+- Rails: 7.0.4.3
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+## Running the project
+To run the program, please run the following script in the terminal
+```
+./bin/dev
+```
 
-Things you may want to cover:
+## Installing packages
+If you are being prompt to download packages, please do a
+```
+gem install
+```
 
-* Ruby version
-
-* System dependencies
-
-* Configuration
-
-* Database creation
-
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
+#### Collaborators:
+- [Jasper](https://github.com/jaspertanlol)
+- [Siong Yu](https://github.com/SiongYu)
+- [Peter](https://github.com/x3grim)
+- [Cheng En](https://github.com/ACED07)
+- [Timothy](https://github.com/timneam)
+- [Sean](https://github.com/seankzw)
