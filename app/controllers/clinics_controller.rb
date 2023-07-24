@@ -4,7 +4,17 @@ class ClinicsController < ApplicationController
 
   # GET /clinics or /clinics.json
   def index
-    @clinics = Clinic.joins(:hospital)
+    @clinics = Clinic.joins(:hospital) #default
+    @clinic_hospital = Hash[]
+
+    for eachClinic in @clinics do
+      if @clinic_hospital.key?(eachClinic.hospital.name)
+        @clinic_hospital[eachClinic.hospital.name].append(eachClinic)
+      else
+        @clinic_hospital[eachClinic.hospital.name] = []
+        @clinic_hospital[eachClinic.hospital.name].append(eachClinic)
+      end
+    end
   end
 
   # GET /clinics/1 or /clinics/1.json
@@ -13,11 +23,14 @@ class ClinicsController < ApplicationController
 
   # GET /clinics/new
   def new
+    @hospitals = Hospital.all
     @clinic = Clinic.new
+    @hospitals = Hospital.all
   end
 
   # GET /clinics/1/edit
   def edit
+    @hospitals = Hospital.all
   end
 
   # POST /clinics or /clinics.json
@@ -26,9 +39,13 @@ class ClinicsController < ApplicationController
 
     respond_to do |format|
       if @clinic.save
-        format.html { redirect_to clinic_url(@clinic), notice: "Clinic was successfully created." }
+        notice = Hash['msg' => 'Clinic added !', 'type' => 'success']
+        flash[:notice] = notice
+        format.html { redirect_to clinic_url(@clinic)}
         format.json { render :show, status: :created, location: @clinic }
       else
+        notice = Hash['msg' => 'Clinic add failed !', 'type' => 'danger']
+        flash[:notice] = notice
         format.html { render :new, status: :unprocessable_entity }
         format.json { render json: @clinic.errors, status: :unprocessable_entity }
       end
@@ -37,11 +54,16 @@ class ClinicsController < ApplicationController
 
   # PATCH/PUT /clinics/1 or /clinics/1.json
   def update
+
     respond_to do |format|
       if @clinic.update(clinic_params)
-        format.html { redirect_to clinic_url(@clinic), notice: "Clinic was successfully updated." }
+        notice = Hash['msg' => 'Clinic updated !', 'type' => 'success']
+        flash[:notice] = notice
+        format.html { redirect_to clinic_url(@clinic)}
         format.json { render :show, status: :ok, location: @clinic }
       else
+        notice = Hash['msg' => 'Clinic update failed !', 'type' => 'danger']
+        flash[:notice] = notice
         format.html { render :edit, status: :unprocessable_entity }
         format.json { render json: @clinic.errors, status: :unprocessable_entity }
       end
@@ -51,9 +73,10 @@ class ClinicsController < ApplicationController
   # DELETE /clinics/1 or /clinics/1.json
   def destroy
     @clinic.destroy
-
     respond_to do |format|
-      format.html { redirect_to clinics_url, notice: "Clinic was successfully destroyed." }
+      notice = Hash['msg' => 'Clinic deleted !', 'type' => 'success']
+      flash[:notice] = notice
+      format.html { redirect_to clinics_url}
       format.json { head :no_content }
     end
   end

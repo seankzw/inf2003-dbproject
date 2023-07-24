@@ -1,20 +1,14 @@
-<div class="text-center">
-
-<p style="color: green"><%= notice %></p>
-
-<section class="w-78 h-30 bg-white rounded-xl drop-shadow-md m-6 relative p-6">
-  <%= render @clinic %>
-
-  <div>
+<div class="my-24 mx-auto md:w-2/3 w-full flex">
+  <div class="mx-auto">
+    <%= render @clinic %>
+    <%= link_to "Edit this clinic", edit_clinic_path(@clinic), class: "mt-2 rounded-lg py-3 px-5 bg-gray-100 inline-block font-medium cursor-pointer hover:bg-sky-200" %>
     <% if current_user %>
-      <% if !current_user.user? %>
-        <%= link_to "Edit this clinic", edit_clinic_path(@clinic), class: "mt-2 rounded-lg py-3 px-5 bg-gray-100 inline-block font-medium cursor-pointer hover:bg-sky-200"%>
-        <%= button_to "Destroy this clinic", @clinic, method: :delete, class: "mt-2 rounded-lg py-3 px-5 bg-gray-100 inline-block font-medium cursor-pointer hover:bg-sky-200" %>
+      <% if current_user.superadmin? || current_user.hospitaladmin? %>
+        <div class="inline-block ml-2">
+          <%= button_to "Destroy this clinic", @clinic, method: :delete, class: "mt-2 rounded-lg py-3 px-5 bg-gray-100 inline-block font-medium cursor-pointer hover:bg-sky-200" %>
+        </div>
       <% end %>
-      <%= link_to "Back to clinics", clinics_path, class: "mt-2 rounded-lg py-3 px-5 bg-gray-100 inline-block font-medium cursor-pointer hover:bg-sky-200" %>
     <% end %>
-
+    <%= link_to "Back to clinics", clinics_path, class: "mt-2 rounded-lg py-3 px-5 bg-gray-100 inline-block font-medium cursor-pointer hover:bg-sky-200" %>
   </div>
-</section>
-
 </div>

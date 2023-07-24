@@ -1,24 +1,30 @@
-<p style="color: green"><%= notice %></p>
-
-<div class="text-center">
-  <h1 class="text-3xl text-center font-bold m-6">Doctors</h1>
-</div>
-
-<% if current_user %>
-  <% if !current_user.user? %>
-    <div class="text-center">
-      <%= link_to "New doctor", new_doctor_path, class: "mt-2 rounded-lg py-3 px-5 bg-gray-100 inline-block font-medium cursor-pointer hover:bg-sky-200" %>
-    </div>
-  <% end %>
-
-  <div id="doctors">
-    <% @doctors.each do |doctor| %>
-      <section class="w-78 h-50 bg-white rounded-xl drop-shadow-md m-6 relative p-6">
-      <%= render doctor %>
-      <p>
-        <%= link_to "Show this doctor", doctor, class: "mt-2 rounded-lg py-3 px-5 bg-gray-100 inline-block font-medium cursor-pointer hover:bg-sky-200" %>
-      </p>
-      </section>
-    <% end %>
+<div class="w-full">
+<br>
+  <div class="flex justify-between items-center">
+    <h1 style= "margin-left: 1.9%" class="font-bold text-4xl">Doctors</h1>
+    <%= link_to 'New doctor', new_doctor_path, class: "rounded-lg py-3 px-5 bg-blue-600 text-white block font-medium hover:bg-sky-200 mr-6" %>
   </div>
-<% end %>
+  <div id="patients">
+    <section class="w-78 h-50 bg-white rounded-xl drop-shadow-md m-6 relative p-6">
+
+      <ul role="list" class="divide-y divide-gray-100">
+        <% @doctors.each do |doctor| %>
+          <li class="flex justify-between gap-x-6 py-5">
+            <div class="flex gap-x-4">
+              <div class="min-w-0 flex-auto">
+                <p class="text-sm font-semibold leading-6 text-gray-900"><%= doctor.name %></p>
+                <p class="mt-1 truncate text-xs leading-5 text-gray-500"><%= doctor.clinic.name %></p>
+                <p class="mt-1 truncate text-xs leading-5 text-gray-500"><%= doctor.role %></p>
+              </div>
+            </div>
+            <div class="hidden sm:flex sm:flex-col sm:items-end">
+              <p>
+                <%= link_to "Show this doctor", doctor, class: "mt-2 rounded-lg py-3 px-5 bg-gray-100 inline-block font-medium cursor-pointer hover:bg-sky-200" %>
+              </p>
+            </div>
+          </li>
+        <% end %>
+      </ul>
+    </section>
+  </div>
+</div>

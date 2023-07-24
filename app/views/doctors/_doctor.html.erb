@@ -1,27 +1,69 @@
 <div id="<%= dom_id doctor %>">
-  <p>
-    <strong>Clinic:</strong>
-    <%= doctor.clinic.name %>
-  </p>
+  <% if false %>
+    <p>
+      <strong>Clinic:</strong>
+      <%= doctor.clinic.name %>
+    </p>
 
-  <p>
-    <strong>Name:</strong>
-    <%= doctor.name %>
-  </p>
+    <p>
+      <strong>Name:</strong>
+      <%= doctor.name %>
+    </p>
 
-  <p>
-    <strong>Contact:</strong>
-    <%= doctor.contact %>
-  </p>
+    <p>
+      <strong>Contact:</strong>
+      <%= doctor.contact %>
+    </p>
 
-  <p>
-    <strong>Email:</strong>
-    <%= doctor.email %>
-  </p>
+    <p>
+      <strong>Email:</strong>
+      <%= doctor.email %>
+    </p>
 
-  <p>
-    <strong>Role:</strong>
-    <%= doctor.role %>
-  </p>
+    <p>
+      <strong>Role:</strong>
+      <%= doctor.role %>
+    </p>
+  <% end %>
+
+  <h3 class="text-base font-semibold leading-7 text-gray-900">Doctor Information</h3>
+  <div class="bg-white shadow-md rounded px-8 pt-6 pb-8 mb-4 flex flex-col my-2">
+    <div class="-mx-3 md:flex mb-6">
+        <div class="md:w-full px-3 md:mb-0">
+            <label class="block uppercase tracking-wide text-grey-darker text-xs font-bold mb-2" for="grid-clinic">
+                Clinic
+            </label>
+            <input value="<%= doctor.clinic.name %>" class="block shadow rounded-md border border-gray-300 outline-none px-3 py-2 mt-2 w-full mb-3" id="grid-clinic" type="text" disabled>
+        </div>
+    </div>
+    <div class="-mx-3 md:flex mb-6">
+        <div class="md:w-full px-3 md:mb-0">
+            <label class="block uppercase tracking-wide text-grey-darker text-xs font-bold mb-2" for="grid-name">
+                Name
+            </label>
+            <input value="<%= doctor.name %>" class="block shadow rounded-md border border-gray-300 outline-none px-3 py-2 mt-2 w-full mb-3" id="grid-name" type="text" disabled>
+        </div>
+    </div>
+    <div class="-mx-3 md:flex mb-6">
+        <div class="md:w-1/3 px-3 mb-4 md:mb-0">
+            <label class="block uppercase tracking-wide text-grey-darker text-xs font-bold mb-2" for="grid-contact">
+                Contact
+            </label>
+            <input value="<%= doctor.contact %>" class="block shadow rounded-md border border-gray-300 outline-none px-3 py-2 mt-2 w-full" id="grid-contact" type="text" disabled>
+        </div>
+        <div class="md:w-1/3 px-3 mb-4 md:mb-0">
+            <label class="block uppercase tracking-wide text-grey-darker text-xs font-bold mb-2" for="grid-email">
+                Email
+            </label>
+            <input value="<%= doctor.email %>" class="block shadow rounded-md border border-gray-300 outline-none px-3 py-2 mt-2 w-full" id="grid-email" type="text" disabled>
+        </div>
+        <div class="md:w-1/3 px-3 mb-4 md:mb-0">
+            <label class="block uppercase tracking-wide text-grey-darker text-xs font-bold mb-2" for="grid-role">
+                Role
+            </label>
+            <input value="<%= doctor.role %>" class="block shadow rounded-md border border-gray-300 outline-none px-3 py-2 mt-2 w-full" id="grid-role" type="text" disabled>
+        </div>
+    </div>
+  </div>
 
 </div>

@@ -1,8 +1,13 @@
-<div class="mx-auto md:w-2/3 w-full">
-  <h1 class="font-bold text-4xl">Editing medicine</h1>
+<div class="my-24 mx-auto md:w-2/3 w-full flex">
+  <div class="mx-auto">
+    <h3 class="text-base font-semibold leading-7 text-gray-900">Edit Medicine</h3>
 
-  <%= render "form", medicine: @medicine %>
+    <%= render "form", medicine: @medicine %>
 
-  <%= link_to "Show this medicine", @medicine, class: "ml-2 rounded-lg py-3 px-5 bg-gray-100 inline-block font-medium" %>
-  <%= link_to "Back to medicines", medicines_path, class: "ml-2 rounded-lg py-3 px-5 bg-gray-100 inline-block font-medium" %>
+    <div>
+        <%= link_to "Show this medicine", @medicine, class: "mt-2 rounded-lg py-3 px-5 bg-gray-100 inline-block font-medium cursor-pointer hover:bg-sky-200" %>
+        <div class="inline-block ml-2">
+        <%= link_to "Back to medicines", medicines_path, class: "mt-2 rounded-lg py-3 px-5 bg-gray-100 inline-block font-medium cursor-pointer hover:bg-sky-200" %>
+    </div>
+  </div>
 </div>

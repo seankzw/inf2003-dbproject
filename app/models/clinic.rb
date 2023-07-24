@@ -1,5 +1,4 @@
 class Clinic < ApplicationRecord
-  belongs_to :hospital
   #include Mongoid::Document
   #include Mongoid::Timestamps
   #field :hospital_id, type: Integer

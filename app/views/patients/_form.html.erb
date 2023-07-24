@@ -15,46 +15,50 @@
 		<div class="-mx-3 md:flex mb-6">
 			<div class="md:w-full px-3 md:mb-0">
 				<%= form.label :nric, class:"block uppercase tracking-wide text-grey-darker text-xs font-bold mb-2", for:"grid-nric" %>
-				<%= form.text_field :nric, class: "appearance-none block w-full bg-grey-lighter text-grey-darker border border-grey-lighter rounded py-3 px-4 mb-3" %>
+				<%= form.text_field :nric, class: "block shadow rounded-md border border-gray-300 outline-none px-3 py-2 mt-2 w-full" %>
         	</div>
 		</div>
 		<div class="-mx-3 md:flex mb-6">
 			<div class="md:w-1/2 px-3 mb-6 md:mb-0">
 				<%= form.label :fname, class:"block uppercase tracking-wide text-grey-darker text-xs font-bold mb-2", for:"grid-first-name" %>
-    			<%= form.text_field :fname, class: "appearance-none block w-full bg-grey-lighter text-grey-darker border border-grey-lighter rounded py-3 px-4 mb-3" %>
+    			<%= form.text_field :fname, class: "block shadow rounded-md border border-gray-300 outline-none px-3 py-2 mt-2 w-full" %>
 			</div>
 			<div class="md:W-1/2 px-3 mb-6 md:mb-0">
 				<%= form.label :lname, class:"block uppercase tracking-wide text-grey-darker text-xs font-bold mb-2", for:"grid-last-name" %>
-    			<%= form.text_field :lname, class: "appearance-none block w-full bg-grey-lighter text-grey-darker border border-grey-lighter rounded py-3 px-4 mb-3" %>
+    			<%= form.text_field :lname, class: "block shadow rounded-md border border-gray-300 outline-none px-3 py-2 mt-2 w-full" %>
 			</div>
     	</div>
 		<div class="-mx-3 md:flex mb-6">
 			<div class="md:w-1/3 px-3 mb-4 md:mb-0">
 				<%= form.label :phone, class:"block uppercase tracking-wide text-grey-darker text-xs font-bold mb-2", for:"grid-phone" %>
-    			<%= form.number_field :phone, class: "appearance-none block w-full bg-grey-lighter text-grey-darker border border-grey-lighter rounded py-3 px-4" %>
+    			<%= form.number_field :phone, class: "block shadow rounded-md border border-gray-300 outline-none px-3 py-2 mt-2 w-full" %>
 			</div>
 			<div class="md:w-1/3 px-3 mb-4 md:mb-0">
 				<%= form.label :dob, class:"block uppercase tracking-wide text-grey-darker text-xs font-bold mb-2", for:"grid-dob" %>
-    			<%= form.date_field :dob, class: "appearance-none block w-full bg-grey-lighter text-grey-darker border border-grey-lighter rounded py-3 px-4" %>
+    			<%= form.date_field :dob, class: "block shadow rounded-md border border-gray-300 outline-none px-3 py-2 mt-2 w-full" %>
 			</div>
 			<div class="md:w-1/3 px-3 mb-4 md:mb-0">
 				<%= form.label :gender, class:"block uppercase tracking-wide text-grey-darker text-xs font-bold mb-2", for:"grid-gender" %>
-    			<%= form.text_field :gender, class: "appearance-none block w-full bg-grey-lighter text-grey-darker border border-grey-lighter rounded py-3 px-4" %>
+    			<%= form.select :gender, ['','Male', 'Female'], {}, class: "block shadow rounded-md border border-gray-300 outline-none px-3 py-2 mt-2 w-full" %>
 			</div>
     	</div>
 		<div class="-mx-3 md:flex mb-6">
-			<div class="md:w-1/2 px-3 mb-6 md:mb-0">
+      		<div class="md:w-1/3 px-3 mb-4 md:mb-0">
+				<%= form.label :race, class:"block uppercase tracking-wide text-grey-darker text-xs font-bold mb-2", for:"grid-race" %>
+    			<%= form.select :race, ['','Chinese', 'Indian', 'Malay'], {}, class: "block shadow rounded-md border border-gray-300 outline-none px-3 py-2 mt-2 w-full" %>
+			</div>
+			<div class="md:w-1/3 px-3 mb-4 md:mb-0">
 				<%= form.label :vac_status, class:"block uppercase tracking-wide text-grey-darker text-xs font-bold mb-2", for:"grid-vac" %>
-    			<%= form.text_field :vac_status, class: "appearance-none block w-full bg-grey-lighter text-grey-darker border border-red rounded py-3 px-4 mb-3" %>
+    			<%= form.select :vac_status, ['','Vaccinated', 'Not Vaccinated'], {}, class: "block shadow rounded-md border border-gray-300 outline-none px-3 py-2 mt-2 w-full" %>
 			</div>
-			<div class="md:w-1/2 px-3 mb-6 md:mb-0">
+			<div class="md:w-1/3 px-3 mb-4 md:mb-0">
 				<%= form.label :drug_allergy, class:"block uppercase tracking-wide text-grey-darker text-xs font-bold mb-2", for:"grid-drugallergy" %>
-    			<%= form.text_field :drug_allergy, class: "appearance-none block w-full bg-grey-lighter text-grey-darker border border-red rounded py-3 px-4 mb-3" %>
+    			<%= form.text_field :drug_allergy, class: "block shadow rounded-md border border-gray-300 outline-none px-3 py-2 mt-2 w-full" %>
 			</div>
     	</div>
 		<div class="-mx-3 md:flex mb-6">
 			<div class="md:w-1/2 px-3 mb-6 md:mb-0">
-				<%= form.submit class: "mt-2 rounded-lg py-3 px-5 bg-gray-100 inline-block font-medium cursor-pointer cursor-pointer hover:bg-sky-200" %>
+				<%= form.submit class: "mt-2 rounded-lg py-3 px-5 bg-gray-100 inline-block font-medium cursor-pointer hover:bg-sky-200" %>
 			</div>
 		</div>
 	</div>

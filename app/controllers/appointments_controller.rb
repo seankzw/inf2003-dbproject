@@ -9,8 +9,10 @@ class AppointmentsController < ApplicationController
       @appointments = Appointment.includes(:doctor).includes(:clinic).all
       p @appointments
     else
-      patient_id = Patient.where(user_id: current_user.id).first
-      @appointments = Appointment.includes(:doctor).includes(:clinic).where(patient_id: patient_id.patient_id)
+      if !Patient.where(user_id: current_user.id).empty?
+        patient_id = Patient.where(user_id: current_user.id).first
+        @appointments = Appointment.includes(:doctor).includes(:clinic).where(patient_id: patient_id.patient_id)
+      end
     end
   end
 
@@ -18,18 +20,26 @@ class AppointmentsController < ApplicationController
   def show
     @clinics = Clinic.all
     @doctors = Doctor.all
+    @patients = Patient.all
+
+    @clinic = Clinic.where(clinic_id: @appointment.clinic_id).first
+    @doctor = Doctor.where(doctor_id: @appointment.doctor_id).first
+    @patient = Patient.where(patient_id: @appointment.patient_id).first
+
   end
 
   # GET /appointments/new
   def new
       if current_user.user?
           if Patient.where(user_id: current_user.id).empty?
-            p "User hasn't completed profile -- Redirecting to new_patient_path"
+            notice = Hash['msg' => 'Please complete your user profile !', 'type' => 'danger']
+            flash[:notice] = notice
+            puts "User hasn't completed profile -- Redirecting to new_patient_path"
             redirect_to new_patient_path
           end
 
-          user = Patient.where(user_id: current_user.id).first
-          @user_name = user.fname + " "+ user.lname
+          #user = Patient.where(user_id: current_user.id).first
+          #@user_name = user.fname + " "+ user.lname
         end
         p "User completed profile -- Proceeding to appointment page"
         @appointment = Appointment.new
@@ -49,7 +59,6 @@ class AppointmentsController < ApplicationController
   # POST /appointments or /appointments.json
   def create
     @appointment = Appointment.new(appointment_params)
-    p @appointment
     @appointment.clinic_id = params[:clinic_id]
     @appointment.doctor_id = params[:doctor_id]
     patient_record = Patient.where(user_id: current_user.id).first
@@ -57,9 +66,13 @@ class AppointmentsController < ApplicationController
 
     respond_to do |format|
       if @appointment.save
-        format.html { redirect_to appointment_url(@appointment), notice: "Appointment was successfully created." }
+        notice = Hash['msg' => 'Appointment added !', 'type' => 'success']
+        flash[:notice] = notice
+        format.html { redirect_to appointment_url(@appointment)}
         format.json { render :show, status: :created, location: @appointment }
       else
+        notice = Hash['msg' => 'Appointment adding failed!', 'type' => 'danger']
+        flash[:notice] = notice
         format.html { render :new, status: :unprocessable_entity }
         format.json { render json: @appointment.errors, status: :unprocessable_entity }
       end
@@ -70,9 +83,13 @@ class AppointmentsController < ApplicationController
   def update
     respond_to do |format|
       if @appointment.update(appointment_params)
-        format.html { redirect_to appointment_url(@appointment), notice: "Appointment was successfully updated." }
+        notice = Hash['msg' => 'Appointment updated !', 'type' => 'success']
+        flash[:notice] = notice
+        format.html { redirect_to appointment_url(@appointment)}
         format.json { render :show, status: :ok, location: @appointment }
       else
+        notice = Hash['msg' => 'Patient update failed!', 'type' => 'danger']
+        flash[:notice] = notice
         format.html { render :edit, status: :unprocessable_entity }
         format.json { render json: @appointment.errors, status: :unprocessable_entity }
       end
@@ -84,7 +101,9 @@ class AppointmentsController < ApplicationController
     @appointment.destroy
 
     respond_to do |format|
-      format.html { redirect_to appointments_url, notice: "Appointment was successfully destroyed." }
+      notice = Hash['msg' => 'Appointment deleted !', 'type' => 'success']
+      flash[:notice] = notice
+      format.html { redirect_to appointments_url}
       format.json { head :no_content }
     end
   end

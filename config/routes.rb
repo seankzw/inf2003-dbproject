@@ -1,16 +1,21 @@
 Rails.application.routes.draw do
-  resources :appointments
-  devise_for :users
-  resources :medicines
+  devise_for :users, controllers: {
+    registrations: 'users/registrations',
+    sessions: 'users/sessions'
+  }
   get "errors/not_found"
   get "errors/internal_server_error"
 
   # mongodb
+  resources :medicines
+
   # postgres
   resources :hospitals
   resources :clinics
   resources :patients
   resources :doctors
+  resources :appointments
+  resources :administrators
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
 
   # Defines the root path route ("/")
@@ -22,8 +27,9 @@ Rails.application.routes.draw do
   get "/clinics", to:"clinics#index"
   get "/patients", to:"patients#index"
   get "/doctors", to:"doctors#index"
+  get "/adminstrators", to:"administrators#index"
 
   get "/medicines", to:"medicines#index"
-  root "home#index"
+  root "hospitals#index"
 
 end

@@ -4,8 +4,8 @@ class PatientsController < ApplicationController
   before_action :check_permission, only: %i[update index]
 
   def check_permission
-    if current_user.user?
-      redirect_to "/"
+    if current_user.user? && !session.has_key?("patient_id") 
+      redirect_to new_patient_path
     end
   end
 
@@ -39,9 +39,23 @@ class PatientsController < ApplicationController
 
     respond_to do |format|
       if @patient.save
-        format.html { redirect_to patient_url(@patient), notice: "Patient was successfully created." }
+        if current_user.user?
+          session[:patient_id] = @patient.patient_id
+          session[:logon_name] = @patient.fname + " " + @patient.lname
+          notice = Hash['msg' => 'Profile created !', 'type' => 'success']
+        else
+          notice = Hash['msg' => 'Patient added !', 'type' => 'success']
+        end
+        flash[:notice] = notice
+        format.html { redirect_to patient_url(@patient)}
         format.json { render :show, status: :created, location: @patient }
       else
+        if current_user.user?
+          notice = Hash['msg' => 'Profile creation failed!', 'type' => 'danger']
+        else
+          notice = Hash['msg' => 'Patient add failed!', 'type' => 'danger']
+        end
+        flash[:notice] = notice
         format.html { render :new, status: :unprocessable_entity }
         format.json { render json: @patient.errors, status: :unprocessable_entity }
       end
@@ -52,9 +66,23 @@ class PatientsController < ApplicationController
   def update
     respond_to do |format|
       if @patient.update(patient_params)
-        format.html { redirect_to patient_url(@patient), notice: "Patient was successfully updated." }
+        session[:logon_name] = @patient.fname + " " + @patient.lname
+        if current_user.user?
+          notice = Hash['msg' => 'Profile updated !', 'type' => 'success']
+        else
+          notice = Hash['msg' => 'Patient updated !', 'type' => 'success']
+        end
+        flash[:notice] = notice
+        format.html { redirect_to patient_url(@patient) }
         format.json { render :show, status: :ok, location: @patient }
       else
+        if current_user.user?
+          notice = Hash['msg' => 'Profile update failed!', 'type' => 'danger']
+        else
+          notice = Hash['msg' => 'Patient update failed!', 'type' => 'danger']
+        end
+        notice = Hash['msg' => 'Patient update failed!', 'type' => 'danger']
+        flash[:notice] = notice
         format.html { render :edit, status: :unprocessable_entity }
         format.json { render json: @patient.errors, status: :unprocessable_entity }
       end
@@ -66,7 +94,9 @@ class PatientsController < ApplicationController
     @patient.destroy
 
     respond_to do |format|
-      format.html { redirect_to patients_url, notice: "Patient was successfully destroyed." }
+      notice = Hash['msg' => 'Patient deleted !', 'type' => 'success']
+      flash[:notice] = notice
+      format.html { redirect_to patients_url }
       format.json { head :no_content }
     end
   end

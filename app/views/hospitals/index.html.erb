@@ -1,7 +1,13 @@
-<p style="color: green"><%= notice %></p>
-
-<h1 class="text-3xl text-center font-bold m-6">Hospitals</h1>
-
+<div class="w-full">
+<br>
+  <div class="flex justify-between items-center">
+    <h1 style= "margin-left: 2%" class="font-bold text-4xl">Hospitals</h1>
+    <% if (current_user != nil) %>
+      <% if current_user.superadmin? %>
+        <%= link_to "New hospital", new_hospital_path, class: "mt-2 rounded-lg py-3 px-5 bg-blue-600 text-white inline-block font-medium cursor-pointer hover:bg-sky-200 mr-6x`" %>
+      <% end %>
+    <% end %>
+  </div>
 
 <% if @hospitals %>
   <% @hospitals.each_with_index do |hospital,idx| %>
@@ -20,3 +26,4 @@
 <% else %>
   <p> No hospital can be found </p>
 <% end %>
+</div>

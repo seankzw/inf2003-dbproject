@@ -1,11 +1,18 @@
 class MedicinesController < ApplicationController
   before_action :set_medicine, only: %i[ show edit update destroy ]
   before_action :authenticate_user!
+  before_action :check_permission
 
   # GET /medicines or /medicines.json
   def index
     @medicines = Medicine.all
     p @medicines
+  end
+
+  def check_permission
+    unless current_user.superadmin? || current_user.hospitaladmin?
+      redirect_to "/"
+    end
   end
 
   # GET /medicines/1 or /medicines/1.json
@@ -27,9 +34,14 @@ class MedicinesController < ApplicationController
 
     respond_to do |format|
       if @medicine.save
-        format.html { redirect_to medicine_url(@medicine), notice: "Medicine was successfully created." }
+        notice = Hash['msg' => 'Medicine added !', 'type' => 'success']
+        flash[:notice] = notice
+        # format.html { redirect_to medicine_url(@medicine), notice: "Medicine was successfully created." }
+        format.html { redirect_to medicine_url(@medicine)}
         format.json { render :show, status: :created, location: @medicine }
       else
+        notice = Hash['msg' => 'Medicine add failed!', 'type' => 'danger']
+        flash[:notice] = notice
         format.html { render :new, status: :unprocessable_entity }
         format.json { render json: @medicine.errors, status: :unprocessable_entity }
       end
@@ -38,11 +50,16 @@ class MedicinesController < ApplicationController
 
   # PATCH/PUT /medicines/1 or /medicines/1.json
   def update
+    notice = Hash['msg' => 'Medicine updated !', 'type' => 'success']
+    flash[:notice] = notice
+
     respond_to do |format|
       if @medicine.update(medicine_params)
-        format.html { redirect_to medicine_url(@medicine), notice: "Medicine was successfully updated." }
+        format.html { redirect_to medicine_url(@medicine)}
         format.json { render :show, status: :ok, location: @medicine }
       else
+        notice = Hash['msg' => 'Medicine update failed!', 'type' => 'danger']
+        flash[:notice] = notice
         format.html { render :edit, status: :unprocessable_entity }
         format.json { render json: @medicine.errors, status: :unprocessable_entity }
       end
@@ -52,9 +69,11 @@ class MedicinesController < ApplicationController
   # DELETE /medicines/1 or /medicines/1.json
   def destroy
     @medicine.destroy
+    notice = Hash['msg' => 'Medicine deleted !', 'type' => 'success']
+    flash[:notice] = notice
 
     respond_to do |format|
-      format.html { redirect_to medicines_url, notice: "Medicine was successfully destroyed." }
+      format.html { redirect_to medicines_url }
       format.json { head :no_content }
     end
   end

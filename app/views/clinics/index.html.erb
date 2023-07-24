@@ -1,23 +1,57 @@
-<p style="color: green"><%= notice %></p>
-
-<div class="text-center">
-<h1 class="text-3xl text-center font-bold m-6">Clinics</h1>
-</div>
-
+<br>
+<div class="w-full">
 <% if current_user %>
-  <% if !current_user.user? %>
-    <div class="text-center">
-      <%= link_to "New clinic", new_clinic_path, class: "mt-2 rounded-lg py-3 px-5 bg-gray-100 inline-block font-medium cursor-pointer hover:bg-sky-200" %>
-    </div>
-  <% end %>
-  <div id="clinics">
-    <% @clinics.each do |clinic| %>
-      <section class="w-78 h-50 bg-white rounded-xl drop-shadow-md m-6 relative p-6">
-      <%= render clinic %>
-      <p>
-        <%= link_to "Show this clinic", clinic, class: "mt-2 rounded-lg py-3 px-5 bg-gray-100 inline-block font-medium cursor-pointer hover:bg-sky-200" %>
-      </p>
-      </section>
+  <div class="flex justify-between items-center">
+    <h1 style= "margin-left: 1.9%" class="font-bold text-4xl">Clinics</h1>
+    <% if !current_user.user? %>
+      <%= link_to 'New clinic', new_clinic_path, class: "mt-2 rounded-lg py-3 px-5 bg-blue-600 text-white block font-medium cursor-pointer hover:bg-sky-200 mr-6" %>
+    <% end %>
+  </div>
+<br>
+
+  <div class='flex flex-wrap justify-around place-content-evenly' id="clinics">
+    <% @clinic_hospital.each do |key,value| %>
+        <div class="w-full max-w-sm mt-6 bg-slate-100 border border-gray-200 rounded-lg shadow sm:p-8">
+            <div class="flex items-center justify-between mb-2">
+                <h5 class="text-xl font-bold leading-none text-gray-900 ">
+                  <%= key %>
+                </h5>
+          </div>
+          <div class="flow-root">
+                <ul role="list" class="divide-y divide-gray-200">
+                  <% value.each do |clinic| %>
+                    <li class="pt-3 pb-0 sm:pt-4">
+                        <% if !current_user.user? %>
+                          <%= link_to clinic_path(clinic.clinic_id) do %>
+                            <div class="flex items-center space-x-4">
+                                <div class="flex-1 min-w-0">
+                                    <p class="text-sm font-medium text-gray-900 truncate">
+                                      <%= clinic.name %>
+                                    </p>
+                                    <p class="text-sm text-gray-500 truncate">
+                                      <%= clinic.location%>
+                                    </p>
+                                </div>
+                            </div>
+                          <% end %>
+                        <% else %>
+                          <div class="flex items-center space-x-4">
+                                <div class="flex-1 min-w-0">
+                                    <p class="text-sm font-medium text-gray-900 truncate">
+                                      <%= clinic.name %>
+                                    </p>
+                                    <p class="text-sm text-gray-500 truncate">
+                                      <%= clinic.location%>
+                                    </p>
+                                </div>
+                            </div>
+                        <% end %>
+                    </li>
+                  <% end %>
+                </ul>
+          </div>
+        </div>
     <% end %>
   </div>
 <% end %>
+</div>

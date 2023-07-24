@@ -1,26 +1,32 @@
 <div class="w-full">
-  <% if notice.present? %>
-    <p class="py-2 px-3 bg-green-50 mb-5 text-green-500 font-medium rounded-lg inline-block" id="notice"><%= notice %></p>
-  <% end %>
-
+<br>
   <div class="flex justify-between items-center">
-    <h1 class="font-bold text-4xl">Appointments</h1>
-    <%= link_to 'New appointment', new_appointment_path, class: "rounded-lg py-3 px-5 bg-blue-600 text-white block font-medium" %>
+    <h1 style= "margin-left: 1.9%" class="font-bold text-4xl">Appointments</h1>
+    <%= link_to 'New appointment', new_appointment_path, class: "rounded-lg py-3 px-5 bg-blue-600 text-white block font-medium cursor-pointer hover:bg-sky-200 mr-6" %>
   </div>
 
-  <% if @appointments %>
-    <div id="appointments" class="min-w-full rounded overflow-hidden shadow-lg p-6">
-      <% @appointments.each do |appointment| %>
+  <% if @appointments.present? %>
+    <div id="appointments" class="">
+      <% @appointments.each_with_index do |appointment,idx| %>
+      <% if (idx)%2 == 0 %>
+        <section class="w-78 h-22 bg-indigo-100 rounded-xl drop-shadow-md m-6 relative p-6">
+      <% else %>
+        <section class="w-78 h-22 bg-white rounded-xl drop-shadow-md m-6 relative p-6">
+      <% end %>
         <p><b>Appointment ID:</b> <%= appointment.id%></p>
         <p><b>Doctor:</b> <%= appointment.doctor.name%></p>
+        <p><b>hospital: </b> <%= appointment.clinic.hospital.name%></p>
         <p><b>Clinic:</b> <%= appointment.clinic.name%></p>
         <p><b>Description:</b> <%= appointment.description%></p>
         <p><b>Date:</b> <%= appointment.date%></p>
-        <a href="/appointments/<%=appointment.id %>" class="rounded-lg py-3 px-5 bg-gray-100 inline-block font-medium">Show this appoinment</a>
-        <a href="/appointments/<%=appointment.id %>/edit" class="rounded-lg py-3 px-5 bg-gray-100 inline-block font-medium">Edit this appoinment</a>
+        <a href="/appointments/<%=appointment.id %>" class="rounded-lg py-3 px-5 bg-gray-100 inline-block font-medium cursor-pointer hover:bg-sky-200">Show this appointment</a>
+        <a href="/appointments/<%=appointment.id %>/edit" class="rounded-lg py-3 px-5 bg-gray-100 inline-block font-medium cursor-pointer hover:bg-sky-200">Edit this appointment</a>
+        </section>
       <% end %>
     </div>
   <% else %>
-    <p>You currently do not have any appointment</p>
+    <div class="justify-center flex" style="margin-top: 10%">
+      <p class="font-bold text-2xl">You currently do not have any appointment</p>
+    </div>
   <% end%>
 </div>

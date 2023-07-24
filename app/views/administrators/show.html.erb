@@ -1,0 +1,15 @@
+<div class="mx-auto md:w-2/3 w-full flex">
+  <div class="mx-auto">
+    <% if flash[:notice].present? %>
+      <%= render partial: "shared/notifications", locals: { message: flash[:notice]['msg'], type: flash[:notice]['type'] } %>
+    <% end %>
+
+    <%= render @administrator %>
+
+    <%= link_to 'Edit this administrator', edit_administrator_path(@administrator), class: "mt-2 rounded-lg py-3 px-5 bg-gray-100 inline-block font-medium" %>
+    <div class="inline-block ml-2">
+      <%= button_to 'Destroy this administrator', administrator_path(@administrator), method: :delete, class: "mt-2 rounded-lg py-3 px-5 bg-gray-100 font-medium" %>
+    </div>
+    <%= link_to 'Back to administrators', administrators_path, class: "ml-2 rounded-lg py-3 px-5 bg-gray-100 inline-block font-medium" %>
+  </div>
+</div>

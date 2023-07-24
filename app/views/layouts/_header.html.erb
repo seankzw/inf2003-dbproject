@@ -3,8 +3,7 @@
     <div class="relative flex h-16 items-center justify-between">
       <div class="absolute inset-y-0 left-0 flex items-center sm:hidden">
         <!-- Mobile menu button-->
-        <button type="button" class="inline-flex items-center justify-center rounded-md p-2 text-gray-400 hover:bg-gray-700 hover:text-white focus:outline-none focus:ring-2 focus:ring-inset focus:ring-white" aria-controls="mobile-menu" aria-expanded="false">
-          <span class="sr-only">Open main menu</span>
+        <button type="button" id="burgerbtn" class="inline-flex items-center justify-center rounded-md p-2 text-gray-400 hover:bg-gray-700 hover:text-white focus:outline-none focus:ring-2 focus:ring-inset focus:ring-white" aria-controls="mobile-menu" aria-expanded="true">
           <!--
             Icon when menu is closed.
 
@@ -35,17 +34,21 @@
           	<div class="flex space-x-4">
 				<!-- Current: "bg-gray-900 text-white", Default: "text-gray-300 hover:bg-gray-700 hover:text-white" -->
 				<a href="/hospitals" class="text-white hover:bg-gray-700 hover:text-white rounded-md px-3 py-2 text-sm font-medium" aria-current="page">Hospital</a>
-            	<% if user_signed_in? %>
-					<% if current_user.superadmin? or current_user.hospitaladmin? %>
-						<a href="/patients" class="text-white hover:bg-gray-700 hover:text-white rounded-md px-3 py-2 text-sm font-medium">Patient</a>
-					<% end %>
-					<a href="/clinics" class="text-white hover:bg-gray-700 hover:text-white rounded-md px-3 py-2 text-sm font-medium">Clinic</a>
-					<% if current_user.superadmin? or current_user.hospitaladmin? %>
-						<a href="/doctors" class="text-white hover:bg-gray-700 hover:text-white rounded-md px-3 py-2 text-sm font-medium">Doctor</a>
-						<a href="/medicines" class="text-white hover:bg-gray-700 hover:text-white rounded-md px-3 py-2 text-sm font-medium">Medicines</a>
-					<% end %>
-					<a href="/appointments" class="text-white hover:bg-gray-700 hover:text-white rounded-md px-3 py-2 text-sm font-medium">Appointment</a>
-              	<% end %>
+          <% if user_signed_in? %>
+            <% if current_user.superadmin? or current_user.hospitaladmin? %>
+              <a href="/patients" class="text-white hover:bg-gray-700 hover:text-white rounded-md px-3 py-2 text-sm font-medium">Patient</a>
+              <a href="/doctors" class="text-white hover:bg-gray-700 hover:text-white rounded-md px-3 py-2 text-sm font-medium">Doctor</a>
+              <a href="/medicines" class="text-white hover:bg-gray-700 hover:text-white rounded-md px-3 py-2 text-sm font-medium">Medicines</a>
+            <% end %>
+
+            <a href="/clinics" class="text-white hover:bg-gray-700 hover:text-white rounded-md px-3 py-2 text-sm font-medium">Clinic</a>
+            <a href="/appointments" class="text-white hover:bg-gray-700 hover:text-white rounded-md px-3 py-2 text-sm font-medium">Appointment</a>
+
+            <% if current_user.superadmin? %>
+                <a href="/administrators" class="text-white hover:bg-gray-700 hover:text-white rounded-md px-3 py-2 text-sm font-medium">Administrators</a>
+            <% end %>
+
+          <% end %>
           	</div>
         </div>
       </div>
@@ -74,7 +77,11 @@
               <div>
                 <button type="button" id="profileBtn" class="flex rounded-full bg-gray-800 text-sm focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-gray-800" id="user-menu-button" aria-expanded="false" aria-haspopup="true">
                   <span class="sr-only">Open user menu</span>
-                  <img class="h-8 w-8 rounded-full" src="https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80" alt="">
+                  <% if (current_user.id)*13%2 == 0 %>
+                      <img class="h-8 w-8 rounded-full" src="https://randomuser.me/api/portraits/men/<%= (current_user.id*13)%2%>.jpg" alt="profile_picture">
+                  <% else %>
+                      <img class="h-8 w-8 rounded-full" src="https://randomuser.me/api/portraits/women/<%= (current_user.id*13)%2 %>.jpg" alt="profile_picture">
+                  <% end %>
                 </button>
               </div>
             <% end %>
@@ -92,12 +99,16 @@
             <div id="dropdown" class="hidden absolute right-0 z-10 mt-2 w-48 origin-top-right rounded-md bg-white py-1 shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none" role="menu" aria-orientation="vertical" aria-labelledby="user-menu-button" tabindex="-1">
               <!-- Active: "bg-gray-100", Not Active: "" -->
               <% if current_user %>
+                <p class='block px-4 py-2 text-sm text-gray-700'><%= session[:logon_name]%></p>
+                <hr>
+
                 <% if current_user.user? %>
-                  <a href="/patients/<%= @patient_id %>" class="block px-4 py-2 text-sm text-gray-700" role="menuitem" tabindex="-1" id="user-menu-item-0">Your Profile</a>
+                  <a href="/patients/<%= session[:patient_id] %>" class="block px-4 py-2 text-sm text-gray-700" role="menuitem" tabindex="-1" id="user-menu-item-0">Your Profile</a>
                 <% end %>
               <% end %>
               <%#<a href="#" class="block px-4 py-2 text-sm text-gray-700" role="menuitem" tabindex="-1" id="user-menu-item-1">Settings</a>%>
               <%= link_to "Sign out", destroy_user_session_path, data: { turbo_method: :delete }, class:"block px-4 py-2 text-sm text-gray-700"  %>
+
             </div>
           </div>
         </div>
@@ -105,27 +116,57 @@
     </div>
 
     <!-- Mobile menu, show/hide based on menu state. -->
-    <div class="sm:hidden" id="mobile-menu">
+    <div class="hidden flex flex-col" id="mobile-menu">
       <div class="space-y-1 px-2 pb-3 pt-2">
         <!-- Current: "bg-gray-900 text-white", Default: "text-gray-300 hover:bg-gray-700 hover:text-white" -->
-        <a href="#" class="bg-gray-900 text-white block rounded-md px-3 py-2 text-base font-medium" aria-current="page">Dashboard</a>
-        <a href="#" class="text-gray-300 hover:bg-gray-700 hover:text-white block rounded-md px-3 py-2 text-base font-medium">Team</a>
-        <a href="#" class="text-gray-300 hover:bg-gray-700 hover:text-white block rounded-md px-3 py-2 text-base font-medium">Projects</a>
-        <a href="#" class="text-gray-300 hover:bg-gray-700 hover:text-white block rounded-md px-3 py-2 text-base font-medium">Calendar</a>
+        <a href="/hospitals" class="text-white hover:bg-gray-700 hover:text-white rounded-md px-3 py-2 text-sm font-medium" aria-current="page">Hospital</a>
+          <% if user_signed_in? %>
+            <% if current_user.superadmin? or current_user.hospitaladmin? %>
+              <a href="/patients" class="text-white hover:bg-gray-700 hover:text-white rounded-md px-3 py-2 text-sm font-medium">Patient</a>
+              <a href="/doctors" class="text-white hover:bg-gray-700 hover:text-white rounded-md px-3 py-2 text-sm font-medium">Doctor</a>
+              <a href="/medicines" class="text-white hover:bg-gray-700 hover:text-white rounded-md px-3 py-2 text-sm font-medium">Medicines</a>
+            <% end %>
+
+            <a href="/clinics" class="text-white hover:bg-gray-700 hover:text-white rounded-md px-3 py-2 text-sm font-medium">Clinic</a>
+            <a href="/appointments" class="text-white hover:bg-gray-700 hover:text-white rounded-md px-3 py-2 text-sm font-medium">Appointment</a>
+
+            <% if current_user.superadmin? %>
+                <a href="/administrators" class="text-white hover:bg-gray-700 hover:text-white rounded-md px-3 py-2 text-sm font-medium">Administrators</a>
+            <% end %>
+
+          <% end %>
       </div>
     </div>
   </nav>
+<% if flash[:just_signed_up].present? %>
+      <%= render partial: "shared/notifications", locals: { message: session[:msg], type: session[:type] } %>
+<% end %>
 
+  <% if flash[:notice].present? && !flash[:just_signed_up].present? %>
+      <%= render partial: "shared/notifications", locals: { message: flash[:notice]['msg'], type: flash[:notice]['type'] } %>
+<% end %>
 <script>
 
   var profileButton = document.getElementById("profileBtn");
   var profileDropdown = document.getElementById("dropdown");
+
+  // for the mobile dropdown
+  var burgerButton = document.getElementById("burgerbtn");
+  var mobileMenu = document.getElementById("mobile-menu");
 
   profileButton.addEventListener("click", ()=>{
     if(profileDropdown.classList.contains("hidden")){
       profileDropdown.classList.remove("hidden");
     }else{
       profileDropdown.classList.add("hidden");
+    }
+  })
+
+  burgerButton.addEventListener("click", () => {
+    if (mobileMenu.classList.contains("hidden")){
+      mobileMenu.classList.remove("hidden");
+    } else {
+      mobileMenu.classList.add("hidden");
     }
   })
 </script>

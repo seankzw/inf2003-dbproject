@@ -10,4 +10,6 @@ class User < ApplicationRecord
   def set_default_role
     self.role ||= :user
   end
+
+  has_many :administrator
 end

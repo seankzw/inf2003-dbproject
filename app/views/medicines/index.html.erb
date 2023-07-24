@@ -1,36 +1,26 @@
-
-  <% if notice.present? %>
-    <p class="py-2 px-3 bg-green-50 mb-5 text-green-500 font-medium rounded-lg inline-block" id="notice"><%= notice %></p>
-  <% end %>
-
-<div class="text-center">
-  <h1 class="text-3xl text-center font-bold m-6">Medicine</h1>
-</div>
-
-<div>
-  <div class="text-center">
-    <%= link_to 'New medicine', new_medicine_path, class: "mt-2 rounded-lg py-3 px-5 bg-gray-100 inline-block font-medium cursor-pointer hover:bg-sky-200"  %>
-  </div>
-</div>
-
-<br>
-
-<div class="w-90 flex items-center overflow-x-auto">
-  <% if @medicines %>
-    <% @medicines.each do |medicine| %>
-      <%= link_to medicine_path(medicine.id) do %>
-        <section class="w-72 h-96 bg-white rounded-xl drop-shadow-md m-6 relative">
-        <div class="overflow-hidden bg-slate-100">
-          <img src="https://plus.unsplash.com/premium_photo-1668365725809-71d571a981ca?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1480&q=80" class="w-60 h-60 mx-auto object-cover"/>
-        </div>
-          <section class="whitespace-normal py-5 mx-5">
-            <p class="text-sm mt-2"><span class="font-bold">Name: </span><%= medicine.name%></p>
-            <p class="text-sm mt-2"><span class="font-bold">Price: </span>$<%= medicine.price%></p>
-            <p class="text-sm mt-2"><span class="font-bold">Dosage: </span><%= medicine.dosage%></p>
-            <p class="text-sm mt-2"><span class="font-bold">Instruction: </span><%= medicine.instruction%></p>
-          </section>
-        </section>
+<div class="w-full">
+  <br>
+  <div class="flex justify-between items-center">
+    <h1 style= "margin-left: 1.9%" class="font-bold text-4xl">Medicines</h1>
+    <%= link_to 'New medicine', new_medicine_path, class: "rounded-lg py-3 px-5 bg-blue-600 text-white block font-medium hover:bg-sky-200 mr-6" %>
+  </div>  
+    <div class="w-90 flex items-center overflow-x-auto">
+      <% if @medicines %>
+        <% @medicines.each do |medicine| %>
+          <%= link_to medicine_path(medicine.id) do %>
+            <section class="w-72 h-96 bg-white rounded-xl drop-shadow-md m-6 relative">
+            <div class="overflow-hidden bg-slate-100">
+              <img src="https://plus.unsplash.com/premium_photo-1668365725809-71d571a981ca?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1480&q=80" class="w-60 h-60 mx-auto object-cover"/>
+            </div>
+              <section class="whitespace-normal py-5 mx-5">
+                <p class="text-sm mt-2"><span class="font-bold">Name: </span><%= medicine.name%></p>
+                <p class="text-sm mt-2"><span class="font-bold">Price: </span>$<%= medicine.price%></p>
+                <p class="text-sm mt-2"><span class="font-bold">Dosage: </span><%= medicine.dosage%></p>
+                <p class="text-sm mt-2"><span class="font-bold">Instruction: </span><%= medicine.instruction%></p>
+              </section>
+            </section>
+          <% end %>
+        <% end %>
       <% end %>
-    <% end %>
-  <% end %>
+    </div>
 </div>
