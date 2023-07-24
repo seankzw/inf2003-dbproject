@@ -42,7 +42,6 @@
 
   <div class="my-5">
     <%= form.label :date %>
-    <%# <%= form.date_field :date, class: "block shadow rounded-md border border-gray-200 outline-none px-3 py-2 mt-2 w-full", step: 15.minutes, min: Date.today, max: Date.today + 2.months, include_time: false%> %>
     <%= form.date_field :date, class: "block shadow rounded-md border border-gray-200 outline-none px-3 py-2 mt-2 w-full", step: 0, min: Date.today, max: Date.today + 2.months, include_time: false%>
   </div>
 
