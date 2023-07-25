@@ -1,12 +1,12 @@
 <div id="<%= dom_id administrator %>">
   <p class="my-5">
     <strong class="block font-medium mb-1">User:</strong>
-    <%= administrator.user_id %>
+    <%= administrator.user.email %>
   </p>
 
   <p class="my-5">
     <strong class="block font-medium mb-1">Hospital:</strong>
-    <%= administrator.hospital_id %>
+    <%= administrator.hospital.name %>
   </p>
 
   <% if action_name != "show" %>
