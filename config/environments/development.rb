@@ -4,6 +4,7 @@ Rails.application.configure do
   # Settings specified here will take precedence over those in config/application.rb.
   config.action_mailer.default_url_options = { host: 'localhost', port: 3000 }
   config.hosts << "healthcompanion.seankzw.me"
+  config.hosts << "healthcompanion.loosiongyu.me"
   config.hosts << "inf2003-dbproject-production.up.railway.app"
 
   # In the development environment your application's code is reloaded any time
