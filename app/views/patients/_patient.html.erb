@@ -131,7 +131,7 @@
                                 <p class="text-sm font-semibold leading-6 text-gray-900">Medicine Name: <%= medLog[1]['med_name'] %> </p>
                                 <p class="mt-1 truncate text-xs leading-5 text-gray-500">Instruction: <%= medLog[1]['instruction'] %></p>
                                 <p class="mt-1 truncate text-xs leading-5 text-gray-500">Dosage: <%= medLog[1]['dosage'] %></p>
-                                <p class="mt-1 truncate text-xs leading-5 text-gray-500">Date Created: <%= medLog[1]['date_created'] %></p>
+                                <p class="mt-1 truncate text-xs leading-5 text-gray-500">Date Created: <%= Time.parse(medLog[1]['date_created']).strftime("%d %b %y, %R") %>hrs</p>
                             </div>
                         </div>
                     </li>
