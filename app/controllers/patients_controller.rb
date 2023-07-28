@@ -3,8 +3,12 @@ class PatientsController < ApplicationController
   before_action :authenticate_user!
   before_action :check_permission, only: %i[update index]
 
+  require 'json'
+  require 'securerandom'
+
+
   def check_permission
-    if current_user.user? && !session.has_key?("patient_id") 
+    if current_user.user? && !session.has_key?("patient_id")
       redirect_to new_patient_path
     end
   end
@@ -16,7 +20,18 @@ class PatientsController < ApplicationController
 
   # GET /patients/1 or /patients/1.json
   def show
-    @patients = Patient.where(user_id: current_user.id)
+    @patients = Patient.where(patient_id: params[:id]).first
+    p "Here"
+    p @patients
+    if(@patients.med_log == nil)
+      @patients.med_log = {}
+      @medlog = {}
+    else
+      temp = JSON.parse(@patients.med_log)
+      @medlog = temp
+    end
+
+    @medicines = Medicine.all
   end
 
   # GET /patients/new
@@ -28,6 +43,61 @@ class PatientsController < ApplicationController
   def edit
 
   end
+
+  # Add new med log for patient POST /patient/:id/medlog
+  def addMedLog
+    patient = Patient.find(params[:id])
+    medLog = patient.med_log
+    medicine = Medicine.find(params["medId"])
+
+    ## Add new medlog
+    if(medLog == nil)
+      patient.med_log = JSON.generate(
+        SecureRandom.uuid => {
+          "med_name": medicine.name,
+          "instruction": medicine.instruction,
+          "dosage": medicine.dosage,
+          "date_created": DateTime.now
+        }
+      )
+
+    else
+        medLog = JSON.parse(patient.med_log)
+
+        medLog[SecureRandom.uuid] = {
+            "med_name": medicine.name,
+            "instruction": medicine.instruction,
+            "dosage": medicine.dosage,
+            "date_created": DateTime.now
+          }
+
+        patient.med_log = JSON.generate(medLog)
+    end
+
+    patient.save
+    redirect_back fallback_location: root_path
+  end
+
+  # GET /medlog - Get medlog or current user
+  def viewMedLog
+      # Find the patient with the given ID
+      @patient = Patient.where(user_id: current_user.id).first
+      p '=== Here view med log ==='
+      p @patient
+
+      medicineLog = @patient.med_log
+
+      if(medicineLog == nil)
+        @medLogs = nil
+      else
+        @medLogs = JSON.parse(medicineLog)
+      end
+
+
+      render "medlog/index"
+
+  end
+
 
   # POST /patients or /patients.json
   def create
@@ -109,6 +179,6 @@ class PatientsController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def patient_params
-      params.require(:patient).permit(:nric, :fname, :lname, :phone, :dob, :gender, :race, :vac_status, :drug_allergy)
+      params.require(:patient).permit(:nric, :fname, :lname, :phone, :dob, :gender, :race, :vac_status, :drug_allergy, :med_log)
     end
 end

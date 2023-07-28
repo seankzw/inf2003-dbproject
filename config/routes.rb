@@ -29,6 +29,10 @@ Rails.application.routes.draw do
   get "/doctors", to:"doctors#index"
   get "/adminstrators", to:"administrators#index"
 
+  # Custom routes
+  get "/medlog", to: "patients#viewMedLog"
+  post "/patients/:id/medlog", to:"patients#addMedLog"
+
   get "/medicines", to:"medicines#index"
   root "hospitals#index"
 

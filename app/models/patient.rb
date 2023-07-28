@@ -10,4 +10,5 @@ class Patient < ApplicationRecord
   #field :race, type: String
   #field :vac_status, type: String
   #field :drug_allergy, type: String
+  #field :med_log, type: String
 end

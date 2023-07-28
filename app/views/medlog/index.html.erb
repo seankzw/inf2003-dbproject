@@ -1,0 +1,25 @@
+<div class="w-full">
+  <br>
+  <div class="flex justify-center items-center">
+    <h1 style= "margin-left: 1.9%" class="font-bold text-4xl">Medication Log for <%= @patient.fname %> <%= @patient.lname %></h1>
+  </div>
+
+  <div class="w-90 flex flex-col items-center flex-wrap">
+  <% if @medLogs == nil %>
+    <p>Nothing much to see here</p>
+  <% else %>
+      <% @medLogs.each_with_index do |medLog,idx|%>
+      <% if (idx)%2 == 0 %>
+        <section class="w-2/4 h-22 mx-auto bg-gray-100 rounded-xl drop-shadow-md m-6 relative p-6">
+      <% else %>
+        <section class="w-2/4 h-22 mx-auto bg-white rounded-xl drop-shadow-md m-6 relative p-6">
+      <% end%>
+            <p class="text-sm font-semibold leading-6 text-gray-900">Medicine Name: <%= medLog[1]['med_name'] %> </p>
+            <p class="mt-1 truncate text-xs leading-5 text-gray-500">Instruction: <%= medLog[1]['instruction'] %></p>
+            <p class="mt-1 truncate text-xs leading-5 text-gray-500">Dosage: <%= medLog[1]['dosage'] %></p>
+            <p class="mt-1 truncate text-xs leading-5 text-gray-500">Date Created: <%= medLog[1]['date_created'] %></p>
+          </section>
+      <% end %>
+  <% end %>
+  </div>
+</div>
