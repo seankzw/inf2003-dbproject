@@ -21,6 +21,23 @@ class PatientsController < ApplicationController
   # GET /patients/1 or /patients/1.json
   def show
     @patients = Patient.where(user_id: current_user.id)
+    #if(@patients.med_log == nil)
+    #  @patients.med_log = {}
+    #else
+    #  temp = JSON.parse(@patients.med_log)
+    #  @patients.med_log = temp
+    #end
+
+    temp = {
+      1 =>{
+        medName: "para",
+        dateCreated: "hi",
+        instructions: "hil",
+        dosage: "hello"
+      }
+    }
+    @medlog = temp
+
     @medicines = Medicine.all
   end
 
@@ -73,6 +90,7 @@ class PatientsController < ApplicationController
           date_created: medlog_entry.date_created.strftime('%d%m%y')
         }
         @medlogs << medlog_hash
+      end
     end
   # POST /patients or /patients.json
   def create
