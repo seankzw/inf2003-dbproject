@@ -38,12 +38,12 @@
             <% if current_user.superadmin? or current_user.hospitaladmin? %>
               <a href="/patients" class="text-white hover:bg-gray-700 hover:text-white rounded-md px-3 py-2 text-sm font-medium">Patient</a>
               <a href="/doctors" class="text-white hover:bg-gray-700 hover:text-white rounded-md px-3 py-2 text-sm font-medium">Doctor</a>
-              <a href="/medicines" class="text-white hover:bg-gray-700 hover:text-white rounded-md px-3 py-2 text-sm font-medium">Medicines</a>
             <% end %>
 
             <a href="/clinics" class="text-white hover:bg-gray-700 hover:text-white rounded-md px-3 py-2 text-sm font-medium">Clinic</a>
             <a href="/appointments" class="text-white hover:bg-gray-700 hover:text-white rounded-md px-3 py-2 text-sm font-medium">Appointment</a>
-
+            <a href="/medicines" class="text-white hover:bg-gray-700 hover:text-white rounded-md px-3 py-2 text-sm font-medium">Medicines</a>
+            
             <% if current_user.superadmin? %>
                 <a href="/administrators" class="text-white hover:bg-gray-700 hover:text-white rounded-md px-3 py-2 text-sm font-medium">Administrators</a>
             <% end %>
@@ -124,11 +124,11 @@
             <% if current_user.superadmin? or current_user.hospitaladmin? %>
               <a href="/patients" class="text-white hover:bg-gray-700 hover:text-white rounded-md px-3 py-2 text-sm font-medium">Patient</a>
               <a href="/doctors" class="text-white hover:bg-gray-700 hover:text-white rounded-md px-3 py-2 text-sm font-medium">Doctor</a>
-              <a href="/medicines" class="text-white hover:bg-gray-700 hover:text-white rounded-md px-3 py-2 text-sm font-medium">Medicines</a>
             <% end %>
 
             <a href="/clinics" class="text-white hover:bg-gray-700 hover:text-white rounded-md px-3 py-2 text-sm font-medium">Clinic</a>
             <a href="/appointments" class="text-white hover:bg-gray-700 hover:text-white rounded-md px-3 py-2 text-sm font-medium">Appointment</a>
+            <a href="/medicines" class="text-white hover:bg-gray-700 hover:text-white rounded-md px-3 py-2 text-sm font-medium">Medicines</a>
 
             <% if current_user.superadmin? %>
                 <a href="/administrators" class="text-white hover:bg-gray-700 hover:text-white rounded-md px-3 py-2 text-sm font-medium">Administrators</a>
