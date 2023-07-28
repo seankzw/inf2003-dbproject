@@ -14,8 +14,6 @@ class Users::SessionsController < Devise::SessionsController
       if current_user
         if current_user.user?
 
-          print(" ---- here ----\n")
-          print(current_user.role)
             # if user is sign in but not yet completed profile
             if Patient.where(user_id: current_user.id).empty?
               session[:logon_name] = "User"
