@@ -53,6 +53,27 @@ class PatientsController < ApplicationController
     redirect_to(:back)
   end
 
+    # View patient med log
+    def viewMedLog
+      # Find the patient with the given ID
+      @patient = Patient.find(params[:id])
+  
+      # Fetch the medical logs associated with the patient
+      medlog_data = Medlog.where(patient_id: params[:id])
+  
+      # Initialize an empty array to store the medical logs
+      @medlogs = []
+  
+      # Iterate through the medlog_data and populate the @medlogs array
+      medlog_data.each do |medlog_entry|
+        medlog_hash = {
+          med_name: medlog_entry.med_name,
+          instruction: medlog_entry.instruction,
+          dosage: medlog_entry.dosage,
+          date_created: medlog_entry.date_created.strftime('%d%m%y')
+        }
+        @medlogs << medlog_hash
+    end
   # POST /patients or /patients.json
   def create
     @patient = Patient.new(patient_params)
