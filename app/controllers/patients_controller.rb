@@ -4,7 +4,7 @@ class PatientsController < ApplicationController
   before_action :check_permission, only: %i[update index]
 
   def check_permission
-    if current_user.user? && !session.has_key?("patient_id") 
+    if current_user.user? && !session.has_key?("patient_id")
       redirect_to new_patient_path
     end
   end
