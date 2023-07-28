@@ -1,8 +1,4 @@
 <div class="w-full">
-  <% if flash[:notice].present? %>
-    <%#= render partial: "shared/notifications", locals: { message: flash[:notice]['msg'], type: flash[:notice]['type'] } %>
-    <%= render partial: "shared/notifications", locals: { message: @msg, type: @type } %>
-  <% end %>
   <br>
   <div class="flex justify-between items-center">
     <h1 style= "margin-left: 1.9%" class="font-bold text-4xl">Administrators</h1>

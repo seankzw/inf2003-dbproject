@@ -3,12 +3,12 @@
   <div class="flex justify-between items-center">
     <h1 style= "margin-left: 1.9%" class="font-bold text-4xl">Medicines</h1>
     <%= link_to 'New medicine', new_medicine_path, class: "rounded-lg py-3 px-5 bg-blue-600 text-white block font-medium hover:bg-sky-200 mr-6" %>
-  </div>  
-    <div class="w-90 flex items-center overflow-x-auto">
+  </div>
+    <div class="w-90 flex items-center flex-wrap">
       <% if @medicines %>
         <% @medicines.each do |medicine| %>
           <%= link_to medicine_path(medicine.id) do %>
-            <section class="w-72 h-96 bg-white rounded-xl drop-shadow-md m-6 relative">
+            <section class="w-60 h-96 bg-white rounded-xl drop-shadow-md m-6 relative">
             <div class="overflow-hidden bg-slate-100">
               <img src="https://plus.unsplash.com/premium_photo-1668365725809-71d571a981ca?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1480&q=80" class="w-60 h-60 mx-auto object-cover"/>
             </div>

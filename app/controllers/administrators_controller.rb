@@ -12,11 +12,6 @@ class AdministratorsController < ApplicationController
   # GET /administrators or /administrators.json
   def index
     @administrators = Administrator.includes(:hospital).includes(:user).all
-    notice = Hash['msg' => 'User has been promoted!', 'type' => 'success']
-    flash[:notice] = notice
-
-    @msg = notice['msg']
-    @type = notice['type']
   end
 
   # GET /administrators/1 or /administrators/1.json

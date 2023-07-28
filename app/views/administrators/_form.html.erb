@@ -25,7 +25,7 @@
     <%= form.label :hospital_id %>
     <select name='administrator[hospital_id]' class="block shadow rounded-md border border-gray-200 outline-none px-3 py-2 mt-2 w-full">
     <% @hospitals.each do |hosp| %>
-        <option value=<%= hosp.hospital_id %>><%= hosp.name %> | <%= hosp.hospital_id %></option>
+        <option value=<%= hosp.hospital_id %>><%= hosp.name %></option>
     <% end %>
     </select>
     </div>
