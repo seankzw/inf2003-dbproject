@@ -1,8 +1,5 @@
 <div class="mx-auto md:w-2/3 w-full flex">
   <div class="mx-auto">
-    <% if flash[:notice].present? %>
-      <%= render partial: "shared/notifications", locals: { message: flash[:notice]['msg'], type: flash[:notice]['type'] } %>
-    <% end %>
 
     <%= render @administrator %>
 

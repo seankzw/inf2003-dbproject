@@ -17,6 +17,7 @@ class PatientsController < ApplicationController
   # GET /patients/1 or /patients/1.json
   def show
     @patients = Patient.where(user_id: current_user.id)
+    @medicines = Medicine.all
   end
 
   # GET /patients/new

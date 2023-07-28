@@ -2,6 +2,22 @@
   <div class="mx-auto">
 
       <%= render @patient %>
+      <% if current_user %>
+        <% if current_user.superadmin? || current_user.hospitaladmin? %>
+          <form action='/patients/'.<%= @patient.id %>.'/medlog' method="post" class="w-full max-w-sm">
+            <div class="flex items-center border-b border-teal-500 py-2">
+              <select name='medicines' class="appearance-none bg-transparent border-none w-full text-gray-700 mr-3 py-1 px-2 leading-tight focus:outline-none">
+                <% @medicines.each do |med| %>
+                  <option value=<%= med.name %>><%= med.name %></option>
+                <% end %>
+              </select>
+              <button type="submit" class="flex-shrink-0 bg-blue-500 hover:bg-blue-700 border-blue-500 hover:border-blue-700 text-sm border-4 text-white py-1 px-3 rounded">
+                Add Log
+              </button>
+            </div>
+          </form>
+        <% end %>
+      <% end %>
 
       <%= link_to "Edit details", edit_patient_path(@patient), class: "mt-2 rounded-lg py-3 px-5 bg-gray-100 inline-block font-medium cursor-pointer hover:bg-sky-200" %>
       <% if current_user %>
