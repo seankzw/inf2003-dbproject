@@ -20,23 +20,16 @@ class PatientsController < ApplicationController
 
   # GET /patients/1 or /patients/1.json
   def show
-    @patients = Patient.where(user_id: current_user.id)
-    #if(@patients.med_log == nil)
-    #  @patients.med_log = {}
-    #else
-    #  temp = JSON.parse(@patients.med_log)
-    #  @patients.med_log = temp
-    #end
-
-    temp = {
-      1 =>{
-        medName: "para",
-        dateCreated: "hi",
-        instructions: "hil",
-        dosage: "hello"
-      }
-    }
-    @medlog = temp
+    @patients = Patient.where(patient_id: params[:id]).first
+    p "Here"
+    p @patients
+    if(@patients.med_log == nil)
+      @patients.med_log = {}
+      @medlog = {}
+    else
+      temp = JSON.parse(@patients.med_log)
+      @medlog = temp
+    end
 
     @medicines = Medicine.all
   end
@@ -71,7 +64,6 @@ class PatientsController < ApplicationController
     else
         medLog = JSON.parse(patient.med_log)
 
-        print medLog
         medLog[SecureRandom.uuid] = {
             "med_name": medicine.name,
             "instruction": medicine.instruction,
@@ -83,30 +75,28 @@ class PatientsController < ApplicationController
     end
 
     patient.save
+    redirect_back fallback_location: root_path
   end
 
-    # View patient med log
-    def viewMedLog
+  # GET /medlog - Get medlog or current user
+  def viewMedLog
       # Find the patient with the given ID
-      @patient = Patient.find(params[:id])
-  
-      # Fetch the medical logs associated with the patient
-      medlog_data = Medlog.where(patient_id: params[:id])
-  
-      # Initialize an empty array to store the medical logs
-      @medlogs = []
-  
-      # Iterate through the medlog_data and populate the @medlogs array
-      medlog_data.each do |medlog_entry|
-        medlog_hash = {
-          med_name: medlog_entry.med_name,
-          instruction: medlog_entry.instruction,
-          dosage: medlog_entry.dosage,
-          date_created: medlog_entry.date_created.strftime('%d%m%y')
-        }
-        @medlogs << medlog_hash
+      @patient = Patient.where(user_id: current_user.id).first
+
+      medicineLog = @patient.med_log
+
+      if(medicineLog == nil)
+        @medLog = nil
+      else
+        @medLog = JSON.parse(medicineLog)
       end
-    end
+
+
+      render "medlog/index"
+
+  end
+
+
   # POST /patients or /patients.json
   def create
     @patient = Patient.new(patient_params)
