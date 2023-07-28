@@ -3,8 +3,12 @@ class PatientsController < ApplicationController
   before_action :authenticate_user!
   before_action :check_permission, only: %i[update index]
 
+  require 'json'
+  require 'securerandom'
+
+
   def check_permission
-    if current_user.user? && !session.has_key?("patient_id") 
+    if current_user.user? && !session.has_key?("patient_id")
       redirect_to new_patient_path
     end
   end
@@ -28,6 +32,25 @@ class PatientsController < ApplicationController
   # GET /patients/1/edit
   def edit
 
+  end
+
+  # Add new med log for patient POST /patient/:id/medlog
+  def addMedLog
+    medicine = Medicine.find(:medId)
+    patient= Patient.find(:patientId)
+    medLog = JSON.parse(patient.med_log)
+
+    # Add new medlog
+    medLog[SecureRandom.uuid] << {
+      med_name: medicine.name,
+      instruction: medicine.instruction,
+      dosage: medicine.dosage,
+      date_created: DateTime.now
+    }
+
+    Patient.update(:patientId, :med_log => medlog.to_json)
+
+    redirect_to(:back)
   end
 
   # POST /patients or /patients.json

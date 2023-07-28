@@ -13,6 +13,7 @@ class Users::SessionsController < Devise::SessionsController
     super do |resource|
       if current_user
         if current_user.user?
+
             # if user is sign in but not yet completed profile
             if Patient.where(user_id: current_user.id).empty?
               session[:logon_name] = "User"
@@ -20,13 +21,13 @@ class Users::SessionsController < Devise::SessionsController
               notice = Hash['msg' => msg , 'type' => 'session']
               flash[:notice] = notice
             else
-            # if user is sign in and have completed profile
-            patient_record = Patient.where(user_id: current_user.id).first
-            patient_name = patient_record.fname + " " + patient_record.lname
-            session[:logon_name] = patient_name
-            msg = "Welcome back, " + patient_name + " !"
-            notice = Hash['msg' => msg , 'type' => 'session']
-            session[:patient_id] = patient_record.patient_id
+            # if user is sign in and ha ve completed profile
+              patient_record = Patient.where(user_id: current_user.id).first
+              patient_name = patient_record.fname + " " + patient_record.lname
+              session[:logon_name] = patient_name
+              msg = "Welcome back, " + patient_name + " !"
+              notice = Hash['msg' => msg , 'type' => 'session']
+              session[:patient_id] = patient_record.patient_id
             end
         elsif current_user.hospitaladmin?
             # logon user is hospital admin
