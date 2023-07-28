@@ -1,28 +1,25 @@
 <div class="w-full">
   <br>
-  <div class="flex justify-between items-center">
+  <div class="flex justify-center items-center">
     <h1 style= "margin-left: 1.9%" class="font-bold text-4xl">Medication Log for <%= @patient.fname %> <%= @patient.lname %></h1>
   </div>
 
-  <div class="w-90 flex items-center flex-wrap">
-  <% if @medLog == nil %>
-  <p>Nothing much to see here</p>
+  <div class="w-90 flex flex-col items-center flex-wrap">
+  <% if @medLogs == nil %>
+    <p>Nothing much to see here</p>
   <% else %>
-    <ul>
-      <% @medlogs.each do |medlog| %>
-        <div class="overflow-hidden bg-slate-100">
-          <section class="w-60 h-96 bg-white rounded-xl drop-shadow-md m-6 relative">
-          <img src="https://plus.unsplash.com/premium_photo-1668365725809-71d571a981ca?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1480&q=80" class="w-60 h-60 mx-auto object-cover"/>
-            <section class="whitespace-normal py-5 mx-5">
-              <li>
-
-              </li>
-            </section>
+      <% @medLogs.each_with_index do |medLog,idx|%>
+      <% if (idx)%2 == 0 %>
+        <section class="w-2/4 h-22 mx-auto bg-indigo-100 rounded-xl drop-shadow-md m-6 relative p-6">
+      <% else %>
+        <section class="w-2/4 h-22 mx-auto bg-white rounded-xl drop-shadow-md m-6 relative p-6">
+      <% end%>
+            <p class="text-sm font-semibold leading-6 text-gray-900">Medicine Name: <%= medLog[1]['med_name'] %> </p>
+            <p class="mt-1 truncate text-xs leading-5 text-gray-500">Instruction: <%= medLog[1]['instruction'] %></p>
+            <p class="mt-1 truncate text-xs leading-5 text-gray-500">Dosage: <%= medLog[1]['dosage'] %></p>
+            <p class="mt-1 truncate text-xs leading-5 text-gray-500">Date Created: <%= medLog[1]['date_created'] %></p>
           </section>
-        </div>
-        <br>
       <% end %>
-    </ul>
   <% end %>
   </div>
 </div>

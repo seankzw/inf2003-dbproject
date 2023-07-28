@@ -82,13 +82,15 @@ class PatientsController < ApplicationController
   def viewMedLog
       # Find the patient with the given ID
       @patient = Patient.where(user_id: current_user.id).first
+      p '=== Here view med log ==='
+      p @patient
 
       medicineLog = @patient.med_log
 
       if(medicineLog == nil)
-        @medLog = nil
+        @medLogs = nil
       else
-        @medLog = JSON.parse(medicineLog)
+        @medLogs = JSON.parse(medicineLog)
       end
 
 
