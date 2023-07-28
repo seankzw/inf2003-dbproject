@@ -1,0 +1,27 @@
+<div class="w-full">
+  <br>
+  <div class="flex justify-between items-center">
+    <h1 style= "margin-left: 1.9%" class="font-bold text-4xl">Medication Log for <%= @patient.fname %> <%= @patient.lname %></h1>
+  </div>
+
+  <div class="w-90 flex items-center flex-wrap">
+    <ul>
+      <% @medlogs.each do |medlog| %>
+        <div class="overflow-hidden bg-slate-100">
+          <section class="w-60 h-96 bg-white rounded-xl drop-shadow-md m-6 relative">
+          <img src="https://plus.unsplash.com/premium_photo-1668365725809-71d571a981ca?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1480&q=80" class="w-60 h-60 mx-auto object-cover"/>
+            <section class="whitespace-normal py-5 mx-5">
+              <li>
+                <strong>Medicine:</strong> <%= medlog[:med_name] %><br>
+                <strong>Instruction:</strong> <%= medlog[:instruction] %><br>
+                <strong>Dosage:</strong> <%= medlog[:dosage] %><br>
+                <strong>Date Created:</strong> <%= medlog[:date_created] %>
+              </li>
+            </section>
+          </section>
+        </div>
+        <br>
+      <% end %>
+    </ul>
+  </div>
+</div>
