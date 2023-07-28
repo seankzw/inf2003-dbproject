@@ -47,7 +47,7 @@
 <% end %>
 
 
-<div class="flex gap-4">
+<div class="flex justify-center items-center gap-4 ">
     <div class="">
         <h3 class="text-base font-semibold leading-7 text-gray-900">Patient Information</h3>
         <div class="bg-white shadow-md rounded px-8 pt-6 pb-8 mb-4 flex flex-col my-2">
@@ -119,19 +119,23 @@
     <div class="w-96">
         <h3 class="text-base font-semibold leading-7 text-gray-900">Medicine Log</h3>
           <%# <section class="md:w overflow-y-scroll bg-white rounded-xl drop-shadow-md m-3 relative p-2"> %>
-          <section class="md:w overflow-y-scroll bg-white rounded-xl drop-shadow-md m-3 relative p-2" style="height: 25.5rem;">
+          <section class="md:w mx-auto overflow-y-scroll bg-white rounded-xl drop-shadow-md m-3 relative" style="height: 25.5rem;">
           <% if @medlog.size == 0%>
             <p>No medlog yet</p>
           <% else %>
-            <ul role="list" class="divide-y  divide-gray-100">
-                <% @medlog.reverse_each do |medLog|%>
-                     <li class="flex justify-between gap-x-6 py-5">
+            <ul role="list" class="divide-y divide-gray-100">
+                <% @medlog.to_enum.with_index.reverse_each do |medLog,idx|%>
+                    <% if idx%2 == 0 %>
+                     <li class="flex bg-gray-100 justify-between gap-x-6 p-3 py-5">
+                    <% else%>
+                     <li class="flex justify-between gap-x-6 p-3 py-5">
+                    <% end%>
                         <div class="flex gap-x-4">
                             <div class="min-w-0 flex-auto">
-                                <p class="text-sm font-semibold leading-6 text-gray-900">Medicine Name: <%= medLog[1]['med_name'] %> </p>
-                                <p class="mt-1 truncate text-xs leading-5 text-gray-500">Instruction: <%= medLog[1]['instruction'] %></p>
-                                <p class="mt-1 truncate text-xs leading-5 text-gray-500">Dosage: <%= medLog[1]['dosage'] %></p>
-                                <p class="mt-1 truncate text-xs leading-5 text-gray-500">Date Created: <%= Time.parse(medLog[1]['date_created']).strftime("%d %b %y, %R") %>hrs</p>
+                                <p class="text-sm font-semibold leading-6 text-gray-900"><strong>Medicine Name:</strong> <%= medLog[1]['med_name'] %> </p>
+                                <p class="mt-1 truncate text-xs leading-5 text-gray-500"><strong>Instruction:</strong> <%= medLog[1]['instruction'] %></p>
+                                <p class="mt-1 truncate text-xs leading-5 text-gray-500"><strong>Dosage:</strong> <%= medLog[1]['dosage'] %></p>
+                                <p class="mt-1 truncate text-xs leading-5 text-gray-500"><strong>Date Created:</strong> <%= Time.parse(medLog[1]['date_created']).strftime("%d %b %y, %R") %>hrs</p>
                             </div>
                         </div>
                     </li>
