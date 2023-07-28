@@ -43,8 +43,8 @@ class PatientsController < ApplicationController
     medLog[SecureRandom.uuid] << {
       med_name: medicine.name,
       instruction: medicine.instruction,
-      dosage: medicine.dosage
-      #date_created: DateTime.now
+      dosage: medicine.dosage,
+      date_created: DateTime.now
     }
 
     Patient.update(:patientId, :med_log => medlog.to_json)
