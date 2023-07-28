@@ -44,7 +44,7 @@ class PatientsController < ApplicationController
       med_name: medicine.name,
       instruction: medicine.instruction,
       dosage: medicine.dosage
-      date_created: DateTime.now
+      #date_created: DateTime.now
     }
 
     Patient.update(:patientId, :med_log => medlog.to_json)
