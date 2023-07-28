@@ -21,14 +21,14 @@ class PatientsController < ApplicationController
   # GET /patients/1 or /patients/1.json
   def show
     @patients = Patient.where(patient_id: params[:id]).first
-    p "Here"
-    p @patients
     if(@patients.med_log == nil)
       @patients.med_log = {}
       @medlog = {}
     else
       temp = JSON.parse(@patients.med_log)
       @medlog = temp
+      print("=== @medLog === ")
+      p @medlog
     end
 
     @medicines = Medicine.all

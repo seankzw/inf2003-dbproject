@@ -8,7 +8,7 @@
   <% if @medLogs == nil %>
     <p>Nothing much to see here</p>
   <% else %>
-      <% @medLogs.each_with_index do |medLog,idx|%>
+      <% @medLogs.to_enum.with_index.reverse_each do |medLog,idx|%>
       <% if (idx)%2 == 0 %>
         <section class="w-2/4 h-22 mx-auto bg-gray-100 rounded-xl drop-shadow-md m-6 relative p-6">
       <% else %>
