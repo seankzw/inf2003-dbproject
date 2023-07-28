@@ -4,11 +4,12 @@
       <%= render @patient %>
       <% if current_user %>
         <% if current_user.superadmin? || current_user.hospitaladmin? %>
-          <form action='/patients/'.<%= @patient.id %>.'/medlog' method="post" class="w-full max-w-sm">
+          <form action='/patients/<%= @patient.id %>/medlog' method="post" class="w-full max-w-sm">
+          <%= hidden_field_tag :authenticity_token, form_authenticity_token %>
             <div class="flex items-center border-b border-teal-500 py-2">
-              <select name='medicines' class="appearance-none bg-transparent border-none w-full text-gray-700 mr-3 py-1 px-2 leading-tight focus:outline-none">
+              <select name='medId' class="appearance-none bg-transparent border-none w-full text-gray-700 mr-3 py-1 px-2 leading-tight focus:outline-none">
                 <% @medicines.each do |med| %>
-                  <option value=<%= med.name %>><%= med.name %></option>
+                  <option value=<%= med.id %>><%= med.name %></option>
                 <% end %>
               </select>
               <button type="submit" class="flex-shrink-0 bg-blue-500 hover:bg-blue-700 border-blue-500 hover:border-blue-700 text-sm border-4 text-white py-1 px-3 rounded">

@@ -29,7 +29,7 @@ Rails.application.routes.draw do
   get "/doctors", to:"doctors#index"
   get "/adminstrators", to:"administrators#index"
 
-  post "/patient/medlog", to:"patients#addMedLog"
+  post "/patients/:id/medlog", to:"patients#addMedLog"
 
   get "/medicines", to:"medicines#index"
   root "hospitals#index"

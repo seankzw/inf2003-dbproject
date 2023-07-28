@@ -36,21 +36,36 @@ class PatientsController < ApplicationController
 
   # Add new med log for patient POST /patient/:id/medlog
   def addMedLog
-    medicine = Medicine.find(:medId)
-    patient= Patient.find(:patientId)
-    medLog = JSON.parse(patient.med_log)
+    patient = Patient.find(params[:id])
+    medLog = patient.med_log
+    medicine = Medicine.find(params["medId"])
 
-    # Add new medlog
-    medLog[SecureRandom.uuid] << {
-      med_name: medicine.name,
-      instruction: medicine.instruction,
-      dosage: medicine.dosage,
-      date_created: DateTime.now
-    }
+    ## Add new medlog
+    if(medLog == nil)
+      patient.med_log = JSON.generate(
+        SecureRandom.uuid => {
+          "med_name": medicine.name,
+          "instruction": medicine.instruction,
+          "dosage": medicine.dosage,
+          "date_created": DateTime.now
+        }
+      )
 
-    Patient.update(:patientId, :med_log => medlog.to_json)
+    else
+        medLog = JSON.parse(patient.med_log)
 
-    redirect_to(:back)
+        print medLog
+        medLog[SecureRandom.uuid] = {
+            "med_name": medicine.name,
+            "instruction": medicine.instruction,
+            "dosage": medicine.dosage,
+            "date_created": DateTime.now
+          }
+
+        patient.med_log = JSON.generate(medLog)
+    end
+
+    patient.save
   end
 
     # View patient med log
