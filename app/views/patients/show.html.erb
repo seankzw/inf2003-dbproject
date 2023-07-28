@@ -1,6 +1,5 @@
-<div class="my-24 mx-auto md:w-2/3 w-full flex">
-  <div class="mx-auto">
-
+<div class="my-24 ml-60 md:w-3/3 w-full flex">
+  <div>
       <%= render @patient %>
       <% if current_user %>
         <% if current_user.superadmin? || current_user.hospitaladmin? %>
