@@ -1,7 +1,7 @@
 class MedicinesController < ApplicationController
   before_action :set_medicine, only: %i[ show edit update destroy ]
   before_action :authenticate_user!
-  # before_action :check_permission
+  before_action :check_permission
 
   # GET /medicines or /medicines.json
   def index
