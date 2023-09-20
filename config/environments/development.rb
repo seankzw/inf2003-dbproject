@@ -1,6 +1,11 @@
 require "active_support/core_ext/integer/time"
 
 Rails.application.configure do
+  #Custom domains
+  config.host << 'seankzw.com'
+  config.host << 'loosiongyu.me'
+
+
   # Settings specified here will take precedence over those in config/application.rb.
   config.action_mailer.default_url_options = { host: 'localhost', port: 3000 }
 
